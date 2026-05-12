@@ -1,0 +1,1127 @@
+---
+title: "Size symbolism in production and perception"
+subtitle: "A Bayesian analysis of duration, pitch, and animacy"
+author:
+  - Alexandra Schmidt
+  - Aleksandra Ćwiek
+  - Petra Wagner
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    code_folding: show
+    df_print: paged
+bibliography: MAIconicity.bib
+link-citations: true
+editor_options:
+  chunk_output_type: console
+---
+
+```{r source setup, echo = TRUE, message=FALSE, warning = FALSE}
+########## folders ##########
+setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+parentfolder  <- dirname(getwd())
+models        <- paste0(parentfolder, '/models/')
+plots         <- paste0(parentfolder, '/plots/')
+scripts       <- paste0(parentfolder, '/scripts/')
+data_dir      <- paste0(parentfolder, '/data/')   # adjust if data lives elsewhere
+
+########## folder creation (security: only if missing) ##########
+if (!dir.exists(plots))   dir.create(plots,   recursive = TRUE)
+if (!dir.exists(models))  dir.create(models,  recursive = TRUE)
+if (!dir.exists(scripts)) dir.create(scripts, recursive = TRUE)
+if (!dir.exists(data_dir)) dir.create(data_dir, recursive = TRUE)
+
+knitr::opts_chunk$set(
+  fig.path = plots
+)
+
+#################### packages ####################
+# Core tidyverse for wrangling + plotting; janitor/skimr for quick structure checks; patchwork for combining plots
+library(tidyverse)
+library(janitor)
+library(skimr)
+library(knitr)
+library(cowplot)
+library(ggdist)
+# Bayesian
+library(brms);
+library(loo);packageVersion("loo")
+library(HDInterval);packageVersion("HDInterval")
+library(cmdstanr);
+library(emmeans);packageVersion("emmeans")
+library(posterior);
+library(bayesplot);
+library(BayesFactor);
+library(tidybayes);packageVersion("tidybayes")
+library(bayestestR);
+library(cmdstanr)
+
+options(brms.backend = "cmdstanr") # Speed gain: ~30-50% faster than rstan
+options(brms.file_refit = "on_change")  # only refit if model changes
+
+# use all available cores for parallel computing
+options(mc.cores = parallel::detectCores())
+theme_set(theme_tidybayes() + panel_border());
+
+# Keep plots/readability consistent
+theme_set(theme_minimal(base_size = 14))
+colorBlindBlack8  <- c("#000000", "#E69F00", "#56B4E9", "#009E73",
+                       "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
+
+# Figure and Table caption adapted from https://stackoverflow.com/questions/37116632/rmarkdown-html-number-figures:
+outputFormat = opts_knit$get("rmarkdown.pandoc.to"); # determine the output format of the document
+if( is.null(outputFormat) ) outputFormat = ""; # probably not run within knittr
+capTabNo = 1; capFigNo = 1; # figure and table caption numbering, for HTML do it manually
+#Function to add the Table Number
+capTab = function(x)
+{
+  if(outputFormat == 'html'){
+    x = paste0("**Table ",capTabNo,".** ",x,"")
+    capTabNo <<- capTabNo + 1
+  }; x
+}
+
+#Function to add the Figure Number
+capFig = function(x, show_R_version=FALSE, show_package_versions=NULL, is_map=FALSE)
+{
+  if(outputFormat == 'html')
+  {
+    x <- paste0("**Figure ",capFigNo,".** ",x,"");
+    if( show_R_version || (!is.null(show_package_versions) && length(show_package_versions) > 0) )
+    {
+      x <- paste0(x, " Figure generated using ");
+      if( show_R_version ) x <- paste0(x, stringr::str_replace(R.version.string, stringr::fixed("R "), "[`R`](https://www.r-project.org/) "));
+      if( !is.null(show_package_versions) && length(show_package_versions) > 0 )
+      {
+        x <- paste0(x, ifelse( show_R_version, " and ", " "));
+        x <- paste0(x, ifelse( length(show_package_versions) > 1, "packages ", "package "));
+        x <- paste0(x, paste0(vapply(show_package_versions, function(x) paste0("`",x,"`", " (version ", packageVersion(x),")"), character(1)), collapse=", "), ".");
+      }
+      if( is_map ) x <- paste0(x, " Maps are using public domain data from the [Natural Earth project](https://www.naturalearthdata.com/) as provided by the `R` package `maps`.");
+    }
+    capFigNo <<- capFigNo + 1;
+  };
+  x;
+}
+
+########## reproducibility ##########
+set.seed(2137)
+```
+
+# Overview
+
+**Research question.** Do speakers encode size iconically, and do listeners use those same
+acoustic cues? Iconicity — a resemblance between linguistic form and meaning [@perniss_vigliocco_2014]
+— has moved from a peripheral curiosity to a recognized organizing principle in language
+[@cwiek_iconicity_2022; @cwiek_introduction_2025; @dingemanse_arbitrariness_2015], and size is one
+of the most robust domains in which it surfaces: from the classic *mil/mal* contrast
+[@sapir_study_1929] through the lexicon of English size adjectives [@winter_size_2021] and
+cross-linguistic patterns [@blasi_soundmeaning_2016] to recent work on the acoustic and
+articulatory bases of size–sound correspondences [@winter_size_2025].
+
+**Main claim.** Acoustic size iconicity is primarily realized through *duration* and *pitch* (f0):
+big referents are produced with longer vowels and lower f0, and listeners rely on those same cues
+when categorizing referent size. The pitch prediction follows the frequency code
+[@ohala_ethological_1984; @ohala_cross-language_1983], in which lower f0 indexes larger body size
+across vertebrates; the duration prediction follows recent treatments of iconicity as embedded in
+continuous acoustic and articulatory parameters rather than discrete phonemic features
+[@winter_size_2025; @fuchs_sounds_2022; @perlman_iconicity_2018]. The same auditory analogies are
+expected to guide listener categorization [@winter_size_2021; @perniss_vigliocco_2014;
+@schmidt_jabeen_dragon_2024].
+
+**Secondary claim.** Animacy shapes the acoustic realization and/or interpretation of these
+effects (cf. Ćwiek & Fuchs, 2025): the size effect may be stronger or weaker for animate vs.
+inanimate referents. Vocal-imitation studies suggest that referent-property mapping is sensitive
+to whether the referent is itself a sound-producing entity [@lemaitre_vocal_2016; @fuchs_sounds_2022].
+For German specifically, size symbolism has been documented in dog naming
+[@christoph_lautsymbolische_2022] and adjectival vowels [@schmitz_size_2022;
+@elsen_lautsymbolik_2014], but the role of animacy as a moderator of *speaker-produced* size
+cues is largely unexplored.
+
+**Exploratory.** Other features — F1, F2, fricative duration, fricative SPL, fricative spectral
+peak, fricative centre of gravity, and the voice-quality measures CPP [@fraile_cepstral_2014;
+@hillenbrand_acoustic_1994] and H1–H2 [@chai_h1h2_2022] — are examined without a priori
+predictions. The pluripotential view of iconic features (cf. Akita et al., 2025; Winter, Abralin
+Ao Vivo talk) motivates inspecting the broader signal rather than committing to a single channel.
+
+This analysis lives entirely in the Bayesian framework [`brms`, @bates_fitting_2015 for the
+underlying frequentist mixed-effects logic; @baayen_analyzing_2008] with the `cmdstanr`
+backend. All German labels and column names from the original data files are translated to English
+in the cleaning step so the script and its outputs are readable internationally.
+
+# Decisions log
+
+- **Primary models** include the `size × animacy` interaction so the same fits answer both the
+  main and secondary claims.
+- **Random effects (production)**: `(1 + size_c | speaker) + (1 | item)`. 39 speakers, 36 items,
+  ~1400 vowel rows / ~2470 fricative rows — comfortable.
+- **Random effects (perception)**: `(1 | listener) + (1 | speaker) + (1 | item)`. 39 × 39 × 36,
+  936 observations — varying slopes added per-model only if needed.
+- **Coding**: sum contrasts `-0.5 / +0.5` for `size_c` and `animacy_c` so main effects remain
+  interpretable in the presence of the interaction. Continuous predictors entering perception
+  models are within-speaker z-scored — the listener-side coefficient then reads as "1 SD shift in
+  *this speaker's* signal".
+- **Priors**: weakly informative — `normal(0, 1)` on standardized fixed effects,
+  `student_t(3, 0, 2.5)` on intercepts and SDs.
+- **Outcome families**:
+  - durations → `lognormal()` (positive, right-skewed)
+  - f0 / formants / CPP / H1H2 / SPL / peak frequency → `gaussian()`
+  - binary perception (`big_judgment`, `animate_judgment`) → `bernoulli(logit)`
+  - 6-way `picked_category` → `categorical()` (only as exploratory RQ3, off by default)
+- **Outliers**: not trimmed by default — the lognormal family absorbs the right tail. A
+  diagnostic chunk flags extreme cases for inspection.
+- **Caching**: fits saved to `models/`; `brms.file_refit = "on_change"` means re-knit only
+  refits when the model spec changes.
+- **Acoustic extraction**: vowel features via PraatSauce [@kirby_praatsauce_2025;
+  @boersma_praat_2023]; fricative features via the Al-Tamimi spectral-analyses scripts
+  [@al-tamimi_jalalal-tamimipraat-spectral-analyses-fricatives-stops_2022;
+  @jongman_acoustic_2000].
+
+# 1. Read raw data
+
+`alle.csv` is comma-separated; the others are tab-separated. `out_praatSauce.tsv` has one
+malformed row and uses `--undefined--` as a missing-value sentinel.
+
+```{r read-raw}
+alle_raw <- read_csv(file.path(data_dir, "alle.csv"),
+                     show_col_types = FALSE) |>
+  select(-1)        # drop the unnamed row-index column
+
+praat_raw <- read_tsv(
+  file.path(data_dir, "out_praatSauce.tsv"),
+  na = c("", "NA", "--undefined--"),
+  show_col_types = FALSE,
+  col_types = cols(
+    file        = col_character(),
+    label       = col_character(),
+    intervaldID = col_integer(),
+    .default    = col_double()       # forces f0/F1/F2/CPP/H1H2/etc. to numeric
+  )
+) |>
+  rename(intervalID = intervaldID) |>
+  filter(!is.na(intervalID))         # drops the single malformed row (line 434)
+
+fric_raw <- read_tsv(file.path(data_dir, "spectralResultsFricatives.tsv"),
+                     show_col_types = FALSE)
+
+vdur_raw <- read_tsv(file.path(data_dir, "vowelDuration.txt"),
+                     show_col_types = FALSE) |>
+  rename(file = FileName, vowel = digit, vowel_dur_ms = `Duration(ms)`)
+```
+
+# 2. Translate German → English
+
+Three layers: column names, categorical values, and (in a glossary) item words.
+Stimulus item names are translated to `item_english`.
+
+## 2.1 Column-name dictionary
+
+```{r column-dict}
+# Names of vector = original German column names; values = English replacements.
+col_translations <- c(
+  Gruppe              = "group",
+  Bewertet            = "listener",
+  Spricht             = "speaker",
+  Belebtheit          = "animacy",
+  Art                 = "category",
+  Groesse             = "size",
+  Exemplar            = "item",
+  Kurz                = "item_code",
+  Runde_Durchgang     = "round_trial",
+  Geraten_Exemplar    = "picked_item",
+  Geraten_Kurz        = "picked_item_code",
+  Geraten_Belebtheit  = "picked_animacy",
+  Geraten_Art         = "picked_category",
+  Geraten_Groesse     = "picked_size",
+  Exemplar_Korrekt    = "item_correct",
+  Gruppe_Korrekt      = "group_correct",
+  Belebtheit_Korrekt  = "animacy_correct",
+  Art_Korrekt         = "category_correct",
+  Groesse_Korrekt     = "size_correct"
+)
+
+translate_columns <- function(old_names) {
+  new <- col_translations[old_names]
+  ifelse(is.na(new), old_names, new)
+}
+
+alle <- alle_raw |> rename_with(translate_columns)
+```
+
+## 2.2 Value-label dictionaries
+
+```{r value-translation}
+alle <- alle |>
+  mutate(
+    across(c(size, picked_size),
+           ~ case_when(.x == "Gross" ~ "big",
+                       .x == "Klein" ~ "small",
+                       TRUE ~ .x)),
+    across(c(animacy, picked_animacy),
+           ~ case_when(.x == "Belebt"   ~ "animate",
+                       .x == "Unbelebt" ~ "inanimate",
+                       TRUE ~ .x)),
+    across(c(category, picked_category),
+           ~ case_when(.x == "Vogel"      ~ "bird",
+                       .x == "Saeugetier" ~ "mammal",
+                       .x == "Reptil"     ~ "reptile",
+                       .x == "Geraet"     ~ "appliance",
+                       .x == "Fahrzeug"   ~ "vehicle",
+                       .x == "Instrument" ~ "instrument",
+                       TRUE ~ .x))
+  )
+```
+
+## 2.3 Item-name glossary (German stimulus → English gloss)
+
+```{r item-glossary}
+item_glossary <- tribble(
+  ~item_norm,            ~item_english,
+  "buerodrucker",        "office printer",
+  "drucker",             "printer",
+  "industriebackofen",   "industrial oven",
+  "backofen",            "oven",
+  "armbanduhr",          "wristwatch",
+  "wanduhr",             "wall clock",
+  "kirchenglocke",       "church bell",
+  "gloeckchen",          "little bell",
+  "kontrabass",          "double bass",
+  "violine",             "violin",
+  "bodentrommel",        "floor drum",
+  "handtrommel",         "hand drum",
+  "grosserbagger",       "big excavator",
+  "kleinerbagger",       "small excavator",
+  "jumbojet",            "jumbo jet",
+  "kleinflugzeug",       "small airplane",
+  "suv",                 "SUV",
+  "kleinwagen",          "small car",
+  "elefant",             "elephant",
+  "kuh",                 "cow",
+  "baer",                "bear",
+  "kaninchen",           "rabbit",
+  "aeffchen",            "little monkey",
+  "igel",                "hedgehog",
+  "kondor",              "condor",
+  "harpyie",             "harpy eagle",
+  "storch",              "stork",
+  "blaumeise",           "blue tit",
+  "dompfaff",            "bullfinch",
+  "spatz",               "sparrow",
+  "anakonda",            "anaconda",
+  "krokodil",            "crocodile",
+  "komodowaran",         "komodo dragon",
+  "schildkroete",        "turtle",
+  "blindschleiche",      "slow worm",
+  "gecko",               "gecko"
+)
+```
+
+# 3. Clean and harmonize
+
+## 3.1 Parse production filenames
+
+Format: `group + speaker_num _ trial_num _ entity _ sex + age` (e.g. `a1_01_buerodrucker_m31`).
+Two filenames lack the `_sex+age` suffix (`d1_11_anakonda`, `i1_03_kontrabass`); we recover
+speaker info from same-group siblings.
+
+```{r parse-filenames}
+parse_filename <- function(x) {
+  x_clean <- x |> str_remove("\\.wav$") |> str_to_lower()
+  m <- str_match(x_clean,
+    "^([a-z])(\\d)_(\\d{2})_(.+?)_([mw])(\\d+)$")
+  tibble(
+    file_key      = x_clean,
+    group         = m[, 2],
+    speaker_num   = as.integer(m[, 3]),
+    trial_num     = as.integer(m[, 4]),
+    item_norm     = m[, 5],
+    sex           = m[, 6],
+    age           = as.integer(m[, 7])
+  )
+}
+
+# Master file table: every unique production filename across the three production sources
+master_files <- bind_rows(
+  praat_raw |> distinct(file)     |> rename(file_orig = file),
+  fric_raw  |> distinct(fileName) |> rename(file_orig = fileName),
+  vdur_raw  |> distinct(file)     |> rename(file_orig = file)
+) |>
+  distinct(file_orig) |>
+  mutate(parsed = map(file_orig, parse_filename)) |>
+  unnest(parsed)
+
+unparsed <- master_files |> filter(is.na(group))
+cat("Files that did NOT parse:\n"); print(unparsed |> select(file_orig))
+```
+
+```{r recover-unparsed}
+# Recover sex/age from same-group siblings (these participants appear elsewhere).
+sibling_lookup <- master_files |>
+  filter(!is.na(group)) |>
+  distinct(group, speaker_num, sex, age)
+
+manual_pat <- "^([a-z])(\\d)_(\\d{2})_(.+)$"
+manual <- master_files |>
+  filter(is.na(group)) |>
+  mutate(file_key_lc = str_to_lower(file_orig) |> str_remove("\\.wav$")) |>
+  transmute(
+    file_orig,
+    group       = str_match(file_key_lc, manual_pat)[, 2],
+    speaker_num = as.integer(str_match(file_key_lc, manual_pat)[, 3]),
+    trial_num   = as.integer(str_match(file_key_lc, manual_pat)[, 4]),
+    item_norm   = str_match(file_key_lc, manual_pat)[, 5],
+    file_key    = file_key_lc
+  ) |>
+  left_join(sibling_lookup, by = c("group", "speaker_num"))
+
+master_files <- master_files |>
+  filter(!is.na(group)) |>
+  bind_rows(manual) |>
+  distinct(file_key, .keep_all = TRUE)   # dedupe .wav / no-extension variants
+
+stopifnot(sum(is.na(master_files$group)) == 0)
+glimpse(master_files)
+```
+
+## 3.2 Normalize item names (fix typos, harmonize spelling)
+
+Production filenames and the perception `item` column use different conventions, plus a handful
+of typos (`harypie`/`harpyie`, `industrienbackofen`/`industriebackofen`,
+`schildkorete`/`schildkroete`). We normalize both sides to the same lowercase, no-spaces form.
+
+```{r normalize-items}
+normalize_item <- function(x) {
+  x |>
+    str_to_lower() |>
+    str_trim() |>
+    str_remove_all("\\s+") |>
+    str_replace("^harypie$",            "harpyie") |>
+    str_replace("^industrienbackofen$", "industriebackofen") |>
+    str_replace("^schildkorete$",       "schildkroete")
+}
+
+master_files <- master_files |>
+  mutate(item_norm = normalize_item(item_norm))
+
+alle <- alle |>
+  mutate(item_norm = normalize_item(item))
+
+# Verify item-name correspondence after normalization
+prod_items <- master_files |> distinct(item_norm) |> pull(item_norm) |> sort()
+perc_items <- alle |> distinct(item_norm) |> pull(item_norm) |> sort()
+
+cat("Items in production but not perception:\n");
+print(setdiff(prod_items, perc_items))
+cat("\nItems in perception but not production:\n");
+print(setdiff(perc_items, prod_items))
+```
+
+## 3.3 Parse perception speaker / listener codes
+
+```{r parse-perception-codes}
+parse_speaker_code <- function(s) {
+  m <- str_match(s, "^([a-z])(\\d)_([mw])_(\\d+)$")
+  tibble(
+    .grp     = m[, 2],
+    .spknum  = as.integer(m[, 3]),
+    .sex     = m[, 4],
+    .age     = as.integer(m[, 5])
+  )
+}
+
+alle <- alle |>
+  bind_cols(parse_speaker_code(alle$speaker)  |> rename_with(~ paste0("spk", .))) |>
+  bind_cols(parse_speaker_code(alle$listener) |> rename_with(~ paste0("lst", .))) |>
+  separate(round_trial, into = c("round", "trial_num"),
+           sep = "_", remove = FALSE, convert = TRUE) |>
+  rename(speaker_num  = spk.spknum,
+         speaker_sex  = spk.sex,
+         speaker_age  = spk.age,
+         listener_sex = lst.sex,
+         listener_age = lst.age) |>
+  select(-spk.grp, -lst.grp)
+
+# Sanity: round must equal speaker_num
+stopifnot(all(alle$round == alle$speaker_num))
+
+# Binary outcomes for downstream models
+alle <- alle |>
+  mutate(
+    big_judgment      = as.integer(picked_size      == "big"),
+    animate_judgment  = as.integer(picked_animacy   == "animate"),
+    portrayed_big     = as.integer(size             == "big"),
+    portrayed_animate = as.integer(animacy          == "animate")
+  )
+```
+
+# 4. Build the long-format production tables
+
+Production data are in **long format**: one row per acoustic measurement (vowel or fricative
+token). Per-trial summaries used in perception models are derived from these.
+
+```{r build-prod-long}
+# ---- vowel duration: one row per vowel
+vdur_long <- vdur_raw |>
+  mutate(file_key = str_to_lower(file)) |>
+  left_join(master_files |> select(file_key, group, speaker_num, trial_num,
+                                   item_norm, sex, age),
+            by = "file_key") |>
+  filter(!is.na(group))
+
+# ---- praatSauce: one row per vowel, with f0 / F1 / F2 / CPP / H1-H2.
+# H1-H2 = A1c - A2c per the readme.
+praat_long <- praat_raw |>
+  mutate(file_key = str_to_lower(file) |> str_remove("\\.wav$"),
+         H1H2     = A1c - A2c) |>
+  rename(vowel = label) |>
+  left_join(master_files |> select(file_key, group, speaker_num, trial_num,
+                                   item_norm, sex, age),
+            by = "file_key") |>
+  filter(!is.na(group))
+
+# Join vowel duration onto praat (per file × vowel)
+vowel_long <- praat_long |>
+  left_join(vdur_long |> select(file_key, vowel, vowel_dur_ms),
+            by = c("file_key", "vowel"))
+
+# ---- Fricatives: one row per fricative token
+fric_long <- fric_raw |>
+  mutate(file_key = str_to_lower(fileName) |> str_remove("\\.wav$")) |>
+  rename(fric_dur_ms  = durationMS,
+         fric_SPL_dB  = levelMWholedB,    # whole-segment, mid-band intensity
+         fric_peak_Hz = peakFreqHzMid,
+         fric_CoG_Hz  = cogMid) |>
+  filter(phoneme %in% c("C", "f", "z", "S")) |>   # drop one anomalous "´z" record
+  left_join(master_files |> select(file_key, group, speaker_num, trial_num,
+                                   item_norm, sex, age),
+            by = "file_key") |>
+  filter(!is.na(group)) |>
+  select(file_key, phoneme, fric_dur_ms, fric_SPL_dB, fric_peak_Hz, fric_CoG_Hz,
+         group, speaker_num, trial_num, item_norm, sex, age)
+```
+
+## 4.1 Attach experimental factors and item glosses to production rows
+
+```{r attach-factors}
+trial_factors <- alle |>
+  distinct(group, speaker_num, trial_num, item_norm,
+           animacy, category, size, item_code, item) |>
+  rename(item_label = item)   # keep the camel-case label for plots
+
+speaker_id <- master_files |>
+  distinct(group, speaker_num, sex, age) |>
+  mutate(speaker = paste0(group, speaker_num, "_", sex, "_", age))
+
+vowel_long <- vowel_long |>
+  left_join(trial_factors, by = c("group", "speaker_num", "trial_num", "item_norm")) |>
+  left_join(speaker_id,    by = c("group", "speaker_num", "sex", "age")) |>
+  left_join(item_glossary, by = "item_norm")
+
+fric_long <- fric_long |>
+  left_join(trial_factors, by = c("group", "speaker_num", "trial_num", "item_norm")) |>
+  left_join(speaker_id,    by = c("group", "speaker_num", "sex", "age")) |>
+  left_join(item_glossary, by = "item_norm")
+
+cat("vowel_long rows missing factors:", sum(is.na(vowel_long$size)), "\n")
+cat("fric_long  rows missing factors:", sum(is.na(fric_long$size)),  "\n")
+```
+
+## 4.2 Build the perception dataframe with speaker-level acoustic predictors
+
+For each (group, speaker, trial), summarize the speaker's acoustic output for that production —
+mean across vowels for vocalic features, mean across fricatives for fricative features. Predictors
+are then within-speaker z-scored so the perception coefficient reads as "what does +1 SD of *this
+speaker's* signal do to listener choice?".
+
+```{r build-perception}
+# Per-trial vowel summaries
+trial_vowel <- vowel_long |>
+  group_by(group, speaker_num, trial_num) |>
+  summarise(
+    vowel_dur_ms_mean = mean(vowel_dur_ms, na.rm = TRUE),
+    f0_mean           = mean(f0,           na.rm = TRUE),
+    F1_mean           = mean(F1,           na.rm = TRUE),
+    F2_mean           = mean(F2,           na.rm = TRUE),
+    CPP_mean          = mean(CPP,          na.rm = TRUE),
+    H1H2_mean         = mean(H1H2,         na.rm = TRUE),
+    .groups = "drop"
+  )
+
+# Per-trial fricative summaries
+trial_fric <- fric_long |>
+  group_by(group, speaker_num, trial_num) |>
+  summarise(
+    fric_dur_ms_mean  = mean(fric_dur_ms,  na.rm = TRUE),
+    fric_SPL_dB_mean  = mean(fric_SPL_dB,  na.rm = TRUE),
+    fric_peak_Hz_mean = mean(fric_peak_Hz, na.rm = TRUE),
+    fric_CoG_Hz_mean  = mean(fric_CoG_Hz,  na.rm = TRUE),
+    .groups = "drop"
+  )
+
+zscale <- function(x) as.numeric(scale(x))
+
+perc <- alle |>
+  left_join(trial_vowel,   by = c("group", "speaker_num", "trial_num")) |>
+  left_join(trial_fric,    by = c("group", "speaker_num", "trial_num")) |>
+  left_join(item_glossary, by = "item_norm") |>
+  group_by(speaker) |>
+  mutate(across(c(vowel_dur_ms_mean, f0_mean, F1_mean, F2_mean, CPP_mean, H1H2_mean,
+                  fric_dur_ms_mean, fric_SPL_dB_mean, fric_peak_Hz_mean, fric_CoG_Hz_mean),
+                zscale, .names = "{.col}_z")) |>
+  ungroup()
+
+cat("Perception rows without production audio:",
+    sum(is.na(perc$vowel_dur_ms_mean)), "of", nrow(perc), "\n")
+```
+
+## 4.3 Sum-coding for size and animacy
+
+```{r factor-coding}
+# Helper: 2-level sum-coded contrast (-0.5 / +0.5)
+sum_code_2 <- function(x, levels) {
+  x <- factor(x, levels = levels)
+  as.numeric(x) - 1.5      # level 1 -> -0.5, level 2 -> +0.5
+}
+
+# Production-side
+vowel_long <- vowel_long |>
+  mutate(
+    size_c    = sum_code_2(size,    c("small",     "big")),       # +0.5 = big
+    animacy_c = sum_code_2(animacy, c("inanimate", "animate"))    # +0.5 = animate
+  )
+
+fric_long <- fric_long |>
+  mutate(
+    size_c    = sum_code_2(size,    c("small",     "big")),
+    animacy_c = sum_code_2(animacy, c("inanimate", "animate"))
+  )
+
+# Perception-side
+perc <- perc |>
+  mutate(
+    size_c    = sum_code_2(size,    c("small",     "big")),
+    animacy_c = sum_code_2(animacy, c("inanimate", "animate"))
+  )
+```
+
+# 5. Exploratory data analysis
+
+## 5.1 Sample sizes
+
+```{r eda-counts}
+cat("Vowel rows:        ", nrow(vowel_long), "\n")
+cat("Fricative rows:    ", nrow(fric_long),  "\n")
+cat("Perception rows:   ", nrow(perc),       "\n")
+cat("Speakers:          ", n_distinct(perc$speaker),   "\n")
+cat("Listeners:         ", n_distinct(perc$listener),  "\n")
+cat("Items:             ", n_distinct(perc$item_english), "\n")
+
+perc |> tabyl(animacy, size, category) |> print()
+```
+
+## 5.2 Distributions of acoustic features
+
+```{r eda-distributions, fig.height=6, fig.cap=capFig("Vocalic features by size and animacy. Median lines inside violins.")}
+acoustic_long <- vowel_long |>
+  select(speaker, item_english, vowel, size, animacy,
+         vowel_dur_ms, f0, F1, F2, CPP, H1H2) |>
+  pivot_longer(c(vowel_dur_ms, f0, F1, F2, CPP, H1H2),
+               names_to = "feature", values_to = "value")
+
+ggplot(acoustic_long, aes(x = size, y = value, fill = animacy)) +
+  geom_violin(draw_quantiles = 0.5, alpha = 0.7) +
+  facet_wrap(~ feature, scales = "free_y") +
+  scale_fill_manual(values = colorBlindBlack8[c(3, 4)]) +
+  labs(title = "Vocalic features by size and animacy",
+       x = NULL, y = NULL)
+```
+
+```{r eda-fricatives, fig.height=4, fig.cap=capFig("Fricative features by size and animacy.")}
+fric_long |>
+  pivot_longer(c(fric_dur_ms, fric_SPL_dB, fric_peak_Hz, fric_CoG_Hz),
+               names_to = "feature", values_to = "value") |>
+  ggplot(aes(x = size, y = value, fill = animacy)) +
+  geom_violin(draw_quantiles = 0.5, alpha = 0.7) +
+  facet_wrap(~ feature, scales = "free_y") +
+  scale_fill_manual(values = colorBlindBlack8[c(3, 4)]) +
+  labs(title = "Fricative features by size and animacy",
+       x = NULL, y = NULL)
+```
+
+## 5.3 Outlier flags (vowel duration)
+
+```{r outlier-flags}
+vowel_long |>
+  group_by(vowel) |>
+  mutate(z = scale(log(vowel_dur_ms))[, 1]) |>
+  ungroup() |>
+  filter(abs(z) > 3) |>
+  select(file_key, vowel, vowel_dur_ms, z, size, animacy) |>
+  arrange(desc(abs(z)))
+```
+
+## 5.4 Perception accuracy snapshot
+
+```{r eda-accuracy}
+perc |>
+  summarise(
+    size_acc      = mean(size_correct),
+    animacy_acc   = mean(animacy_correct),
+    category_acc  = mean(category_correct),
+    item_acc      = mean(item_correct)
+  )
+```
+
+```{r eda-perc-by-cell, fig.height=4, fig.cap=capFig("Proportion of 'big' judgments by portrayed size and animacy of the referent.")}
+perc |>
+  group_by(animacy, size) |>
+  summarise(prop_big_judgment = mean(big_judgment), .groups = "drop") |>
+  ggplot(aes(x = size, y = prop_big_judgment, fill = animacy)) +
+  geom_col(position = position_dodge()) +
+  geom_hline(yintercept = 0.5, linetype = 2) +
+  scale_fill_manual(values = colorBlindBlack8[c(3, 4)]) +
+  labs(y = "P(\"big\" judgment)",
+       title = "Listener \"big\" judgment by portrayed size and animacy")
+```
+
+# 6. Primary analyses — duration and pitch
+
+The primary models test the **main claim** (size iconicity through duration and f0
+[@ohala_ethological_1984; @winter_size_2025; @fuchs_sounds_2022]) via the main effect of
+`size_c`, and the **secondary claim** (animacy modulation) via the `size_c × animacy_c`
+interaction. Including both in the same model lets a single posterior speak to both claims and
+avoids the multiple-testing pitfalls of fitting them separately.
+
+## 6.1 A reusable fitter
+
+```{r helper-fit}
+default_priors <- function(family = "gaussian") {
+  switch(family,
+    gaussian  = c(prior(normal(0, 100),        class = "b"),
+                  prior(student_t(3, 0, 100),  class = "Intercept"),
+                  prior(student_t(3, 0, 100),  class = "sd"),
+                  prior(student_t(3, 0, 100),  class = "sigma")),
+    lognormal = c(prior(normal(0, 1.5),        class = "b"),
+                  prior(student_t(3, 5, 5),    class = "Intercept"),
+                  prior(student_t(3, 0, 2),    class = "sd"),
+                  prior(student_t(3, 0, 2),    class = "sigma")),
+    bernoulli = c(prior(normal(0, 5),          class = "b"),
+                  prior(student_t(3, 0, 10),   class = "Intercept"),
+                  prior(student_t(3, 0, 5),    class = "sd"))
+  )
+}
+
+fit_brm <- function(formula, data, family = gaussian(), file = NULL,
+                    priors = NULL, ...) {
+  fam_name <- family$family
+  if (is.null(priors)) priors <- default_priors(fam_name)
+  brm(formula = formula, data = data, family = family,
+      prior = priors,
+      chains = 4, iter = 8000, warmup = 4000, cores = 4,
+      control = list(adapt_delta = 0.95, max_treedepth = 12),
+      seed   = 2137,
+      file   = file,
+      ...)
+}
+```
+
+## 6.2 Production: vowel duration
+
+```{r m-vowel-dur, results='hide'}
+m_vdur <- fit_brm(
+  bf(vowel_dur_ms ~ size_c * animacy_c + vowel +
+       (1 + size_c | speaker) + (1 | item_english)),
+  data   = vowel_long |> filter(!is.na(vowel_dur_ms)),
+  family = lognormal(),
+  file   = paste0(models, "m_vdur")
+)
+```
+
+```{r m-vowel-dur-ppc, fig.cap=capFig("Posterior predictive check for vowel duration (lognormal).")}
+summary(m_vdur)
+pp_check(m_vdur, ndraws = 100) + ggtitle("PPC — vowel duration")
+```
+
+## 6.3 Production: f0 (pitch)
+
+f0 is modeled with `gaussian()` plus a `sex` covariate (male/female speakers differ by ~80–100 Hz
+on average; without `sex` the random intercept absorbs it but you lose interpretability of the
+fixed-effect intercept). The prediction — lower f0 for big referents — is the central frequency-code
+expectation [@ohala_ethological_1984; @ohala_cross-language_1983].
+
+```{r m-f0, results='hide'}
+m_f0 <- fit_brm(
+  bf(f0 ~ size_c * animacy_c + sex + vowel +
+       (1 + size_c | speaker) + (1 | item_english)),
+  data   = vowel_long |> filter(!is.na(f0)),
+  family = lognormal(),
+  file   = paste0(models, "m_f0")
+)
+```
+
+```{r m-f0-ppc, fig.cap=capFig("Posterior predictive check for f0 (Gaussian, with sex covariate).")}
+summary(m_f0)
+pp_check(m_f0, ndraws = 100) + ggtitle("PPC — f0")
+```
+
+## 6.4 Perception: vowel duration → "big" judgment
+
+```{r m-perc-dur, results='hide'}
+m_perc_dur <- fit_brm(
+  bf(big_judgment ~ vowel_dur_ms_mean_z * animacy_c +
+       (1 | listener) + (1 | speaker) + (1 | item_english)),
+  data   = perc |> filter(!is.na(vowel_dur_ms_mean_z)),
+  family = bernoulli(),
+  file   = paste0(models, "m_perc_dur")
+)
+```
+
+## 6.5 Perception: f0 → "big" judgment
+
+```{r m-perc-f0, results='hide'}
+m_perc_f0 <- fit_brm(
+  bf(big_judgment ~ f0_mean_z * animacy_c +
+       (1 | listener) + (1 | speaker) + (1 | item_english)),
+  data   = perc |> filter(!is.na(f0_mean_z)),
+  family = bernoulli(),
+  file   = paste0(models, "m_perc_f0")
+)
+```
+
+## 6.6 Reporting helpers
+
+```{r report-helper}
+report_model <- function(model, label = "model", terms_of_interest = NULL) {
+  cat("\n========== ", label, " ==========\n")
+
+  ds <- describe_posterior(model, ci = 0.95, ci_method = "hdi",
+                           test = c("pd"), centrality = "median",
+                           effects = "fixed")
+  print(ds)
+
+  print(pp_check(model, ndraws = 100) + ggtitle(paste("PPC —", label)))
+
+  draws <- as_draws_df(model) |>
+    select(starts_with("b_"), -matches("^b_Intercept$")) |>
+    pivot_longer(everything(), names_to = "term", values_to = "value") |>
+    mutate(term = str_remove(term, "^b_"))
+
+  if (!is.null(terms_of_interest))
+    draws <- draws |> filter(term %in% terms_of_interest)
+
+  p <- ggplot(draws, aes(x = value, y = term)) +
+    stat_halfeye(.width = c(0.66, 0.95)) +
+    geom_vline(xintercept = 0, linetype = 2, colour = "grey40") +
+    labs(title = paste("Posterior —", label), x = "estimate", y = NULL)
+  print(p)
+
+  invisible(ds)
+}
+
+report_effect <- function(model, coef_name,
+                          direction = c("auto", "positive", "negative"),
+                          label = NULL) {
+  direction   <- match.arg(direction)
+  family_name <- family(model)$family
+  if (is.null(label)) label <- paste0(deparse(substitute(model)), " :: ", coef_name)
+
+  # ---- Posterior draws of the coefficient on the model's link scale
+  beta <- as_draws_df(model)[[paste0("b_", coef_name)]]
+  if (is.null(beta)) stop("Coefficient '", coef_name, "' not in model.")
+
+  link_hdi <- median_hdi(beta, .width = 0.95)
+
+  # ---- Decide direction for the one-sided hypothesis test
+  if (direction == "auto") {
+    direction <- if (median(beta) > 0) "positive" else "negative"
+  }
+  hyp_str <- paste(coef_name, if (direction == "positive") "> 0" else "< 0")
+  hyp     <- hypothesis(model, hyp_str)$hypothesis
+
+  # ---- Print
+  cat("\n--- ", label, "  [", family_name, "] ---\n", sep = "")
+  cat(sprintf("Link-scale coefficient:  %.4f   [95%% HDI: %.4f, %.4f]\n",
+              link_hdi$y, link_hdi$ymin, link_hdi$ymax))
+
+  if (family_name == "lognormal") {
+    # With sum-coded predictor (-0.5/+0.5), beta is exactly log(y_big / y_small).
+    # So exp(beta) is the ratio big/small, and (exp(beta) - 1) * 100 is the % change.
+    pct      <- (exp(beta) - 1) * 100
+    pct_hdi  <- median_hdi(pct, .width = 0.95)
+    ratio_hdi <- median_hdi(exp(beta), .width = 0.95)
+    cat(sprintf("Multiplicative effect:   %.3f×  [95%% HDI: %.3f×, %.3f×]\n",
+                ratio_hdi$y, ratio_hdi$ymin, ratio_hdi$ymax))
+    cat(sprintf("As %% change (big - small): %.2f%% [95%% HDI: %.2f%%, %.2f%%]\n",
+                pct_hdi$y, pct_hdi$ymin, pct_hdi$ymax))
+  } else if (family_name == "bernoulli") {
+    or     <- exp(beta)
+    or_hdi <- median_hdi(or, .width = 0.95)
+    cat(sprintf("Odds ratio:              %.3f   [95%% HDI: %.3f, %.3f]\n",
+                or_hdi$y, or_hdi$ymin, or_hdi$ymax))
+  }
+  # For gaussian the link IS the response scale, so nothing to back-transform.
+
+  cat(sprintf("P(%s | data)  =  %.4f\n", hyp_str, hyp$Post.Prob))
+
+  invisible(list(link = link_hdi, hypothesis = hyp))
+}
+```
+
+
+```{r}
+# Main claim: size effects
+report_effect(m_vdur,     "size_c",                direction = "positive",
+              label = "H1.1pro vowel duration ~ size")
+report_effect(m_f0,       "size_c",                direction = "negative",
+              label = "H2.1pro f0 ~ size")
+report_effect(m_perc_dur, "vowel_dur_ms_mean_z",   direction = "positive",
+              label = "H1.1per duration → big judgment")
+report_effect(m_perc_f0,  "f0_mean_z",             direction = "negative",
+              label = "H2.1per f0 → big judgment")
+
+# Secondary claim: animacy modulation (two-sided — run both directions)
+report_effect(m_vdur, "size_c:animacy_c", direction = "auto",
+              label = "Animacy modulation of vowel duration")
+report_effect(m_f0,   "size_c:animacy_c", direction = "auto",
+              label = "Animacy modulation of f0")
+```
+
+
+```{r report-primary}
+walk2(
+  list(m_vdur, m_f0, m_perc_dur, m_perc_f0),
+  c("Production: vowel duration",
+    "Production: f0",
+    "Perception: duration → big judgment",
+    "Perception: f0 → big judgment"),
+  ~ report_model(.x, label = .y)
+)
+```
+
+## 6.7 Main claim — size iconicity main effects
+
+A single forest plot of the size posterior across the four primary models — the headline graphic
+for the main claim. Positive values indicate the size-iconic direction for duration (longer for
+big); for f0 the prediction is **negative** (lower for big), so a posterior concentrated below
+zero supports the frequency-code prediction [@ohala_ethological_1984; @winter_size_2025].
+
+```{r forest-main, fig.height=3.5, fig.cap=capFig("Headline plot — size iconicity main effects across the four primary models. Filled intervals: 66% and 95% HDI; dashed line at zero.")}
+extract_term <- function(model, term, name) {
+  as_draws_df(model) |>
+    transmute(model = name, value = .data[[paste0("b_", term)]])
+}
+
+main_effects <- bind_rows(
+  extract_term(m_vdur,     "size_c",                "vowel duration (production, log-ms)"),
+  extract_term(m_f0,       "size_c",                "f0 (production, Hz)"),
+  extract_term(m_perc_dur, "vowel_dur_ms_mean_z",   "duration → big (perception, log-odds)"),
+  extract_term(m_perc_f0,  "f0_mean_z",             "f0 → big (perception, log-odds)")
+) |>
+  mutate(model = factor(model, levels = unique(model)))
+
+ggplot(main_effects, aes(x = value, y = fct_rev(model))) +
+  stat_halfeye(.width = c(0.66, 0.95)) +
+  geom_vline(xintercept = 0, linetype = 2, colour = "grey40") +
+  labs(x = "Effect estimate (sum-coded big vs. small / per +1 SD)",
+       y = NULL,
+       title = "Main claim: size iconicity in production and perception",
+       subtitle = "Predicted direction: positive for duration; negative for f0")
+```
+
+## 6.8 Secondary claim — animacy modulation
+
+The `size_c × animacy_c` interaction is the secondary-claim term. A nonzero posterior indicates
+that the size effect differs between animate and inanimate referents (cf. Ćwiek & Fuchs, 2025;
+@fuchs_sounds_2022; @lemaitre_vocal_2016).
+
+```{r forest-interaction, fig.height=3.5, fig.cap=capFig("Headline plot — animacy modulation of the size effect across the four primary models.")}
+interactions_df <- bind_rows(
+  extract_term(m_vdur,     "size_c:animacy_c",                  "vowel duration (production)"),
+  extract_term(m_f0,       "size_c:animacy_c",                  "f0 (production)"),
+  extract_term(m_perc_dur, "vowel_dur_ms_mean_z:animacy_c",     "duration (perception)"),
+  extract_term(m_perc_f0,  "f0_mean_z:animacy_c",               "f0 (perception)")
+) |>
+  mutate(model = factor(model, levels = unique(model)))
+
+ggplot(interactions_df, aes(x = value, y = fct_rev(model))) +
+  stat_halfeye(.width = c(0.66, 0.95)) +
+  geom_vline(xintercept = 0, linetype = 2, colour = "grey40") +
+  labs(x = "Size × Animacy interaction estimate",
+       y = NULL,
+       title = "Secondary claim: animacy modulates size iconicity",
+       subtitle = "Nonzero = the size effect differs between animate and inanimate referents")
+```
+
+```{r conditional-effects, fig.height=4, fig.cap=capFig("Conditional effects of the size × animacy interaction in production (top) and perception (bottom).")}
+ce_vdur <- conditional_effects(m_vdur,
+                               effects = "size_c:animacy_c",
+                               re_formula = NA)
+plot(ce_vdur, points = FALSE)[[1]] +
+  labs(title = "Vowel duration: size × animacy (production)")
+
+ce_perc <- conditional_effects(m_perc_dur,
+                               effects = "vowel_dur_ms_mean_z:animacy_c",
+                               re_formula = NA)
+plot(ce_perc, points = FALSE)[[1]] +
+  labs(title = "P(\"big\" judgment) ~ duration, by animacy (perception)")
+```
+
+# 7. Exploratory analyses
+
+These models reuse the primary structure with swapped outcomes/predictors. They are deliberately
+exploratory in the sense of @cwiek_introduction_2025: examining the broader acoustic signal for
+where iconicity may leak into less-prototyped channels, without a priori predictions and without
+claim about robustness pending replication.
+
+## 7.1 A pair of templates
+
+```{r exploratory-template}
+# Production: continuous vocalic outcome
+fit_prod_vocalic <- function(outcome, family = gaussian(), data = vowel_long) {
+  formula <- bf(as.formula(paste(
+    outcome, "~ size_c * animacy_c + sex + vowel +",
+    "(1 + size_c | speaker) + (1 | item_english)"
+  )))
+  d <- data |> filter(!is.na(.data[[outcome]]))
+  fit_brm(formula, data = d, family = family,
+          file = paste0(models, "m_prod_", outcome))
+}
+
+# Production: continuous fricative outcome
+fit_prod_fric <- function(outcome, family = gaussian(), data = fric_long) {
+  formula <- bf(as.formula(paste(
+    outcome, "~ size_c * animacy_c + phoneme +",
+    "(1 + size_c | speaker) + (1 | item_english)"
+  )))
+  d <- data |> filter(!is.na(.data[[outcome]]))
+  fit_brm(formula, data = d, family = family,
+          file = paste0(models, "m_prod_", outcome))
+}
+
+# Perception: binary outcome on a single z-scored predictor
+fit_perc_bin <- function(outcome, predictor_z, data = perc) {
+  formula <- bf(as.formula(paste(
+    outcome, "~", predictor_z, "* animacy_c +",
+    "(1 | listener) + (1 | speaker) + (1 | item_english)"
+  )))
+  d <- data |> filter(!is.na(.data[[predictor_z]]))
+  fit_brm(formula, data = d, family = bernoulli(),
+          file = paste0(models, "m_perc_", outcome, "_", predictor_z))
+}
+```
+
+## 7.2 Other vocalic features (F1, F2, CPP, H1–H2)
+
+```{r exploratory-vocalic, results='hide'}
+m_F1   <- fit_prod_vocalic("F1",   family = lognormal())
+m_F2   <- fit_prod_vocalic("F2",   family = lognormal())
+m_CPP  <- fit_prod_vocalic("CPP")          # gaussian (default)
+m_H1H2 <- fit_prod_vocalic("H1H2")         # gaussian (default)
+```
+
+## 7.3 Fricative features (production)
+
+Fricative spectral cues are routinely linked to perceived size and to the geometry of the vocal
+tract [@jongman_acoustic_2000; @al-tamimi_jalalal-tamimipraat-spectral-analyses-fricatives-stops_2022].
+
+```{r exploratory-fric, results='hide'}
+m_fdur  <- fit_prod_fric("fric_dur_ms",  family = lognormal())
+m_fSPL  <- fit_prod_fric("fric_SPL_dB")              # gaussian
+m_fpeak <- fit_prod_fric("fric_peak_Hz")             # gaussian (log overshoots)
+m_fCoG  <- fit_prod_fric("fric_CoG_Hz")              # gaussian (log overshoots)
+```
+
+## 7.4 Perception of exploratory features
+
+```{r exploratory-perc, results='hide'}
+m_perc_F1     <- fit_perc_bin("big_judgment", "F1_mean_z")
+m_perc_F2     <- fit_perc_bin("big_judgment", "F2_mean_z")
+m_perc_fdur   <- fit_perc_bin("big_judgment", "fric_dur_ms_mean_z")
+m_perc_fSPL   <- fit_perc_bin("big_judgment", "fric_SPL_dB_mean_z")
+m_perc_fpeak  <- fit_perc_bin("big_judgment", "fric_peak_Hz_mean_z")
+```
+
+## 7.5 RQ4 — does animacy *judgment* depend on acoustic cues?
+
+```{r rq4, results='hide'}
+m_anim_dur <- fit_perc_bin("animate_judgment", "vowel_dur_ms_mean_z")
+m_anim_f0  <- fit_perc_bin("animate_judgment", "f0_mean_z")
+```
+
+## 7.6 RQ3 — multinomial subcategory judgment
+
+Categorical (6-level) outcome models are slow. Off by default; flip `eval=TRUE` to run.
+
+```{r rq3, eval=FALSE, results='hide'}
+m_cat_dur <- fit_brm(
+  bf(picked_category ~ vowel_dur_ms_mean_z * animacy_c +
+       (1 | listener) + (1 | speaker) + (1 | item_english)),
+  data   = perc |> filter(!is.na(vowel_dur_ms_mean_z)) |>
+                   mutate(picked_category = factor(picked_category)),
+  family = categorical(),
+  file   = paste0(models, "m_cat_dur")
+)
+```
+
+# 8. Cross-feature comparison
+
+## 8.1 Production: where does size leak into the signal?
+
+```{r forest-prod, fig.height=5, fig.cap=capFig("Size effect across all production models. Top two rows = primary claim (duration and f0); below = exploratory features.")}
+forest_prod <- bind_rows(
+  extract_term(m_vdur,  "size_c", "vowel duration (log)"),
+  extract_term(m_f0,    "size_c", "f0 (Hz)"),
+  extract_term(m_F1,    "size_c", "F1 (Hz)"),
+  extract_term(m_F2,    "size_c", "F2 (Hz)"),
+  extract_term(m_CPP,   "size_c", "CPP (dB)"),
+  extract_term(m_H1H2,  "size_c", "H1–H2"),
+  extract_term(m_fdur,  "size_c", "fricative duration (log)"),
+  extract_term(m_fSPL,  "size_c", "fricative SPL (dB)"),
+  extract_term(m_fpeak, "size_c", "fricative peak (Hz)"),
+  extract_term(m_fCoG,  "size_c", "fricative CoG (Hz)")
+) |>
+  mutate(model = factor(model, levels = unique(model)))
+
+ggplot(forest_prod, aes(x = value, y = fct_rev(model))) +
+  stat_halfeye(.width = c(0.66, 0.95)) +
+  geom_vline(xintercept = 0, linetype = 2, colour = "grey40") +
+  labs(x = "Effect of big vs. small (sum-coded)",
+       y = NULL,
+       title = "Production: size effect across all acoustic features",
+       subtitle = "Top two rows = primary claim; below = exploratory")
+```
+
+## 8.2 Perception: which cues drive "big" judgments?
+
+```{r forest-perc, fig.height=4, fig.cap=capFig("Perception: log-odds shift in 'big' judgment per +1 SD of each acoustic feature. Top two rows = primary claim; below = exploratory.")}
+forest_perc <- bind_rows(
+  extract_term(m_perc_dur,   "vowel_dur_ms_mean_z", "vowel duration"),
+  extract_term(m_perc_f0,    "f0_mean_z",           "f0"),
+  extract_term(m_perc_F1,    "F1_mean_z",           "F1"),
+  extract_term(m_perc_F2,    "F2_mean_z",           "F2"),
+  extract_term(m_perc_fdur,  "fric_dur_ms_mean_z",  "fricative duration"),
+  extract_term(m_perc_fSPL,  "fric_SPL_dB_mean_z",  "fricative SPL"),
+  extract_term(m_perc_fpeak, "fric_peak_Hz_mean_z", "fricative peak")
+) |>
+  mutate(model = factor(model, levels = unique(model)))
+
+ggplot(forest_perc, aes(x = value, y = fct_rev(model))) +
+  stat_halfeye(.width = c(0.66, 0.95)) +
+  geom_vline(xintercept = 0, linetype = 2, colour = "grey40") +
+  labs(x = "log-odds shift of \"big\" judgment per +1 SD acoustic feature",
+       y = NULL,
+       title = "Perception: which cues drive \"big\" judgments?",
+       subtitle = "Top two rows = primary claim; below = exploratory")
+```
+
+# 9. References {-}
+
+<div id="refs"></div>
+
+# 10. Session info
+
+```{r session}
+sessionInfo()
+```

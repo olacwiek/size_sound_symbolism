@@ -1,0 +1,937 @@
+"","Gruppe","Bewertet","Geraten_Exemplar","Geraten_Kurz","Belebtheit","Art","Groesse","Exemplar","Kurz","Spricht","Runde_Durchgang","Exemplar_Korrekt","Gruppe_Korrekt","Geraten_Belebtheit","Belebtheit_Korrekt","Geraten_Art","Art_Korrekt","Geraten_Groesse","Groesse_Korrekt"
+"1","a","a2_w_26","Buerodrucker","UGG","Unbelebt","Geraet","Gross","Buerodrucker","UGG","a1_m_31","01_01",1,1,"Unbelebt",1,"Geraet",1,"Gross",1
+"2","a","a3_m_22","Industriebackofen","UGG","Unbelebt","Geraet","Gross","Buerodrucker","UGG","a1_m_31","01_01",0,1,"Unbelebt",1,"Geraet",1,"Gross",1
+"3","b","b2_m_27","Drucker","UGK","Unbelebt","Fahrzeug","Gross","SUV","UFG","b1_w_20","01_01",0,0,"Unbelebt",1,"Geraet",0,"Klein",0
+"4","b","b3_w_20","Anakonda","BRG","Unbelebt","Fahrzeug","Gross","SUV","UFG","b1_w_20","01_01",0,0,"Belebt",0,"Reptil",0,"Gross",1
+"5","c","c2_w_20","Kondor","BVG","Belebt","Saeugetier","Gross","Baer","BSG","c1_w_41","01_01",0,0,"Belebt",1,"Vogel",0,"Gross",1
+"6","c","c3_w_31","Baer","BSG","Belebt","Saeugetier","Gross","Baer","BSG","c1_w_41","01_01",1,1,"Belebt",1,"Saeugetier",1,"Gross",1
+"7","d","d2_w_32","Schildkroete","BRK","Unbelebt","Instrument","Gross","Kirchenglocke","UIG","d1_w_24","01_01",0,0,"Belebt",0,"Reptil",0,"Klein",0
+"8","d","d3_w_24","Bodentrommel","UIG","Unbelebt","Instrument","Gross","Kirchenglocke","UIG","d1_w_24","01_01",0,1,"Unbelebt",1,"Instrument",1,"Gross",1
+"9","e","e2_w_25","Schildkroete","BRK","Belebt","Reptil","Klein","Schildkroete","BRK","e1_w_24","01_01",1,1,"Belebt",1,"Reptil",1,"Klein",1
+"10","e","e3_w_22","Elefant","BSG","Belebt","Reptil","Klein","Schildkroete","BRK","e1_w_24","01_01",0,0,"Belebt",1,"Saeugetier",0,"Gross",0
+"11","f","f2_m_38","Blindschleiche","BRK","Unbelebt","Fahrzeug","Gross","SUV","UFG","f1_w_20","01_01",0,0,"Belebt",0,"Reptil",0,"Klein",0
+"12","f","f3_w_24","Wanduhr","UGG","Unbelebt","Fahrzeug","Gross","SUV","UFG","f1_w_20","01_01",0,0,"Unbelebt",1,"Geraet",0,"Gross",1
+"13","g","g2_w_25","Kaninchen","BSK","Belebt","Reptil","Klein","Blindschleiche","BRK","g1_w_27","01_01",0,0,"Belebt",1,"Saeugetier",0,"Klein",1
+"14","g","g3_w_26","Kaninchen","BSK","Belebt","Reptil","Klein","Blindschleiche","BRK","g1_w_27","01_01",0,0,"Belebt",1,"Saeugetier",0,"Klein",1
+"15","h","h2_m_34","Buerodrucker","UGG","Unbelebt","Geraet","Gross","Buerodrucker","UGG","h1_w_27","01_01",1,1,"Unbelebt",1,"Geraet",1,"Gross",1
+"16","h","h3_m_30","Buerodrucker","UGG","Unbelebt","Geraet","Gross","Buerodrucker","UGG","h1_w_27","01_01",1,1,"Unbelebt",1,"Geraet",1,"Gross",1
+"17","i","i2_w_24","Spatz","BVK","Belebt","Reptil","Klein","Gecko","BRK","i1_w_30","01_01",0,0,"Belebt",1,"Vogel",0,"Klein",1
+"18","i","i3_m_21","Spatz","BVK","Belebt","Reptil","Klein","Gecko","BRK","i1_w_30","01_01",0,0,"Belebt",1,"Vogel",0,"Klein",1
+"19","j","j2_w_20","Baer","BSG","Unbelebt","Fahrzeug","Gross","Jumbojet","UFG","j1_w_21","01_01",0,0,"Belebt",0,"Saeugetier",0,"Gross",1
+"20","j","j3_w_21","Baer","BSG","Unbelebt","Fahrzeug","Gross","Jumbojet","UFG","j1_w_21","01_01",0,0,"Belebt",0,"Saeugetier",0,"Gross",1
+"21","k","k2_w_22","Gecko","BRK","Belebt","Saeugetier","Klein","Igel","BSK","k1_w_22","01_01",0,0,"Belebt",1,"Reptil",0,"Klein",1
+"22","k","k3_w_25","Spatz","BVK","Belebt","Saeugetier","Klein","Igel","BSK","k1_w_22","01_01",0,0,"Belebt",1,"Vogel",0,"Klein",1
+"23","l","l2_w_22","Baer","BSG","Unbelebt","Instrument","Gross","Kontrabass","UIG","l1_w_20","01_01",0,0,"Belebt",0,"Saeugetier",0,"Gross",1
+"24","l","l3_w_21","Baer","BSG","Unbelebt","Instrument","Gross","Kontrabass","UIG","l1_w_20","01_01",0,0,"Belebt",0,"Saeugetier",0,"Gross",1
+"25","m","m2_w_19","Igel","BSK","Belebt","Vogel","Klein","Spatz","BVK","m1_w_18","01_01",0,0,"Belebt",1,"Saeugetier",0,"Klein",1
+"26","m","m3_w_18","Kuh","BSG","Belebt","Vogel","Klein","Spatz","BVK","m1_w_18","01_01",0,0,"Belebt",1,"Saeugetier",0,"Gross",0
+"27","a","a2_w_26","Bodentrommel","UIG","Unbelebt","Fahrzeug","Gross","Grosser Bagger","UFG","a1_m_31","01_02",0,0,"Unbelebt",1,"Instrument",0,"Gross",1
+"28","a","a3_m_22","Jumbojet","UFG","Unbelebt","Fahrzeug","Gross","Grosser Bagger","UFG","a1_m_31","01_02",0,1,"Unbelebt",1,"Fahrzeug",1,"Gross",1
+"29","b","b2_m_27","Anakonda","BRG","Belebt","Reptil","Gross","Anakonda","BRG","b1_w_20","01_02",1,1,"Belebt",1,"Reptil",1,"Gross",1
+"30","b","b3_w_20","Wanduhr","UGG","Belebt","Reptil","Gross","Anakonda","BRG","b1_w_20","01_02",0,0,"Unbelebt",0,"Geraet",0,"Gross",1
+"31","c","c2_w_20","Kleinflugzeug","UFK","Belebt","Vogel","Gross","Kondor","BVG","c1_w_41","01_02",0,0,"Unbelebt",0,"Fahrzeug",0,"Klein",0
+"32","c","c3_w_31","Schildkroete","BRK","Belebt","Vogel","Gross","Kondor","BVG","c1_w_41","01_02",0,0,"Belebt",1,"Reptil",0,"Klein",0
+"33","d","d2_w_32","Industriebackofen","UGG","Unbelebt","Fahrzeug","Klein","Kleiner Bagger","UFK","d1_w_24","01_02",0,0,"Unbelebt",1,"Geraet",0,"Gross",0
+"34","d","d3_w_24","Kleiner Bagger","UFK","Unbelebt","Fahrzeug","Klein","Kleiner Bagger","UFK","d1_w_24","01_02",1,1,"Unbelebt",1,"Fahrzeug",1,"Klein",1
+"35","e","e2_w_25","Armbanduhr","UGK","Unbelebt","Fahrzeug","Gross","Jumbojet","UFG","e1_w_24","01_02",0,0,"Unbelebt",1,"Geraet",0,"Klein",0
+"36","e","e3_w_22","Armbanduhr","UGK","Unbelebt","Fahrzeug","Gross","Jumbojet","UFG","e1_w_24","01_02",0,0,"Unbelebt",1,"Geraet",0,"Klein",0
+"37","f","f2_m_38","Anakonda","BRG","Belebt","Saeugetier","Gross","Elefant","BSG","f1_w_20","01_02",0,0,"Belebt",1,"Reptil",0,"Gross",1
+"38","f","f3_w_24","Harpyie","BVG","Belebt","Saeugetier","Gross","Elefant","BSG","f1_w_20","01_02",0,0,"Belebt",1,"Vogel",0,"Gross",1
+"39","g","g2_w_25","Schildkroete","BRK","Belebt","Saeugetier","Klein","Kaninchen","BSK","g1_w_27","01_02",0,0,"Belebt",1,"Reptil",0,"Klein",1
+"40","g","g3_w_26","Armbanduhr","UGK","Belebt","Saeugetier","Klein","Kaninchen","BSK","g1_w_27","01_02",0,0,"Unbelebt",0,"Geraet",0,"Klein",1
+"41","h","h2_m_34","Dompfaff","BVK","Belebt","Saeugetier","Klein","Kaninchen","BSK","h1_w_27","01_02",0,0,"Belebt",1,"Vogel",0,"Klein",1
+"42","h","h3_m_30","Gecko","BRK","Belebt","Saeugetier","Klein","Kaninchen","BSK","h1_w_27","01_02",0,0,"Belebt",1,"Reptil",0,"Klein",1
+"43","i","i2_w_24","Dompfaff","BVK","Belebt","Vogel","Klein","Blaumeise","BVK","i1_w_30","01_02",0,1,"Belebt",1,"Vogel",1,"Klein",1
+"44","i","i3_m_21","Dompfaff","BVK","Belebt","Vogel","Klein","Blaumeise","BVK","i1_w_30","01_02",0,1,"Belebt",1,"Vogel",1,"Klein",1
+"45","j","j2_w_20","Blindschleiche","BRK","Unbelebt","Instrument","Gross","Bodentrommel","UIG","j1_w_21","01_02",0,0,"Belebt",0,"Reptil",0,"Klein",0
+"46","j","j3_w_21","Blaumeise","BVK","Unbelebt","Instrument","Gross","Bodentrommel","UIG","j1_w_21","01_02",0,0,"Belebt",0,"Vogel",0,"Klein",0
+"47","k","k2_w_22","Spatz","BVK","Belebt","Vogel","Klein","Spatz","BVK","k1_w_22","01_02",1,1,"Belebt",1,"Vogel",1,"Klein",1
+"48","k","k3_w_25","Igel","BSK","Belebt","Vogel","Klein","Spatz","BVK","k1_w_22","01_02",0,0,"Belebt",1,"Saeugetier",0,"Klein",1
+"49","l","l2_w_22","Spatz","BVK","Belebt","Vogel","Klein","Spatz","BVK","l1_w_20","01_02",1,1,"Belebt",1,"Vogel",1,"Klein",1
+"50","l","l3_w_21","Dompfaff","BVK","Belebt","Vogel","Klein","Spatz","BVK","l1_w_20","01_02",0,1,"Belebt",1,"Vogel",1,"Klein",1
+"51","m","m2_w_19","Kleiner Bagger","UFK","Unbelebt","Fahrzeug","Klein","Kleiner Bagger","UFK","m1_w_18","01_02",1,1,"Unbelebt",1,"Fahrzeug",1,"Klein",1
+"52","m","m3_w_18","Spatz","BVK","Unbelebt","Fahrzeug","Klein","Kleiner Bagger","UFK","m1_w_18","01_02",0,0,"Belebt",0,"Vogel",0,"Klein",1
+"53","a","a2_w_26","Industriebackofen","UGG","Belebt","Saeugetier","Gross","Kuh","BSG","a1_m_31","01_03",0,0,"Unbelebt",0,"Geraet",0,"Gross",1
+"54","a","a3_m_22","Krokodil","BRG","Belebt","Saeugetier","Gross","Kuh","BSG","a1_m_31","01_03",0,0,"Belebt",1,"Reptil",0,"Gross",1
+"55","b","b2_m_27","Buerodrucker","UGG","Unbelebt","Fahrzeug","Klein","Kleinflugzeug","UFK","b1_w_20","01_03",0,0,"Unbelebt",1,"Geraet",0,"Gross",0
+"56","b","b3_w_20","Violine","UIK","Unbelebt","Fahrzeug","Klein","Kleinflugzeug","UFK","b1_w_20","01_03",0,0,"Unbelebt",1,"Instrument",0,"Klein",1
+"57","c","c2_w_20","Kirchenglocke","UIG","Unbelebt","Instrument","Klein","Gloeckchen","UIK","c1_w_41","01_03",0,0,"Unbelebt",1,"Instrument",1,"Gross",0
+"58","c","c3_w_31","Gloeckchen","UIK","Unbelebt","Instrument","Klein","Gloeckchen","UIK","c1_w_41","01_03",1,1,"Unbelebt",1,"Instrument",1,"Klein",1
+"59","d","d2_w_32","SUV","UFG","Unbelebt","Fahrzeug","Gross","SUV","UFG","d1_w_24","01_03",1,1,"Unbelebt",1,"Fahrzeug",1,"Gross",1
+"60","d","d3_w_24","Buerodrucker","UGG","Unbelebt","Fahrzeug","Gross","SUV","UFG","d1_w_24","01_03",0,0,"Unbelebt",1,"Geraet",0,"Gross",1
+"61","e","e2_w_25","Elefant","BSG","Unbelebt","Geraet","Klein","Backofen","UGK","e1_w_24","01_03",0,0,"Belebt",0,"Saeugetier",0,"Gross",0
+"62","e","e3_w_22","Schildkroete","BRK","Unbelebt","Geraet","Klein","Backofen","UGK","e1_w_24","01_03",0,0,"Belebt",0,"Reptil",0,"Klein",1
+"63","f","f2_m_38","Grosser Bagger","UFG","Unbelebt","Instrument","Gross","Bodentrommel","UIG","f1_w_20","01_03",0,0,"Unbelebt",1,"Fahrzeug",0,"Gross",1
+"64","f","f3_w_24","Anakonda","BRG","Unbelebt","Instrument","Gross","Bodentrommel","UIG","f1_w_20","01_03",0,0,"Belebt",0,"Reptil",0,"Gross",1
+"65","g","g2_w_25","Kleiner Bagger","UFK","Belebt","Vogel","Gross","Harpyie","BVG","g1_w_27","01_03",0,0,"Unbelebt",0,"Fahrzeug",0,"Klein",0
+"66","g","g3_w_26","Blaumeise","BVK","Belebt","Vogel","Gross","Harpyie","BVG","g1_w_27","01_03",0,0,"Belebt",1,"Vogel",1,"Klein",0
+"67","h","h2_m_34","Grosser Bagger","UFG","Unbelebt","Instrument","Gross","Bodentrommel","UIG","h1_w_27","01_03",0,0,"Unbelebt",1,"Fahrzeug",0,"Gross",1
+"68","h","h3_m_30","Bodentrommel","UIG","Unbelebt","Instrument","Gross","Bodentrommel","UIG","h1_w_27","01_03",1,1,"Unbelebt",1,"Instrument",1,"Gross",1
+"69","i","i2_w_24","Kontrabass","UIG","Unbelebt","Instrument","Gross","Kontrabass","UIG","i1_w_30","01_03",1,1,"Unbelebt",1,"Instrument",1,"Gross",1
+"70","i","i3_m_21","Kontrabass","UIG","Unbelebt","Instrument","Gross","Kontrabass","UIG","i1_w_30","01_03",1,1,"Unbelebt",1,"Instrument",1,"Gross",1
+"71","j","j2_w_20","Aeffchen","BSK","Belebt","Vogel","Gross","Storch","BVG","j1_w_21","01_03",0,0,"Belebt",1,"Saeugetier",0,"Klein",0
+"72","j","j3_w_21","Kaninchen","BSK","Belebt","Vogel","Gross","Storch","BVG","j1_w_21","01_03",0,0,"Belebt",1,"Saeugetier",0,"Klein",0
+"73","k","k2_w_22","Kleinflugzeug","UFK","Belebt","Vogel","Gross","Storch","BVG","k1_w_22","01_03",0,0,"Unbelebt",0,"Fahrzeug",0,"Klein",0
+"74","k","k3_w_25","Drucker","UGK","Belebt","Vogel","Gross","Storch","BVG","k1_w_22","01_03",0,0,"Unbelebt",0,"Geraet",0,"Klein",0
+"75","l","l2_w_22","Baer","BSG","Unbelebt","Geraet","Klein","Backofen","UGK","l1_w_20","01_03",0,0,"Belebt",0,"Saeugetier",0,"Gross",0
+"76","l","l3_w_21","Komodowaran","BRG","Unbelebt","Geraet","Klein","Backofen","UGK","l1_w_20","01_03",0,0,"Belebt",0,"Reptil",0,"Gross",0
+"77","m","m2_w_19","Buerodrucker","UGG","Unbelebt","Geraet","Gross","Buerodrucker","UGG","m1_w_18","01_03",1,1,"Unbelebt",1,"Geraet",1,"Gross",1
+"78","m","m3_w_18","Buerodrucker","UGG","Unbelebt","Geraet","Gross","Buerodrucker","UGG","m1_w_18","01_03",1,1,"Unbelebt",1,"Geraet",1,"Gross",1
+"79","a","a2_w_26","Kleinwagen","UFK","Unbelebt","Instrument","Gross","Bodentrommel","UIG","a1_m_31","01_04",0,0,"Unbelebt",1,"Fahrzeug",0,"Klein",0
+"80","a","a3_m_22","Buerodrucker","UGG","Unbelebt","Instrument","Gross","Bodentrommel","UIG","a1_m_31","01_04",0,0,"Unbelebt",1,"Geraet",0,"Gross",1
+"81","b","b2_m_27","Drucker","UGK","Unbelebt","Geraet","Klein","Drucker","UGK","b1_w_20","01_04",1,1,"Unbelebt",1,"Geraet",1,"Klein",1
+"82","b","b3_w_20","SUV","UFG","Unbelebt","Geraet","Klein","Drucker","UGK","b1_w_20","01_04",0,0,"Unbelebt",1,"Fahrzeug",0,"Gross",0
+"83","c","c2_w_20","Anakonda","BRG","Belebt","Reptil","Gross","Komodowaran","BRG","c1_w_41","01_04",0,1,"Belebt",1,"Reptil",1,"Gross",1
+"84","c","c3_w_31","Komodowaran","BRG","Belebt","Reptil","Gross","Komodowaran","BRG","c1_w_41","01_04",1,1,"Belebt",1,"Reptil",1,"Gross",1
+"85","d","d2_w_32","Spatz","BVK","Unbelebt","Instrument","Klein","Gloeckchen","UIK","d1_w_24","01_04",0,0,"Belebt",0,"Vogel",0,"Klein",1
+"86","d","d3_w_24","Blaumeise","BVK","Unbelebt","Instrument","Klein","Gloeckchen","UIK","d1_w_24","01_04",0,0,"Belebt",0,"Vogel",0,"Klein",1
+"87","e","e2_w_25","Blaumeise","BVK","Belebt","Vogel","Gross","Harpyie","BVG","e1_w_24","01_04",0,0,"Belebt",1,"Vogel",1,"Klein",0
+"88","e","e3_w_22","Blaumeise","BVK","Belebt","Vogel","Gross","Harpyie","BVG","e1_w_24","01_04",0,0,"Belebt",1,"Vogel",1,"Klein",0
+"89","f","f2_m_38","Harpyie","BVG","Unbelebt","Fahrzeug","Klein","Kleinflugzeug","UFK","f1_w_20","01_04",0,0,"Belebt",0,"Vogel",0,"Gross",0
+"90","f","f3_w_24","Schildkroete","BRK","Unbelebt","Fahrzeug","Klein","Kleinflugzeug","UFK","f1_w_20","01_04",0,0,"Belebt",0,"Reptil",0,"Klein",1
+"91","g","g2_w_25","Spatz","BVK","Belebt","Vogel","Klein","Blaumeise","BVK","g1_w_27","01_04",0,1,"Belebt",1,"Vogel",1,"Klein",1
+"92","g","g3_w_26","Spatz","BVK","Belebt","Vogel","Klein","Blaumeise","BVK","g1_w_27","01_04",0,1,"Belebt",1,"Vogel",1,"Klein",1
+"93","h","h2_m_34","Blindschleiche","BRK","Unbelebt","Instrument","Klein","Gloeckchen","UIK","h1_w_27","01_04",0,0,"Belebt",0,"Reptil",0,"Klein",1
+"94","h","h3_m_30","Dompfaff","BVK","Unbelebt","Instrument","Klein","Gloeckchen","UIK","h1_w_27","01_04",0,0,"Belebt",0,"Vogel",0,"Klein",1
+"95","i","i2_w_24","Kuh","BSG","Unbelebt","Geraet","Gross","Wanduhr","UGG","i1_w_30","01_04",0,0,"Belebt",0,"Saeugetier",0,"Gross",1
+"96","i","i3_m_21","Kleinflugzeug","UFK","Unbelebt","Geraet","Gross","Wanduhr","UGG","i1_w_30","01_04",0,0,"Unbelebt",1,"Fahrzeug",0,"Klein",0
+"97","j","j2_w_20","Kaninchen","BSK","Belebt","Saeugetier","Klein","Aeffchen","BSK","j1_w_21","01_04",0,1,"Belebt",1,"Saeugetier",1,"Klein",1
+"98","j","j3_w_21","Aeffchen","BSK","Belebt","Saeugetier","Klein","Aeffchen","BSK","j1_w_21","01_04",1,1,"Belebt",1,"Saeugetier",1,"Klein",1
+"99","k","k2_w_22","SUV","UFG","Belebt","Saeugetier","Gross","Kuh","BSG","k1_w_22","01_04",0,0,"Unbelebt",0,"Fahrzeug",0,"Gross",1
+"100","k","k3_w_25","Elefant","BSG","Belebt","Saeugetier","Gross","Kuh","BSG","k1_w_22","01_04",0,1,"Belebt",1,"Saeugetier",1,"Gross",1
+"101","l","l2_w_22","Armbanduhr","UGK","Unbelebt","Geraet","Gross","Buerodrucker","UGG","l1_w_20","01_04",0,0,"Unbelebt",1,"Geraet",1,"Klein",0
+"102","l","l3_w_21","Armbanduhr","UGK","Unbelebt","Geraet","Gross","Buerodrucker","UGG","l1_w_20","01_04",0,0,"Unbelebt",1,"Geraet",1,"Klein",0
+"103","m","m2_w_19","Anakonda","BRG","Belebt","Reptil","Gross","Anakonda","BRG","m1_w_18","01_04",1,1,"Belebt",1,"Reptil",1,"Gross",1
+"104","m","m3_w_18","Anakonda","BRG","Belebt","Reptil","Gross","Anakonda","BRG","m1_w_18","01_04",1,1,"Belebt",1,"Reptil",1,"Gross",1
+"105","a","a2_w_26","Anakonda","BRG","Belebt","Reptil","Klein","Blindschleiche","BRK","a1_m_31","01_05",0,0,"Belebt",1,"Reptil",1,"Gross",0
+"106","a","a3_m_22","Anakonda","BRG","Belebt","Reptil","Klein","Blindschleiche","BRK","a1_m_31","01_05",0,0,"Belebt",1,"Reptil",1,"Gross",0
+"107","b","b2_m_27","Aeffchen","BSK","Belebt","Reptil","Klein","Gecko","BRK","b1_w_20","01_05",0,0,"Belebt",1,"Saeugetier",0,"Klein",1
+"108","b","b3_w_20","Blaumeise","BVK","Belebt","Reptil","Klein","Gecko","BRK","b1_w_20","01_05",0,0,"Belebt",1,"Vogel",0,"Klein",1
+"109","c","c2_w_20","Schildkroete","BRK","Unbelebt","Geraet","Klein","Backofen","UGK","c1_w_41","01_05",0,0,"Belebt",0,"Reptil",0,"Klein",1
+"110","c","c3_w_31","Kondor","BVG","Unbelebt","Geraet","Klein","Backofen","UGK","c1_w_41","01_05",0,0,"Belebt",0,"Vogel",0,"Gross",0
+"111","d","d2_w_32","Buerodrucker","UGG","Unbelebt","Geraet","Gross","Buerodrucker","UGG","d1_w_24","01_05",1,1,"Unbelebt",1,"Geraet",1,"Gross",1
+"112","d","d3_w_24","Backofen","UGK","Unbelebt","Geraet","Gross","Buerodrucker","UGG","d1_w_24","01_05",0,0,"Unbelebt",1,"Geraet",1,"Klein",0
+"113","e","e2_w_25","Krokodil","BRG","Unbelebt","Fahrzeug","Klein","Kleiner Bagger","UFK","e1_w_24","01_05",0,0,"Belebt",0,"Reptil",0,"Gross",0
+"114","e","e3_w_22","Buerodrucker","UGG","Unbelebt","Fahrzeug","Klein","Kleiner Bagger","UFK","e1_w_24","01_05",0,0,"Unbelebt",1,"Geraet",0,"Gross",0
+"115","f","f2_m_38","Bodentrommel","UIG","Belebt","Saeugetier","Klein","Aeffchen","BSK","f1_w_20","01_05",0,0,"Unbelebt",0,"Instrument",0,"Gross",0
+"116","f","f3_w_24","Blindschleiche","BRK","Belebt","Saeugetier","Klein","Aeffchen","BSK","f1_w_20","01_05",0,0,"Belebt",1,"Reptil",0,"Klein",1
+"117","g","g2_w_25","Blaumeise","BVK","Unbelebt","Instrument","Klein","Gloeckchen","UIK","g1_w_27","01_05",0,0,"Belebt",0,"Vogel",0,"Klein",1
+"118","g","g3_w_26","Gloeckchen","UIK","Unbelebt","Instrument","Klein","Gloeckchen","UIK","g1_w_27","01_05",1,1,"Unbelebt",1,"Instrument",1,"Klein",1
+"119","h","h2_m_34","Backofen","UGK","Unbelebt","Geraet","Klein","Backofen","UGK","h1_w_27","01_05",1,1,"Unbelebt",1,"Geraet",1,"Klein",1
+"120","h","h3_m_30","Komodowaran","BRG","Unbelebt","Geraet","Klein","Backofen","UGK","h1_w_27","01_05",0,0,"Belebt",0,"Reptil",0,"Gross",0
+"121","i","i2_w_24","Storch","BVG","Belebt","Vogel","Gross","Harpyie","BVG","i1_w_30","01_05",0,1,"Belebt",1,"Vogel",1,"Gross",1
+"122","i","i3_m_21","Storch","BVG","Belebt","Vogel","Gross","Harpyie","BVG","i1_w_30","01_05",0,1,"Belebt",1,"Vogel",1,"Gross",1
+"123","j","j2_w_20","Elefant","BSG","Unbelebt","Instrument","Klein","Handtrommel","UIK","j1_w_21","01_05",0,0,"Belebt",0,"Saeugetier",0,"Gross",0
+"124","j","j3_w_21","Elefant","BSG","Unbelebt","Instrument","Klein","Handtrommel","UIK","j1_w_21","01_05",0,0,"Belebt",0,"Saeugetier",0,"Gross",0
+"125","k","k2_w_22","Bodentrommel","UIG","Unbelebt","Instrument","Gross","Bodentrommel","UIG","k1_w_22","01_05",1,1,"Unbelebt",1,"Instrument",1,"Gross",1
+"126","k","k3_w_25","Buerodrucker","UGG","Unbelebt","Instrument","Gross","Bodentrommel","UIG","k1_w_22","01_05",0,0,"Unbelebt",1,"Geraet",0,"Gross",1
+"127","l","l2_w_22","Storch","BVG","Belebt","Reptil","Klein","Gecko","BRK","l1_w_20","01_05",0,0,"Belebt",1,"Vogel",0,"Gross",0
+"128","l","l3_w_21","Aeffchen","BSK","Belebt","Reptil","Klein","Gecko","BRK","l1_w_20","01_05",0,0,"Belebt",1,"Saeugetier",0,"Klein",1
+"129","m","m2_w_19","Drucker","UGK","Belebt","Vogel","Gross","Storch","BVG","m1_w_18","01_05",0,0,"Unbelebt",0,"Geraet",0,"Klein",0
+"130","m","m3_w_18","Drucker","UGK","Belebt","Vogel","Gross","Storch","BVG","m1_w_18","01_05",0,0,"Unbelebt",0,"Geraet",0,"Klein",0
+"131","a","a2_w_26","Backofen","UGK","Unbelebt","Fahrzeug","Klein","Kleinwagen","UFK","a1_m_31","01_06",0,0,"Unbelebt",1,"Geraet",0,"Klein",1
+"132","a","a3_m_22","Spatz","BVK","Unbelebt","Fahrzeug","Klein","Kleinwagen","UFK","a1_m_31","01_06",0,0,"Belebt",0,"Vogel",0,"Klein",1
+"133","b","b2_m_27","Wanduhr","UGG","Unbelebt","Instrument","Gross","Kirchenglocke","UIG","b1_w_20","01_06",0,0,"Unbelebt",1,"Geraet",0,"Gross",1
+"134","b","b3_w_20","Drucker","UGK","Unbelebt","Instrument","Gross","Kirchenglocke","UIG","b1_w_20","01_06",0,0,"Unbelebt",1,"Geraet",0,"Klein",0
+"135","c","c2_w_20","Kirchenglocke","UIG","Unbelebt","Instrument","Gross","Kirchenglocke","UIG","c1_w_41","01_06",1,1,"Unbelebt",1,"Instrument",1,"Gross",1
+"136","c","c3_w_31","Buerodrucker","UGG","Unbelebt","Instrument","Gross","Kirchenglocke","UIG","c1_w_41","01_06",0,0,"Unbelebt",1,"Geraet",0,"Gross",1
+"137","d","d2_w_32","Kirchenglocke","UIG","Belebt","Saeugetier","Gross","Elefant","BSG","d1_w_24","01_06",0,0,"Unbelebt",0,"Instrument",0,"Gross",1
+"138","d","d3_w_24","Industriebackofen","UGG","Belebt","Saeugetier","Gross","Elefant","BSG","d1_w_24","01_06",0,0,"Unbelebt",0,"Geraet",0,"Gross",1
+"139","e","e2_w_25","Industriebackofen","UGG","Belebt","Saeugetier","Gross","Elefant","BSG","e1_w_24","01_06",0,0,"Unbelebt",0,"Geraet",0,"Gross",1
+"140","e","e3_w_22","Schildkroete","BRK","Belebt","Saeugetier","Gross","Elefant","BSG","e1_w_24","01_06",0,0,"Belebt",1,"Reptil",0,"Klein",0
+"141","f","f2_m_38","Dompfaff","BVK","Unbelebt","Geraet","Klein","Armbanduhr","UGK","f1_w_20","01_06",0,0,"Belebt",0,"Vogel",0,"Klein",1
+"142","f","f3_w_24","Handtrommel","UIK","Unbelebt","Geraet","Klein","Armbanduhr","UGK","f1_w_20","01_06",0,0,"Unbelebt",1,"Instrument",0,"Klein",1
+"143","g","g2_w_25","Komodowaran","BRG","Belebt","Reptil","Gross","Anakonda","BRG","g1_w_27","01_06",0,1,"Belebt",1,"Reptil",1,"Gross",1
+"144","g","g3_w_26","Anakonda","BRG","Belebt","Reptil","Gross","Anakonda","BRG","g1_w_27","01_06",1,1,"Belebt",1,"Reptil",1,"Gross",1
+"145","h","h2_m_34","Anakonda","BRG","Belebt","Reptil","Gross","Komodowaran","BRG","h1_w_27","01_06",0,1,"Belebt",1,"Reptil",1,"Gross",1
+"146","h","h3_m_30","Anakonda","BRG","Belebt","Reptil","Gross","Komodowaran","BRG","h1_w_27","01_06",0,1,"Belebt",1,"Reptil",1,"Gross",1
+"147","i","i2_w_24","Kontrabass","UIG","Belebt","Saeugetier","Gross","Elefant","BSG","i1_w_30","01_06",0,0,"Unbelebt",0,"Instrument",0,"Gross",1
+"148","i","i3_m_21","Jumbojet","UFG","Belebt","Saeugetier","Gross","Elefant","BSG","i1_w_30","01_06",0,0,"Unbelebt",0,"Fahrzeug",0,"Gross",1
+"149","j","j2_w_20","Kleinwagen","UFK","Unbelebt","Fahrzeug","Klein","Kleinwagen","UFK","j1_w_21","01_06",1,1,"Unbelebt",1,"Fahrzeug",1,"Klein",1
+"150","j","j3_w_21","Baer","BSG","Unbelebt","Fahrzeug","Klein","Kleinwagen","UFK","j1_w_21","01_06",0,0,"Belebt",0,"Saeugetier",0,"Gross",0
+"151","k","k2_w_22","Jumbojet","UFG","Belebt","Reptil","Gross","Komodowaran","BRG","k1_w_22","01_06",0,0,"Unbelebt",0,"Fahrzeug",0,"Gross",1
+"152","k","k3_w_25","Kleinflugzeug","UFK","Belebt","Reptil","Gross","Komodowaran","BRG","k1_w_22","01_06",0,0,"Unbelebt",0,"Fahrzeug",0,"Klein",0
+"153","l","l2_w_22","Gecko","BRK","Belebt","Vogel","Gross","Storch","BVG","l1_w_20","01_06",0,0,"Belebt",1,"Reptil",0,"Klein",0
+"154","l","l3_w_21","Gecko","BRK","Belebt","Vogel","Gross","Storch","BVG","l1_w_20","01_06",0,0,"Belebt",1,"Reptil",0,"Klein",0
+"155","m","m2_w_19","Jumbojet","UFG","Unbelebt","Instrument","Klein","Handtrommel","UIK","m1_w_18","01_06",0,0,"Unbelebt",1,"Fahrzeug",0,"Gross",0
+"156","m","m3_w_18","Komodowaran","BRG","Unbelebt","Instrument","Klein","Handtrommel","UIK","m1_w_18","01_06",0,0,"Belebt",0,"Reptil",0,"Gross",0
+"157","a","a2_w_26","Spatz","BVK","Belebt","Saeugetier","Klein","Aeffchen","BSK","a1_m_31","01_07",0,0,"Belebt",1,"Vogel",0,"Klein",1
+"158","a","a3_m_22","Blaumeise","BVK","Belebt","Saeugetier","Klein","Aeffchen","BSK","a1_m_31","01_07",0,0,"Belebt",1,"Vogel",0,"Klein",1
+"159","b","b2_m_27","Kaninchen","BSK","Belebt","Vogel","Gross","Storch","BVG","b1_w_20","01_07",0,0,"Belebt",1,"Saeugetier",0,"Klein",0
+"160","b","b3_w_20","Aeffchen","BSK","Belebt","Vogel","Gross","Storch","BVG","b1_w_20","01_07",0,0,"Belebt",1,"Saeugetier",0,"Klein",0
+"161","c","c2_w_20","Violine","UIK","Belebt","Vogel","Klein","Blaumeise","BVK","c1_w_41","01_07",0,0,"Unbelebt",0,"Instrument",0,"Klein",1
+"162","c","c3_w_31","Kleinflugzeug","UFK","Belebt","Vogel","Klein","Blaumeise","BVK","c1_w_41","01_07",0,0,"Unbelebt",0,"Fahrzeug",0,"Klein",1
+"163","d","d2_w_32","Blaumeise","BVK","Belebt","Vogel","Klein","Blaumeise","BVK","d1_w_24","01_07",1,1,"Belebt",1,"Vogel",1,"Klein",1
+"164","d","d3_w_24","Spatz","BVK","Belebt","Vogel","Klein","Blaumeise","BVK","d1_w_24","01_07",0,1,"Belebt",1,"Vogel",1,"Klein",1
+"165","e","e2_w_25","Blaumeise","BVK","Belebt","Saeugetier","Klein","Aeffchen","BSK","e1_w_24","01_07",0,0,"Belebt",1,"Vogel",0,"Klein",1
+"166","e","e3_w_22","Kleiner Bagger","UFK","Belebt","Saeugetier","Klein","Aeffchen","BSK","e1_w_24","01_07",0,0,"Unbelebt",0,"Fahrzeug",0,"Klein",1
+"167","f","f2_m_38","Schildkroete","BRK","Belebt","Reptil","Klein","Schildkroete","BRK","f1_w_20","01_07",1,1,"Belebt",1,"Reptil",1,"Klein",1
+"168","f","f3_w_24","Schildkroete","BRK","Belebt","Reptil","Klein","Schildkroete","BRK","f1_w_20","01_07",1,1,"Belebt",1,"Reptil",1,"Klein",1
+"169","g","g2_w_25","Grosser Bagger","UFG","Unbelebt","Fahrzeug","Gross","Grosser Bagger","UFG","g1_w_27","01_07",1,1,"Unbelebt",1,"Fahrzeug",1,"Gross",1
+"170","g","g3_w_26","Grosser Bagger","UFG","Unbelebt","Fahrzeug","Gross","Grosser Bagger","UFG","g1_w_27","01_07",1,1,"Unbelebt",1,"Fahrzeug",1,"Gross",1
+"171","h","h2_m_34","Kleinflugzeug","UFK","Unbelebt","Fahrzeug","Klein","Kleinflugzeug","UFK","h1_w_27","01_07",1,1,"Unbelebt",1,"Fahrzeug",1,"Klein",1
+"172","h","h3_m_30","Grosser Bagger","UFG","Unbelebt","Fahrzeug","Klein","Kleinflugzeug","UFK","h1_w_27","01_07",0,0,"Unbelebt",1,"Fahrzeug",1,"Gross",0
+"173","i","i2_w_24","Kuh","BSG","Unbelebt","Geraet","Klein","Armbanduhr","UGK","i1_w_30","01_07",0,0,"Belebt",0,"Saeugetier",0,"Gross",0
+"174","i","i3_m_21","Harpyie","BVG","Unbelebt","Geraet","Klein","Armbanduhr","UGK","i1_w_30","01_07",0,0,"Belebt",0,"Vogel",0,"Gross",0
+"175","j","j2_w_20","Buerodrucker","UGG","Unbelebt","Geraet","Gross","Wanduhr","UGG","j1_w_21","01_07",0,1,"Unbelebt",1,"Geraet",1,"Gross",1
+"176","j","j3_w_21","Buerodrucker","UGG","Unbelebt","Geraet","Gross","Wanduhr","UGG","j1_w_21","01_07",0,1,"Unbelebt",1,"Geraet",1,"Gross",1
+"177","k","k2_w_22","Kleinflugzeug","UFK","Unbelebt","Fahrzeug","Klein","Kleinflugzeug","UFK","k1_w_22","01_07",1,1,"Unbelebt",1,"Fahrzeug",1,"Klein",1
+"178","k","k3_w_25","Jumbojet","UFG","Unbelebt","Fahrzeug","Klein","Kleinflugzeug","UFK","k1_w_22","01_07",0,0,"Unbelebt",1,"Fahrzeug",1,"Gross",0
+"179","l","l2_w_22","Grosser Bagger","UFG","Unbelebt","Fahrzeug","Gross","Grosser Bagger","UFG","l1_w_20","01_07",1,1,"Unbelebt",1,"Fahrzeug",1,"Gross",1
+"180","l","l3_w_21","Grosser Bagger","UFG","Unbelebt","Fahrzeug","Gross","Grosser Bagger","UFG","l1_w_20","01_07",1,1,"Unbelebt",1,"Fahrzeug",1,"Gross",1
+"181","m","m2_w_19","Krokodil","BRG","Belebt","Saeugetier","Gross","Elefant","BSG","m1_w_18","01_07",0,0,"Belebt",1,"Reptil",0,"Gross",1
+"182","m","m3_w_18","Elefant","BSG","Belebt","Saeugetier","Gross","Elefant","BSG","m1_w_18","01_07",1,1,"Belebt",1,"Saeugetier",1,"Gross",1
+"183","a","a2_w_26","Backofen","UGK","Belebt","Vogel","Gross","Storch","BVG","a1_m_31","01_08",0,0,"Unbelebt",0,"Geraet",0,"Klein",0
+"184","a","a3_m_22","Backofen","UGK","Belebt","Vogel","Gross","Storch","BVG","a1_m_31","01_08",0,0,"Unbelebt",0,"Geraet",0,"Klein",0
+"185","b","b2_m_27","Grosser Bagger","UFG","Belebt","Saeugetier","Gross","Kuh","BSG","b1_w_20","01_08",0,0,"Unbelebt",0,"Fahrzeug",0,"Gross",1
+"186","b","b3_w_20","Gecko","BRK","Belebt","Saeugetier","Gross","Kuh","BSG","b1_w_20","01_08",0,0,"Belebt",1,"Reptil",0,"Klein",0
+"187","c","c2_w_20","Igel","BSK","Belebt","Reptil","Klein","Schildkroete","BRK","c1_w_41","01_08",0,0,"Belebt",1,"Saeugetier",0,"Klein",1
+"188","c","c3_w_31","Baer","BSG","Belebt","Reptil","Klein","Schildkroete","BRK","c1_w_41","01_08",0,0,"Belebt",1,"Saeugetier",0,"Gross",0
+"189","d","d2_w_32","Gecko","BRK","Belebt","Vogel","Gross","Storch","BVG","d1_w_24","01_08",0,0,"Belebt",1,"Reptil",0,"Klein",0
+"190","d","d3_w_24","Igel","BSK","Belebt","Vogel","Gross","Storch","BVG","d1_w_24","01_08",0,0,"Belebt",1,"Saeugetier",0,"Klein",0
+"191","e","e2_w_25","Buerodrucker","UGG","Unbelebt","Instrument","Gross","Kontrabass","UIG","e1_w_24","01_08",0,0,"Unbelebt",1,"Geraet",0,"Gross",1
+"192","e","e3_w_22","Kuh","BSG","Unbelebt","Instrument","Gross","Kontrabass","UIG","e1_w_24","01_08",0,0,"Belebt",0,"Saeugetier",0,"Gross",1
+"193","f","f2_m_38","Kontrabass","UIG","Unbelebt","Geraet","Gross","Industriebackofen","UGG","f1_w_20","01_08",0,0,"Unbelebt",1,"Instrument",0,"Gross",1
+"194","f","f3_w_24","Industriebackofen","UGG","Unbelebt","Geraet","Gross","Industriebackofen","UGG","f1_w_20","01_08",1,1,"Unbelebt",1,"Geraet",1,"Gross",1
+"195","g","g2_w_25","Gloeckchen","UIK","Unbelebt","Geraet","Klein","Armbanduhr","UGK","g1_w_27","01_08",0,0,"Unbelebt",1,"Instrument",0,"Klein",1
+"196","g","g3_w_26","Kleiner Bagger","UFK","Unbelebt","Geraet","Klein","Armbanduhr","UGK","g1_w_27","01_08",0,0,"Unbelebt",1,"Fahrzeug",0,"Klein",1
+"197","h","h2_m_34","Komodowaran","BRG","Unbelebt","Fahrzeug","Gross","Grosser Bagger","UFG","h1_w_27","01_08",0,0,"Belebt",0,"Reptil",0,"Gross",1
+"198","h","h3_m_30","Komodowaran","BRG","Unbelebt","Fahrzeug","Gross","Grosser Bagger","UFG","h1_w_27","01_08",0,0,"Belebt",0,"Reptil",0,"Gross",1
+"199","i","i2_w_24","Kleinflugzeug","UFK","Unbelebt","Fahrzeug","Klein","Kleinflugzeug","UFK","i1_w_30","01_08",1,1,"Unbelebt",1,"Fahrzeug",1,"Klein",1
+"200","i","i3_m_21","Kaninchen","BSK","Unbelebt","Fahrzeug","Klein","Kleinflugzeug","UFK","i1_w_30","01_08",0,0,"Belebt",0,"Saeugetier",0,"Klein",1
+"201","j","j2_w_20","Baer","BSG","Belebt","Saeugetier","Gross","Baer","BSG","j1_w_21","01_08",1,1,"Belebt",1,"Saeugetier",1,"Gross",1
+"202","j","j3_w_21","Baer","BSG","Belebt","Saeugetier","Gross","Baer","BSG","j1_w_21","01_08",1,1,"Belebt",1,"Saeugetier",1,"Gross",1
+"203","k","k2_w_22","Kleiner Bagger","UFK","Belebt","Reptil","Klein","Gecko","BRK","k1_w_22","01_08",0,0,"Unbelebt",0,"Fahrzeug",0,"Klein",1
+"204","k","k3_w_25","Gecko","BRK","Belebt","Reptil","Klein","Gecko","BRK","k1_w_22","01_08",1,1,"Belebt",1,"Reptil",1,"Klein",1
+"205","l","l2_w_22","Handtrommel","UIK","Unbelebt","Instrument","Klein","Handtrommel","UIK","l1_w_20","01_08",1,1,"Unbelebt",1,"Instrument",1,"Klein",1
+"206","l","l3_w_21","Handtrommel","UIK","Unbelebt","Instrument","Klein","Handtrommel","UIK","l1_w_20","01_08",1,1,"Unbelebt",1,"Instrument",1,"Klein",1
+"207","m","m2_w_19","Kuh","BSG","Unbelebt","Geraet","Klein","Armbanduhr","UGK","m1_w_18","01_08",0,0,"Belebt",0,"Saeugetier",0,"Gross",0
+"208","m","m3_w_18","Kaninchen","BSK","Unbelebt","Geraet","Klein","Armbanduhr","UGK","m1_w_18","01_08",0,0,"Belebt",0,"Saeugetier",0,"Klein",1
+"209","a","a2_w_26","Anakonda","BRG","Belebt","Reptil","Gross","Anakonda","BRG","a1_m_31","01_09",1,1,"Belebt",1,"Reptil",1,"Gross",1
+"210","a","a3_m_22","Blindschleiche","BRK","Belebt","Reptil","Gross","Anakonda","BRG","a1_m_31","01_09",0,0,"Belebt",1,"Reptil",1,"Klein",0
+"211","b","b2_m_27","Kleinflugzeug","UFK","Unbelebt","Instrument","Klein","Violine ","UIK","b1_w_20","01_09",0,0,"Unbelebt",1,"Fahrzeug",0,"Klein",1
+"212","b","b3_w_20","Grosser Bagger","UFG","Unbelebt","Instrument","Klein","Violine ","UIK","b1_w_20","01_09",0,0,"Unbelebt",1,"Fahrzeug",0,"Gross",0
+"213","c","c2_w_20","Buerodrucker","UGG","Unbelebt","Fahrzeug","Klein","Kleinflugzeug","UFK","c1_w_41","01_09",0,0,"Unbelebt",1,"Geraet",0,"Gross",0
+"214","c","c3_w_31","Kuh","BSG","Unbelebt","Fahrzeug","Klein","Kleinflugzeug","UFK","c1_w_41","01_09",0,0,"Belebt",0,"Saeugetier",0,"Gross",0
+"215","d","d2_w_32","Igel","BSK","Belebt","Saeugetier","Klein","Igel","BSK","d1_w_24","01_09",1,1,"Belebt",1,"Saeugetier",1,"Klein",1
+"216","d","d3_w_24","Elefant","BSG","Belebt","Saeugetier","Klein","Igel","BSK","d1_w_24","01_09",0,0,"Belebt",1,"Saeugetier",1,"Gross",0
+"217","e","e2_w_25","Handtrommel","UIK","Unbelebt","Instrument","Klein","Handtrommel","UIK","e1_w_24","01_09",1,1,"Unbelebt",1,"Instrument",1,"Klein",1
+"218","e","e3_w_22","Jumbojet","UFG","Unbelebt","Instrument","Klein","Handtrommel","UIK","e1_w_24","01_09",0,0,"Unbelebt",1,"Fahrzeug",0,"Gross",0
+"219","f","f2_m_38","Anakonda","BRG","Unbelebt","Instrument","Klein","Handtrommel","UIK","f1_w_20","01_09",0,0,"Belebt",0,"Reptil",0,"Gross",0
+"220","f","f3_w_24","Anakonda","BRG","Unbelebt","Instrument","Klein","Handtrommel","UIK","f1_w_20","01_09",0,0,"Belebt",0,"Reptil",0,"Gross",0
+"221","g","g2_w_25","Harpyie","BVG","Belebt","Saeugetier","Gross","Elefant","BSG","g1_w_27","01_09",0,0,"Belebt",1,"Vogel",0,"Gross",1
+"222","g","g3_w_26","Elefant","BSG","Belebt","Saeugetier","Gross","Elefant","BSG","g1_w_27","01_09",1,1,"Belebt",1,"Saeugetier",1,"Gross",1
+"223","h","h2_m_34","Blaumeise","BVK","Belebt","Vogel","Klein","Blaumeise","BVK","h1_w_27","01_09",1,1,"Belebt",1,"Vogel",1,"Klein",1
+"224","h","h3_m_30","Blindschleiche","BRK","Belebt","Vogel","Klein","Blaumeise","BVK","h1_w_27","01_09",0,0,"Belebt",1,"Reptil",0,"Klein",1
+"225","i","i2_w_24","Gecko","BRK","Belebt","Reptil","Gross","Komodowaran","BRG","i1_w_30","01_09",0,0,"Belebt",1,"Reptil",1,"Klein",0
+"226","i","i3_m_21","Wanduhr","UGG","Belebt","Reptil","Gross","Komodowaran","BRG","i1_w_30","01_09",0,0,"Unbelebt",0,"Geraet",0,"Gross",1
+"227","j","j2_w_20","Backofen","UGK","Unbelebt","Geraet","Klein","Backofen","UGK","j1_w_21","01_09",1,1,"Unbelebt",1,"Geraet",1,"Klein",1
+"228","j","j3_w_21","Harpyie","BVG","Unbelebt","Geraet","Klein","Backofen","UGK","j1_w_21","01_09",0,0,"Belebt",0,"Vogel",0,"Gross",0
+"229","k","k2_w_22","Drucker","UGK","Unbelebt","Geraet","Gross","Buerodrucker","UGG","k1_w_22","01_09",0,0,"Unbelebt",1,"Geraet",1,"Klein",0
+"230","k","k3_w_25","Drucker","UGK","Unbelebt","Geraet","Gross","Buerodrucker","UGG","k1_w_22","01_09",0,0,"Unbelebt",1,"Geraet",1,"Klein",0
+"231","l","l2_w_22","Baer","BSG","Belebt","Reptil","Gross","Komodowaran","BRG","l1_w_20","01_09",0,0,"Belebt",1,"Saeugetier",0,"Gross",1
+"232","l","l3_w_21","Baer","BSG","Belebt","Reptil","Gross","Komodowaran","BRG","l1_w_20","01_09",0,0,"Belebt",1,"Saeugetier",0,"Gross",1
+"233","m","m2_w_19","Jumbojet","UFG","Unbelebt","Fahrzeug","Gross","Jumbojet","UFG","m1_w_18","01_09",1,1,"Unbelebt",1,"Fahrzeug",1,"Gross",1
+"234","m","m3_w_18","Kuh","BSG","Unbelebt","Fahrzeug","Gross","Jumbojet","UFG","m1_w_18","01_09",0,0,"Belebt",0,"Saeugetier",0,"Gross",1
+"235","a","a2_w_26","Blaumeise","BVK","Belebt","Vogel","Klein","Spatz","BVK","a1_m_31","01_10",0,1,"Belebt",1,"Vogel",1,"Klein",1
+"236","a","a3_m_22","Aeffchen","BSK","Belebt","Vogel","Klein","Spatz","BVK","a1_m_31","01_10",0,0,"Belebt",1,"Saeugetier",0,"Klein",1
+"237","b","b2_m_27","Spatz","BVK","Belebt","Saeugetier","Klein","Aeffchen","BSK","b1_w_20","01_10",0,0,"Belebt",1,"Vogel",0,"Klein",1
+"238","b","b3_w_20","Spatz","BVK","Belebt","Saeugetier","Klein","Aeffchen","BSK","b1_w_20","01_10",0,0,"Belebt",1,"Vogel",0,"Klein",1
+"239","c","c2_w_20","Kleinflugzeug","UFK","Unbelebt","Fahrzeug","Gross","SUV","UFG","c1_w_41","01_10",0,0,"Unbelebt",1,"Fahrzeug",1,"Klein",0
+"240","c","c3_w_31","Elefant","BSG","Unbelebt","Fahrzeug","Gross","SUV","UFG","c1_w_41","01_10",0,0,"Belebt",0,"Saeugetier",0,"Gross",1
+"241","d","d2_w_32","Backofen","UGK","Unbelebt","Geraet","Klein","Backofen","UGK","d1_w_24","01_10",1,1,"Unbelebt",1,"Geraet",1,"Klein",1
+"242","d","d3_w_24","SUV","UFG","Unbelebt","Geraet","Klein","Backofen","UGK","d1_w_24","01_10",0,0,"Unbelebt",1,"Fahrzeug",0,"Gross",0
+"243","e","e2_w_25","Jumbojet","UFG","Unbelebt","Geraet","Gross","Industriebackofen","UGG","e1_w_24","01_10",0,0,"Unbelebt",1,"Fahrzeug",0,"Gross",1
+"244","e","e3_w_22","Krokodil","BRG","Unbelebt","Geraet","Gross","Industriebackofen","UGG","e1_w_24","01_10",0,0,"Belebt",0,"Reptil",0,"Gross",1
+"245","f","f2_m_38","Aeffchen","BSK","Belebt","Vogel","Gross","Harpyie","BVG","f1_w_20","01_10",0,0,"Belebt",1,"Saeugetier",0,"Klein",0
+"246","f","f3_w_24","Spatz","BVK","Belebt","Vogel","Gross","Harpyie","BVG","f1_w_20","01_10",0,0,"Belebt",1,"Vogel",1,"Klein",0
+"247","g","g2_w_25","Elefant","BSG","Unbelebt","Fahrzeug","Klein","Kleiner Bagger","UFK","g1_w_27","01_10",0,0,"Belebt",0,"Saeugetier",0,"Gross",0
+"248","g","g3_w_26","Kontrabass","UIG","Unbelebt","Fahrzeug","Klein","Kleiner Bagger","UFK","g1_w_27","01_10",0,0,"Unbelebt",1,"Instrument",0,"Gross",0
+"249","h","h2_m_34","Harpyie","BVG","Belebt","Vogel","Gross","Harpyie","BVG","h1_w_27","01_10",1,1,"Belebt",1,"Vogel",1,"Gross",1
+"250","h","h3_m_30","Harpyie","BVG","Belebt","Vogel","Gross","Harpyie","BVG","h1_w_27","01_10",1,1,"Belebt",1,"Vogel",1,"Gross",1
+"251","i","i2_w_24","Komodowaran","BRG","Unbelebt","Fahrzeug","Gross","Jumbojet","UFG","i1_w_30","01_10",0,0,"Belebt",0,"Reptil",0,"Gross",1
+"252","i","i3_m_21","Jumbojet","UFG","Unbelebt","Fahrzeug","Gross","Jumbojet","UFG","i1_w_30","01_10",1,1,"Unbelebt",1,"Fahrzeug",1,"Gross",1
+"253","j","j2_w_20","Blindschleiche","BRK","Belebt","Reptil","Gross","Anakonda","BRG","j1_w_21","01_10",0,0,"Belebt",1,"Reptil",1,"Klein",0
+"254","j","j3_w_21","Anakonda","BRG","Belebt","Reptil","Gross","Anakonda","BRG","j1_w_21","01_10",1,1,"Belebt",1,"Reptil",1,"Gross",1
+"255","k","k2_w_22","Violine","UIK","Unbelebt","Instrument","Klein","Violine ","UIK","k1_w_22","01_10",0,1,"Unbelebt",1,"Instrument",1,"Klein",1
+"256","k","k3_w_25","Spatz","BVK","Unbelebt","Instrument","Klein","Violine ","UIK","k1_w_22","01_10",0,0,"Belebt",0,"Vogel",0,"Klein",1
+"257","l","l2_w_22","Industriebackofen","UGG","Belebt","Saeugetier","Gross","Baer","BSG","l1_w_20","01_10",0,0,"Unbelebt",0,"Geraet",0,"Gross",1
+"258","l","l3_w_21","Grosser Bagger","UFG","Belebt","Saeugetier","Gross","Baer","BSG","l1_w_20","01_10",0,0,"Unbelebt",0,"Fahrzeug",0,"Gross",1
+"259","m","m2_w_19","Elefant","BSG","Unbelebt","Instrument","Gross","Kontrabass","UIG","m1_w_18","01_10",0,0,"Belebt",0,"Saeugetier",0,"Gross",1
+"260","m","m3_w_18","Jumbojet","UFG","Unbelebt","Instrument","Gross","Kontrabass","UIG","m1_w_18","01_10",0,0,"Unbelebt",1,"Fahrzeug",0,"Gross",1
+"261","a","a2_w_26","Kirchenglocke","UIG","Unbelebt","Instrument","Klein","Violine ","UIK","a1_m_31","01_11",0,0,"Unbelebt",1,"Instrument",1,"Gross",0
+"262","a","a3_m_22","Storch","BVG","Unbelebt","Instrument","Klein","Violine ","UIK","a1_m_31","01_11",0,0,"Belebt",0,"Vogel",0,"Gross",0
+"263","b","b2_m_27","Violine","UIK","Belebt","Vogel","Klein","Spatz","BVK","b1_w_20","01_11",0,0,"Unbelebt",0,"Instrument",0,"Klein",1
+"264","b","b3_w_20","Kaninchen","BSK","Belebt","Vogel","Klein","Spatz","BVK","b1_w_20","01_11",0,0,"Belebt",1,"Saeugetier",0,"Klein",1
+"265","c","c2_w_20","Blaumeise","BVK","Belebt","Saeugetier","Klein","Igel","BSK","c1_w_41","01_11",0,0,"Belebt",1,"Vogel",0,"Klein",1
+"266","c","c3_w_31","Blaumeise","BVK","Belebt","Saeugetier","Klein","Igel","BSK","c1_w_41","01_11",0,0,"Belebt",1,"Vogel",0,"Klein",1
+"267","d","d2_w_32","Anakonda","BRG","Belebt","Reptil","Gross","Anakonda","BRG","d1_w_24","01_11",1,1,"Belebt",1,"Reptil",1,"Gross",1
+"268","d","d3_w_24","Blindschleiche","BRK","Belebt","Reptil","Gross","Anakonda","BRG","d1_w_24","01_11",0,0,"Belebt",1,"Reptil",1,"Klein",0
+"269","e","e2_w_25","Aeffchen","BSK","Belebt","Vogel","Klein","Blaumeise","BVK","e1_w_24","01_11",0,0,"Belebt",1,"Saeugetier",0,"Klein",1
+"270","e","e3_w_22","Handtrommel","UIK","Belebt","Vogel","Klein","Blaumeise","BVK","e1_w_24","01_11",0,0,"Unbelebt",0,"Instrument",0,"Klein",1
+"271","f","f2_m_38","Anakonda","BRG","Belebt","Reptil","Gross","Anakonda","BRG","f1_w_20","01_11",1,1,"Belebt",1,"Reptil",1,"Gross",1
+"272","f","f3_w_24","Blindschleiche","BRK","Belebt","Reptil","Gross","Anakonda","BRG","f1_w_20","01_11",0,0,"Belebt",1,"Reptil",1,"Klein",0
+"273","g","g2_w_25","Buerodrucker","UGG","Unbelebt","Geraet","Gross","Buerodrucker","UGG","g1_w_27","01_11",1,1,"Unbelebt",1,"Geraet",1,"Gross",1
+"274","g","g3_w_26","Harpyie","BVG","Unbelebt","Geraet","Gross","Buerodrucker","UGG","g1_w_27","01_11",0,0,"Belebt",0,"Vogel",0,"Gross",1
+"275","h","h2_m_34","Bodentrommel","UIG","Belebt","Reptil","Klein","Gecko","BRK","h1_w_27","01_11",0,0,"Unbelebt",0,"Instrument",0,"Gross",0
+"276","h","h3_m_30","Aeffchen","BSK","Belebt","Reptil","Klein","Gecko","BRK","h1_w_27","01_11",0,0,"Belebt",1,"Saeugetier",0,"Klein",1
+"277","i","i2_w_24","Komodowaran","BRG","Unbelebt","Instrument","Klein","Handtrommel","UIK","i1_w_30","01_11",0,0,"Belebt",0,"Reptil",0,"Gross",0
+"278","i","i3_m_21","Handtrommel","UIK","Unbelebt","Instrument","Klein","Handtrommel","UIK","i1_w_30","01_11",1,1,"Unbelebt",1,"Instrument",1,"Klein",1
+"279","j","j2_w_20","Gecko","BRK","Belebt","Reptil","Klein","Gecko","BRK","j1_w_21","01_11",1,1,"Belebt",1,"Reptil",1,"Klein",1
+"280","j","j3_w_21","Blaumeise","BVK","Belebt","Reptil","Klein","Gecko","BRK","j1_w_21","01_11",0,0,"Belebt",1,"Vogel",0,"Klein",1
+"281","k","k2_w_22","Buerodrucker","UGG","Unbelebt","Fahrzeug","Gross","Jumbojet","UFG","k1_w_22","01_11",0,0,"Unbelebt",1,"Geraet",0,"Gross",1
+"282","k","k3_w_25","Kontrabass","UIG","Unbelebt","Fahrzeug","Gross","Jumbojet","UFG","k1_w_22","01_11",0,0,"Unbelebt",1,"Instrument",0,"Gross",1
+"283","l","l2_w_22","Blaumeise","BVK","Unbelebt","Fahrzeug","Klein","Kleinwagen","UFK","l1_w_20","01_11",0,0,"Belebt",0,"Vogel",0,"Klein",1
+"284","l","l3_w_21","Kaninchen","BSK","Unbelebt","Fahrzeug","Klein","Kleinwagen","UFK","l1_w_20","01_11",0,0,"Belebt",0,"Saeugetier",0,"Klein",1
+"285","m","m2_w_19","Kaninchen","BSK","Belebt","Reptil","Klein","Schildkroete","BRK","m1_w_18","01_11",0,0,"Belebt",1,"Saeugetier",0,"Klein",1
+"286","m","m3_w_18","Spatz","BVK","Belebt","Reptil","Klein","Schildkroete","BRK","m1_w_18","01_11",0,0,"Belebt",1,"Vogel",0,"Klein",1
+"287","a","a2_w_26","Backofen","UGK","Unbelebt","Geraet","Klein","Backofen","UGK","a1_m_31","01_12",1,1,"Unbelebt",1,"Geraet",1,"Klein",1
+"288","a","a3_m_22","Kleinwagen","UFK","Unbelebt","Geraet","Klein","Backofen","UGK","a1_m_31","01_12",0,0,"Unbelebt",1,"Fahrzeug",0,"Klein",1
+"289","b","b2_m_27","Handtrommel","UIK","Unbelebt","Geraet","Gross","Wanduhr","UGG","b1_w_20","01_12",0,0,"Unbelebt",1,"Instrument",0,"Klein",0
+"290","b","b3_w_20","Bodentrommel","UIG","Unbelebt","Geraet","Gross","Wanduhr","UGG","b1_w_20","01_12",0,0,"Unbelebt",1,"Instrument",0,"Gross",1
+"291","c","c2_w_20","Gloeckchen","UIK","Unbelebt","Geraet","Gross","Buerodrucker","UGG","c1_w_41","01_12",0,0,"Unbelebt",1,"Instrument",0,"Klein",0
+"292","c","c3_w_31","Gloeckchen","UIK","Unbelebt","Geraet","Gross","Buerodrucker","UGG","c1_w_41","01_12",0,0,"Unbelebt",1,"Instrument",0,"Klein",0
+"293","d","d2_w_32","Blindschleiche","BRK","Belebt","Reptil","Klein","Blindschleiche","BRK","d1_w_24","01_12",1,1,"Belebt",1,"Reptil",1,"Klein",1
+"294","d","d3_w_24","Anakonda","BRG","Belebt","Reptil","Klein","Blindschleiche","BRK","d1_w_24","01_12",0,0,"Belebt",1,"Reptil",1,"Gross",0
+"295","e","e2_w_25","Blindschleiche","BRK","Belebt","Reptil","Gross","Anakonda","BRG","e1_w_24","01_12",0,0,"Belebt",1,"Reptil",1,"Klein",0
+"296","e","e3_w_22","Anakonda","BRG","Belebt","Reptil","Gross","Anakonda","BRG","e1_w_24","01_12",1,1,"Belebt",1,"Reptil",1,"Gross",1
+"297","f","f2_m_38","Spatz","BVK","Belebt","Vogel","Klein","Spatz","BVK","f1_w_20","01_12",1,1,"Belebt",1,"Vogel",1,"Klein",1
+"298","f","f3_w_24","Kaninchen","BSK","Belebt","Vogel","Klein","Spatz","BVK","f1_w_20","01_12",0,0,"Belebt",1,"Saeugetier",0,"Klein",1
+"299","g","g2_w_25","Kirchenglocke","UIG","Unbelebt","Instrument","Gross","Kontrabass","UIG","g1_w_27","01_12",0,1,"Unbelebt",1,"Instrument",1,"Gross",1
+"300","g","g3_w_26","Buerodrucker","UGG","Unbelebt","Instrument","Gross","Kontrabass","UIG","g1_w_27","01_12",0,0,"Unbelebt",1,"Geraet",0,"Gross",1
+"301","h","h2_m_34","Elefant","BSG","Belebt","Saeugetier","Gross","Elefant","BSG","h1_w_27","01_12",1,1,"Belebt",1,"Saeugetier",1,"Gross",1
+"302","h","h3_m_30","Elefant","BSG","Belebt","Saeugetier","Gross","Elefant","BSG","h1_w_27","01_12",1,1,"Belebt",1,"Saeugetier",1,"Gross",1
+"303","i","i2_w_24","Armbanduhr","UGK","Belebt","Saeugetier","Klein","Igel","BSK","i1_w_30","01_12",0,0,"Unbelebt",0,"Geraet",0,"Klein",1
+"304","i","i3_m_21","Armbanduhr","UGK","Belebt","Saeugetier","Klein","Igel","BSK","i1_w_30","01_12",0,0,"Unbelebt",0,"Geraet",0,"Klein",1
+"305","j","j2_w_20","Blaumeise","BVK","Belebt","Vogel","Klein","Blaumeise","BVK","j1_w_21","01_12",1,1,"Belebt",1,"Vogel",1,"Klein",1
+"306","j","j3_w_21","Gecko","BRK","Belebt","Vogel","Klein","Blaumeise","BVK","j1_w_21","01_12",0,0,"Belebt",1,"Reptil",0,"Klein",1
+"307","k","k2_w_22","Drucker","UGK","Unbelebt","Geraet","Klein","Drucker","UGK","k1_w_22","01_12",1,1,"Unbelebt",1,"Geraet",1,"Klein",1
+"308","k","k3_w_25","Buerodrucker","UGG","Unbelebt","Geraet","Klein","Drucker","UGK","k1_w_22","01_12",0,0,"Unbelebt",1,"Geraet",1,"Gross",0
+"309","l","l2_w_22","Storch","BVG","Belebt","Saeugetier","Klein","Aeffchen","BSK","l1_w_20","01_12",0,0,"Belebt",1,"Vogel",0,"Gross",0
+"310","l","l3_w_21","Spatz","BVK","Belebt","Saeugetier","Klein","Aeffchen","BSK","l1_w_20","01_12",0,0,"Belebt",1,"Vogel",0,"Klein",1
+"311","m","m2_w_19","Kaninchen","BSK","Belebt","Saeugetier","Klein","Kaninchen","BSK","m1_w_18","01_12",1,1,"Belebt",1,"Saeugetier",1,"Klein",1
+"312","m","m3_w_18","Aeffchen","BSK","Belebt","Saeugetier","Klein","Kaninchen","BSK","m1_w_18","01_12",0,1,"Belebt",1,"Saeugetier",1,"Klein",1
+"313","a","a1_m_31","Dompfaff","BVK","Belebt","Saeugetier","Gross","Elefant","BSG","a2_w_26","02_01",0,0,"Belebt",1,"Vogel",0,"Klein",0
+"314","a","a3_m_22","Dompfaff","BVK","Belebt","Saeugetier","Gross","Elefant","BSG","a2_w_26","02_01",0,0,"Belebt",1,"Vogel",0,"Klein",0
+"315","b","b1_w_20","Komodowaran","BRG","Belebt","Reptil","Gross","Komodowaran","BRG","b2_m_27","02_01",1,1,"Belebt",1,"Reptil",1,"Gross",1
+"316","b","b3_w_20","Elefant","BSG","Belebt","Reptil","Gross","Komodowaran","BRG","b2_m_27","02_01",0,0,"Belebt",1,"Saeugetier",0,"Gross",1
+"317","c","c1_w_41","Industriebackofen","UGG","Belebt","Reptil","Gross","Krokodil","BRG","c2_w_20","02_01",0,0,"Unbelebt",0,"Geraet",0,"Gross",1
+"318","c","c3_w_31","Industriebackofen","UGG","Belebt","Reptil","Gross","Krokodil","BRG","c2_w_20","02_01",0,0,"Unbelebt",0,"Geraet",0,"Gross",1
+"319","d","d1_w_24","Schildkroete","BRK","Unbelebt","Fahrzeug","Klein","Kleinwagen","UFK","d2_w_32","02_01",0,0,"Belebt",0,"Reptil",0,"Klein",1
+"320","d","d3_w_24","Buerodrucker","UGG","Unbelebt","Fahrzeug","Klein","Kleinwagen","UFK","d2_w_32","02_01",0,0,"Unbelebt",1,"Geraet",0,"Gross",0
+"321","e","e1_w_24","SUV","UFG","Unbelebt","Fahrzeug","Klein","Kleinflugzeug","UFK","e2_w_25","02_01",0,0,"Unbelebt",1,"Fahrzeug",1,"Gross",0
+"322","e","e3_w_22","Grosser Bagger","UFG","Unbelebt","Fahrzeug","Klein","Kleinflugzeug","UFK","e2_w_25","02_01",0,0,"Unbelebt",1,"Fahrzeug",1,"Gross",0
+"323","f","f1_w_20","Buerodrucker","UGG","Unbelebt","Geraet","Gross","Buerodrucker","UGG","f2_m_38","02_01",1,1,"Unbelebt",1,"Geraet",1,"Gross",1
+"324","f","f3_w_24","Buerodrucker","UGG","Unbelebt","Geraet","Gross","Buerodrucker","UGG","f2_m_38","02_01",1,1,"Unbelebt",1,"Geraet",1,"Gross",1
+"325","g","g1_w_27","SUV","UFG","Belebt","Vogel","Gross","Kondor","BVG","g2_w_25","02_01",0,0,"Unbelebt",0,"Fahrzeug",0,"Gross",1
+"326","g","g3_w_26","Kondor","BVG","Belebt","Vogel","Gross","Kondor","BVG","g2_w_25","02_01",1,1,"Belebt",1,"Vogel",1,"Gross",1
+"327","h","h1_w_27","Anakonda","BRG","Belebt","Reptil","Gross","Anakonda","BRG","h2_m_34","02_01",1,1,"Belebt",1,"Reptil",1,"Gross",1
+"328","h","h3_m_30","Anakonda","BRG","Belebt","Reptil","Gross","Anakonda","BRG","h2_m_34","02_01",1,1,"Belebt",1,"Reptil",1,"Gross",1
+"329","i","i1_w_30","Kirchenglocke","UIG","Unbelebt","Geraet","Gross","Buerodrucker","UGG","i2_w_24","02_01",0,0,"Unbelebt",1,"Instrument",0,"Gross",1
+"330","i","i3_m_21","Kirchenglocke","UIG","Unbelebt","Geraet","Gross","Buerodrucker","UGG","i2_w_24","02_01",0,0,"Unbelebt",1,"Instrument",0,"Gross",1
+"331","j","j1_w_21","SUV","UFG","Unbelebt","Geraet","Gross","Industriebackofen","UGG","j2_w_20","02_01",0,0,"Unbelebt",1,"Fahrzeug",0,"Gross",1
+"332","j","j3_w_21","Industriebackofen","UGG","Unbelebt","Geraet","Gross","Industriebackofen","UGG","j2_w_20","02_01",1,1,"Unbelebt",1,"Geraet",1,"Gross",1
+"333","k","k1_w_22","Schildkroete","BRK","Unbelebt","Geraet","Gross","Wanduhr","UGG","k2_w_22","02_01",0,0,"Belebt",0,"Reptil",0,"Klein",0
+"334","k","k3_w_25","Schildkroete","BRK","Unbelebt","Geraet","Gross","Wanduhr","UGG","k2_w_22","02_01",0,0,"Belebt",0,"Reptil",0,"Klein",0
+"335","l","l1_w_20","Schildkroete","BRK","Belebt","Vogel","Gross","Kondor","BVG","l2_w_22","02_01",0,0,"Belebt",1,"Reptil",0,"Klein",0
+"336","l","l3_w_21","Kuh","BSG","Belebt","Vogel","Gross","Kondor","BVG","l2_w_22","02_01",0,0,"Belebt",1,"Saeugetier",0,"Gross",1
+"337","m","m1_w_18","SUV","UFG","Unbelebt","Geraet","Klein","Drucker","UGK","m2_w_19","02_01",0,0,"Unbelebt",1,"Fahrzeug",0,"Gross",0
+"338","m","m3_w_18","Drucker","UGK","Unbelebt","Geraet","Klein","Drucker","UGK","m2_w_19","02_01",1,1,"Unbelebt",1,"Geraet",1,"Klein",1
+"339","a","a1_m_31","Armbanduhr","UGK","Belebt","Vogel","Klein","Dompfaff","BVK","a2_w_26","02_02",0,0,"Unbelebt",0,"Geraet",0,"Klein",1
+"340","a","a3_m_22","Igel","BSK","Belebt","Vogel","Klein","Dompfaff","BVK","a2_w_26","02_02",0,0,"Belebt",1,"Saeugetier",0,"Klein",1
+"341","b","b1_w_20","Buerodrucker","UGG","Unbelebt","Geraet","Gross","Buerodrucker","UGG","b2_m_27","02_02",1,1,"Unbelebt",1,"Geraet",1,"Gross",1
+"342","b","b3_w_20","Buerodrucker","UGG","Unbelebt","Geraet","Gross","Buerodrucker","UGG","b2_m_27","02_02",1,1,"Unbelebt",1,"Geraet",1,"Gross",1
+"343","c","c1_w_41","Aeffchen","BSK","Belebt","Vogel","Klein","Dompfaff","BVK","c2_w_20","02_02",0,0,"Belebt",1,"Saeugetier",0,"Klein",1
+"344","c","c3_w_31","Spatz","BVK","Belebt","Vogel","Klein","Dompfaff","BVK","c2_w_20","02_02",0,1,"Belebt",1,"Vogel",1,"Klein",1
+"345","d","d1_w_24","Elefant","BSG","Unbelebt","Geraet","Gross","Industriebackofen","UGG","d2_w_32","02_02",0,0,"Belebt",0,"Saeugetier",0,"Gross",1
+"346","d","d3_w_24","Schildkroete","BRK","Unbelebt","Geraet","Gross","Industriebackofen","UGG","d2_w_32","02_02",0,0,"Belebt",0,"Reptil",0,"Klein",0
+"347","e","e1_w_24","Krokodil","BRG","Unbelebt","Fahrzeug","Gross","SUV","UFG","e2_w_25","02_02",0,0,"Belebt",0,"Reptil",0,"Gross",1
+"348","e","e3_w_22","Baer","BSG","Unbelebt","Fahrzeug","Gross","SUV","UFG","e2_w_25","02_02",0,0,"Belebt",0,"Saeugetier",0,"Gross",1
+"349","f","f1_w_20","Blindschleiche","BRK","Belebt","Reptil","Klein","Blindschleiche","BRK","f2_m_38","02_02",1,1,"Belebt",1,"Reptil",1,"Klein",1
+"350","f","f3_w_24","Blindschleiche","BRK","Belebt","Reptil","Klein","Blindschleiche","BRK","f2_m_38","02_02",1,1,"Belebt",1,"Reptil",1,"Klein",1
+"351","g","g1_w_27","Kondor","BVG","Unbelebt","Geraet","Gross","Industriebackofen","UGG","g2_w_25","02_02",0,0,"Belebt",0,"Vogel",0,"Gross",1
+"352","g","g3_w_26","SUV","UFG","Unbelebt","Geraet","Gross","Industriebackofen","UGG","g2_w_25","02_02",0,0,"Unbelebt",1,"Fahrzeug",0,"Gross",1
+"353","h","h1_w_27","Drucker","UGK","Unbelebt","Geraet","Klein","Drucker","UGK","h2_m_34","02_02",1,1,"Unbelebt",1,"Geraet",1,"Klein",1
+"354","h","h3_m_30","Drucker","UGK","Unbelebt","Geraet","Klein","Drucker","UGK","h2_m_34","02_02",1,1,"Unbelebt",1,"Geraet",1,"Klein",1
+"355","i","i1_w_30","Anakonda","BRG","Belebt","Reptil","Gross","Anakonda","BRG","i2_w_24","02_02",1,1,"Belebt",1,"Reptil",1,"Gross",1
+"356","i","i3_m_21","Blindschleiche","BRK","Belebt","Reptil","Gross","Anakonda","BRG","i2_w_24","02_02",0,0,"Belebt",1,"Reptil",1,"Klein",0
+"357","j","j1_w_21","Spatz","BVK","Belebt","Vogel","Klein","Spatz","BVK","j2_w_20","02_02",1,1,"Belebt",1,"Vogel",1,"Klein",1
+"358","j","j3_w_21","Spatz","BVK","Belebt","Vogel","Klein","Spatz","BVK","j2_w_20","02_02",1,1,"Belebt",1,"Vogel",1,"Klein",1
+"359","k","k1_w_22","Wanduhr","UGG","Unbelebt","Geraet","Klein","Armbanduhr","UGK","k2_w_22","02_02",0,0,"Unbelebt",1,"Geraet",1,"Gross",0
+"360","k","k3_w_25","Wanduhr","UGG","Unbelebt","Geraet","Klein","Armbanduhr","UGK","k2_w_22","02_02",0,0,"Unbelebt",1,"Geraet",1,"Gross",0
+"361","l","l1_w_20","Komodowaran","BRG","Unbelebt","Fahrzeug","Gross","SUV","UFG","l2_w_22","02_02",0,0,"Belebt",0,"Reptil",0,"Gross",1
+"362","l","l3_w_21","Komodowaran","BRG","Unbelebt","Fahrzeug","Gross","SUV","UFG","l2_w_22","02_02",0,0,"Belebt",0,"Reptil",0,"Gross",1
+"363","m","m1_w_18","Drucker","UGK","Unbelebt","Fahrzeug","Klein","Kleinflugzeug","UFK","m2_w_19","02_02",0,0,"Unbelebt",1,"Geraet",0,"Klein",1
+"364","m","m3_w_18","Industriebackofen","UGG","Unbelebt","Fahrzeug","Klein","Kleinflugzeug","UFK","m2_w_19","02_02",0,0,"Unbelebt",1,"Geraet",0,"Gross",0
+"365","a","a1_m_31","Aeffchen","BSK","Belebt","Reptil","Klein","Gecko","BRK","a2_w_26","02_03",0,0,"Belebt",1,"Saeugetier",0,"Klein",1
+"366","a","a3_m_22","Gecko","BRK","Belebt","Reptil","Klein","Gecko","BRK","a2_w_26","02_03",1,1,"Belebt",1,"Reptil",1,"Klein",1
+"367","b","b1_w_20","Kondor","BVG","Belebt","Vogel","Gross","Kondor","BVG","b2_m_27","02_03",1,1,"Belebt",1,"Vogel",1,"Gross",1
+"368","b","b3_w_20","Komodowaran","BRG","Belebt","Vogel","Gross","Kondor","BVG","b2_m_27","02_03",0,0,"Belebt",1,"Reptil",0,"Gross",1
+"369","c","c1_w_41","Blindschleiche","BRK","Unbelebt","Geraet","Klein","Armbanduhr","UGK","c2_w_20","02_03",0,0,"Belebt",0,"Reptil",0,"Klein",1
+"370","c","c3_w_31","Blindschleiche","BRK","Unbelebt","Geraet","Klein","Armbanduhr","UGK","c2_w_20","02_03",0,0,"Belebt",0,"Reptil",0,"Klein",1
+"371","d","d1_w_24","Kaninchen","BSK","Belebt","Vogel","Klein","Dompfaff","BVK","d2_w_32","02_03",0,0,"Belebt",1,"Saeugetier",0,"Klein",1
+"372","d","d3_w_24","Dompfaff","BVK","Belebt","Vogel","Klein","Dompfaff","BVK","d2_w_32","02_03",1,1,"Belebt",1,"Vogel",1,"Klein",1
+"373","e","e1_w_24","Kleinflugzeug","UFK","Unbelebt","Geraet","Klein","Armbanduhr","UGK","e2_w_25","02_03",0,0,"Unbelebt",1,"Fahrzeug",0,"Klein",1
+"374","e","e3_w_22","Kaninchen","BSK","Unbelebt","Geraet","Klein","Armbanduhr","UGK","e2_w_25","02_03",0,0,"Belebt",0,"Saeugetier",0,"Klein",1
+"375","f","f1_w_20","Krokodil","BRG","Belebt","Reptil","Gross","Krokodil","BRG","f2_m_38","02_03",1,1,"Belebt",1,"Reptil",1,"Gross",1
+"376","f","f3_w_24","Baer","BSG","Belebt","Reptil","Gross","Krokodil","BRG","f2_m_38","02_03",0,0,"Belebt",1,"Saeugetier",0,"Gross",1
+"377","g","g1_w_27","Schildkroete","BRK","Unbelebt","Instrument","Gross","Kirchenglocke","UIG","g2_w_25","02_03",0,0,"Belebt",0,"Reptil",0,"Klein",0
+"378","g","g3_w_26","Aeffchen","BSK","Unbelebt","Instrument","Gross","Kirchenglocke","UIG","g2_w_25","02_03",0,0,"Belebt",0,"Saeugetier",0,"Klein",0
+"379","h","h1_w_27","Schildkroete","BRK","Belebt","Saeugetier","Gross","Kuh","BSG","h2_m_34","02_03",0,0,"Belebt",1,"Reptil",0,"Klein",0
+"380","h","h3_m_30","Kuh","BSG","Belebt","Saeugetier","Gross","Kuh","BSG","h2_m_34","02_03",1,1,"Belebt",1,"Saeugetier",1,"Gross",1
+"381","i","i1_w_30","Spatz","BVK","Belebt","Saeugetier","Klein","Aeffchen","BSK","i2_w_24","02_03",0,0,"Belebt",1,"Vogel",0,"Klein",1
+"382","i","i3_m_21","Aeffchen","BSK","Belebt","Saeugetier","Klein","Aeffchen","BSK","i2_w_24","02_03",1,1,"Belebt",1,"Saeugetier",1,"Klein",1
+"383","j","j1_w_21","Schildkroete","BRK","Belebt","Reptil","Klein","Schildkroete","BRK","j2_w_20","02_03",1,1,"Belebt",1,"Reptil",1,"Klein",1
+"384","j","j3_w_21","Industriebackofen","UGG","Belebt","Reptil","Klein","Schildkroete","BRK","j2_w_20","02_03",0,0,"Unbelebt",0,"Geraet",0,"Gross",0
+"385","k","k1_w_22","Dompfaff","BVK","Belebt","Vogel","Klein","Dompfaff","BVK","k2_w_22","02_03",1,1,"Belebt",1,"Vogel",1,"Klein",1
+"386","k","k3_w_25","Dompfaff","BVK","Belebt","Vogel","Klein","Dompfaff","BVK","k2_w_22","02_03",1,1,"Belebt",1,"Vogel",1,"Klein",1
+"387","l","l1_w_20","Wanduhr","UGG","Unbelebt","Geraet","Klein","Armbanduhr","UGK","l2_w_22","02_03",0,0,"Unbelebt",1,"Geraet",1,"Gross",0
+"388","l","l3_w_21","Armbanduhr","UGK","Unbelebt","Geraet","Klein","Armbanduhr","UGK","l2_w_22","02_03",1,1,"Unbelebt",1,"Geraet",1,"Klein",1
+"389","m","m1_w_18","Industriebackofen","UGG","Unbelebt","Instrument","Gross","Bodentrommel","UIG","m2_w_19","02_03",0,0,"Unbelebt",1,"Geraet",0,"Gross",1
+"390","m","m3_w_18","SUV","UFG","Unbelebt","Instrument","Gross","Bodentrommel","UIG","m2_w_19","02_03",0,0,"Unbelebt",1,"Fahrzeug",0,"Gross",1
+"391","a","a1_m_31","Kirchenglocke","UIG","Unbelebt","Fahrzeug","Klein","Kleiner Bagger","UFK","a2_w_26","02_04",0,0,"Unbelebt",1,"Instrument",0,"Gross",0
+"392","a","a3_m_22","Backofen","UGK","Unbelebt","Fahrzeug","Klein","Kleiner Bagger","UFK","a2_w_26","02_04",0,0,"Unbelebt",1,"Geraet",0,"Klein",1
+"393","b","b1_w_20","Industriebackofen","UGG","Unbelebt","Geraet","Klein","Backofen","UGK","b2_m_27","02_04",0,0,"Unbelebt",1,"Geraet",1,"Gross",0
+"394","b","b3_w_20","Industriebackofen","UGG","Unbelebt","Geraet","Klein","Backofen","UGK","b2_m_27","02_04",0,0,"Unbelebt",1,"Geraet",1,"Gross",0
+"395","c","c1_w_41","Kontrabass","UIG","Unbelebt","Instrument","Gross","Bodentrommel","UIG","c2_w_20","02_04",0,1,"Unbelebt",1,"Instrument",1,"Gross",1
+"396","c","c3_w_31","Kontrabass","UIG","Unbelebt","Instrument","Gross","Bodentrommel","UIG","c2_w_20","02_04",0,1,"Unbelebt",1,"Instrument",1,"Gross",1
+"397","d","d1_w_24","Schildkroete","BRK","Belebt","Saeugetier","Gross","Kuh","BSG","d2_w_32","02_04",0,0,"Belebt",1,"Reptil",0,"Klein",0
+"398","d","d3_w_24","Kleinwagen","UFK","Belebt","Saeugetier","Gross","Kuh","BSG","d2_w_32","02_04",0,0,"Unbelebt",0,"Fahrzeug",0,"Klein",0
+"399","e","e1_w_24","Blindschleiche","BRK","Unbelebt","Instrument","Gross","Bodentrommel","UIG","e2_w_25","02_04",0,0,"Belebt",0,"Reptil",0,"Klein",0
+"400","e","e3_w_22","Kondor","BVG","Unbelebt","Instrument","Gross","Bodentrommel","UIG","e2_w_25","02_04",0,0,"Belebt",0,"Vogel",0,"Gross",1
+"401","f","f1_w_20","Kirchenglocke","UIG","Unbelebt","Instrument","Gross","Kirchenglocke","UIG","f2_m_38","02_04",1,1,"Unbelebt",1,"Instrument",1,"Gross",1
+"402","f","f3_w_24","Kirchenglocke","UIG","Unbelebt","Instrument","Gross","Kirchenglocke","UIG","f2_m_38","02_04",1,1,"Unbelebt",1,"Instrument",1,"Gross",1
+"403","g","g1_w_27","Schildkroete","BRK","Unbelebt","Instrument","Klein","Violine ","UIK","g2_w_25","02_04",0,0,"Belebt",0,"Reptil",0,"Klein",1
+"404","g","g3_w_26","Violine","UIK","Unbelebt","Instrument","Klein","Violine ","UIK","g2_w_25","02_04",0,1,"Unbelebt",1,"Instrument",1,"Klein",1
+"405","h","h1_w_27","Wanduhr","UGG","Unbelebt","Geraet","Gross","Wanduhr","UGG","h2_m_34","02_04",1,1,"Unbelebt",1,"Geraet",1,"Gross",1
+"406","h","h3_m_30","Wanduhr","UGG","Unbelebt","Geraet","Gross","Wanduhr","UGG","h2_m_34","02_04",1,1,"Unbelebt",1,"Geraet",1,"Gross",1
+"407","i","i1_w_30","Blindschleiche","BRK","Belebt","Reptil","Klein","Blindschleiche","BRK","i2_w_24","02_04",1,1,"Belebt",1,"Reptil",1,"Klein",1
+"408","i","i3_m_21","Kleinflugzeug","UFK","Belebt","Reptil","Klein","Blindschleiche","BRK","i2_w_24","02_04",0,0,"Unbelebt",0,"Fahrzeug",0,"Klein",1
+"409","j","j1_w_21","Kleiner Bagger","UFK","Unbelebt","Instrument","Gross","Kirchenglocke","UIG","j2_w_20","02_04",0,0,"Unbelebt",1,"Fahrzeug",0,"Klein",0
+"410","j","j3_w_21","Handtrommel","UIK","Unbelebt","Instrument","Gross","Kirchenglocke","UIG","j2_w_20","02_04",0,0,"Unbelebt",1,"Instrument",1,"Klein",0
+"411","k","k1_w_22","Kaninchen","BSK","Unbelebt","Instrument","Klein","Gloeckchen","UIK","k2_w_22","02_04",0,0,"Belebt",0,"Saeugetier",0,"Klein",1
+"412","k","k3_w_25","Kaninchen","BSK","Unbelebt","Instrument","Klein","Gloeckchen","UIK","k2_w_22","02_04",0,0,"Belebt",0,"Saeugetier",0,"Klein",1
+"413","l","l1_w_20","Kaninchen","BSK","Unbelebt","Instrument","Klein","Gloeckchen","UIK","l2_w_22","02_04",0,0,"Belebt",0,"Saeugetier",0,"Klein",1
+"414","l","l3_w_21","Kaninchen","BSK","Unbelebt","Instrument","Klein","Gloeckchen","UIK","l2_w_22","02_04",0,0,"Belebt",0,"Saeugetier",0,"Klein",1
+"415","m","m1_w_18","Kondor","BVG","Unbelebt","Geraet","Gross","Industriebackofen","UGG","m2_w_19","02_04",0,0,"Belebt",0,"Vogel",0,"Gross",1
+"416","m","m3_w_18","Kuh","BSG","Unbelebt","Geraet","Gross","Industriebackofen","UGG","m2_w_19","02_04",0,0,"Belebt",0,"Saeugetier",0,"Gross",1
+"417","a","a1_m_31","Wanduhr","UGG","Belebt","Saeugetier","Klein","Igel","BSK","a2_w_26","02_05",0,0,"Unbelebt",0,"Geraet",0,"Gross",0
+"418","a","a3_m_22","Aeffchen","BSK","Belebt","Saeugetier","Klein","Igel","BSK","a2_w_26","02_05",0,1,"Belebt",1,"Saeugetier",1,"Klein",1
+"419","b","b1_w_20","Igel","BSK","Belebt","Saeugetier","Klein","Igel","BSK","b2_m_27","02_05",1,1,"Belebt",1,"Saeugetier",1,"Klein",1
+"420","b","b3_w_20","Aeffchen","BSK","Belebt","Saeugetier","Klein","Igel","BSK","b2_m_27","02_05",0,1,"Belebt",1,"Saeugetier",1,"Klein",1
+"421","c","c1_w_41","Storch","BVG","Belebt","Vogel","Gross","Storch","BVG","c2_w_20","02_05",1,1,"Belebt",1,"Vogel",1,"Gross",1
+"422","c","c3_w_31","Krokodil","BRG","Belebt","Vogel","Gross","Storch","BVG","c2_w_20","02_05",0,0,"Belebt",1,"Reptil",0,"Gross",1
+"423","d","d1_w_24","Armbanduhr","UGK","Unbelebt","Geraet","Klein","Armbanduhr","UGK","d2_w_32","02_05",1,1,"Unbelebt",1,"Geraet",1,"Klein",1
+"424","d","d3_w_24","Armbanduhr","UGK","Unbelebt","Geraet","Klein","Armbanduhr","UGK","d2_w_32","02_05",1,1,"Unbelebt",1,"Geraet",1,"Klein",1
+"425","e","e1_w_24","Aeffchen","BSK","Belebt","Vogel","Klein","Spatz","BVK","e2_w_25","02_05",0,0,"Belebt",1,"Saeugetier",0,"Klein",1
+"426","e","e3_w_22","Gecko","BRK","Belebt","Vogel","Klein","Spatz","BVK","e2_w_25","02_05",0,0,"Belebt",1,"Reptil",0,"Klein",1
+"427","f","f1_w_20","Grosser Bagger","UFG","Unbelebt","Fahrzeug","Gross","Grosser Bagger","UFG","f2_m_38","02_05",1,1,"Unbelebt",1,"Fahrzeug",1,"Gross",1
+"428","f","f3_w_24","Grosser Bagger","UFG","Unbelebt","Fahrzeug","Gross","Grosser Bagger","UFG","f2_m_38","02_05",1,1,"Unbelebt",1,"Fahrzeug",1,"Gross",1
+"429","g","g1_w_27","Baer","BSG","Unbelebt","Fahrzeug","Gross","SUV","UFG","g2_w_25","02_05",0,0,"Belebt",0,"Saeugetier",0,"Gross",1
+"430","g","g3_w_26","Jumbojet","UFG","Unbelebt","Fahrzeug","Gross","SUV","UFG","g2_w_25","02_05",0,1,"Unbelebt",1,"Fahrzeug",1,"Gross",1
+"431","h","h1_w_27","Kondor","BVG","Belebt","Vogel","Gross","Storch","BVG","h2_m_34","02_05",0,1,"Belebt",1,"Vogel",1,"Gross",1
+"432","h","h3_m_30","Igel","BSK","Belebt","Vogel","Gross","Storch","BVG","h2_m_34","02_05",0,0,"Belebt",1,"Saeugetier",0,"Klein",0
+"433","i","i1_w_30","Storch","BVG","Belebt","Vogel","Gross","Storch","BVG","i2_w_24","02_05",1,1,"Belebt",1,"Vogel",1,"Gross",1
+"434","i","i3_m_21","Spatz","BVK","Belebt","Vogel","Gross","Storch","BVG","i2_w_24","02_05",0,0,"Belebt",1,"Vogel",1,"Klein",0
+"435","j","j1_w_21","Kondor","BVG","Belebt","Reptil","Gross","Komodowaran","BRG","j2_w_20","02_05",0,0,"Belebt",1,"Vogel",0,"Gross",1
+"436","j","j3_w_21","Komodowaran","BRG","Belebt","Reptil","Gross","Komodowaran","BRG","j2_w_20","02_05",1,1,"Belebt",1,"Reptil",1,"Gross",1
+"437","k","k1_w_22","Schildkroete","BRK","Unbelebt","Fahrzeug","Klein","Kleinwagen","UFK","k2_w_22","02_05",0,0,"Belebt",0,"Reptil",0,"Klein",1
+"438","k","k3_w_25","Elefant","BSG","Unbelebt","Fahrzeug","Klein","Kleinwagen","UFK","k2_w_22","02_05",0,0,"Belebt",0,"Saeugetier",0,"Gross",0
+"439","l","l1_w_20","Anakonda","BRG","Belebt","Reptil","Gross","Anakonda","BRG","l2_w_22","02_05",1,1,"Belebt",1,"Reptil",1,"Gross",1
+"440","l","l3_w_21","Anakonda","BRG","Belebt","Reptil","Gross","Anakonda","BRG","l2_w_22","02_05",1,1,"Belebt",1,"Reptil",1,"Gross",1
+"441","m","m1_w_18","Blindschleiche","BRK","Belebt","Reptil","Gross","Krokodil","BRG","m2_w_19","02_05",0,0,"Belebt",1,"Reptil",1,"Klein",0
+"442","m","m3_w_18","Komodowaran","BRG","Belebt","Reptil","Gross","Krokodil","BRG","m2_w_19","02_05",0,1,"Belebt",1,"Reptil",1,"Gross",1
+"443","a","a1_m_31","Blaumeise","BVK","Belebt","Vogel","Gross","Kondor","BVG","a2_w_26","02_06",0,0,"Belebt",1,"Vogel",1,"Klein",0
+"444","a","a3_m_22","Industriebackofen","UGG","Belebt","Vogel","Gross","Kondor","BVG","a2_w_26","02_06",0,0,"Unbelebt",0,"Geraet",0,"Gross",1
+"445","b","b1_w_20","Backofen","UGK","Unbelebt","Fahrzeug","Gross","Grosser Bagger","UFG","b2_m_27","02_06",0,0,"Unbelebt",1,"Geraet",0,"Klein",0
+"446","b","b3_w_20","Grosser Bagger","UFG","Unbelebt","Fahrzeug","Gross","Grosser Bagger","UFG","b2_m_27","02_06",1,1,"Unbelebt",1,"Fahrzeug",1,"Gross",1
+"447","c","c1_w_41","Blindschleiche","BRK","Unbelebt","Fahrzeug","Gross","Jumbojet","UFG","c2_w_20","02_06",0,0,"Belebt",0,"Reptil",0,"Klein",0
+"448","c","c3_w_31","Blindschleiche","BRK","Unbelebt","Fahrzeug","Gross","Jumbojet","UFG","c2_w_20","02_06",0,0,"Belebt",0,"Reptil",0,"Klein",0
+"449","d","d1_w_24","Industriebackofen","UGG","Unbelebt","Instrument","Gross","Kontrabass","UIG","d2_w_32","02_06",0,0,"Unbelebt",1,"Geraet",0,"Gross",1
+"450","d","d3_w_24","Kuh","BSG","Unbelebt","Instrument","Gross","Kontrabass","UIG","d2_w_32","02_06",0,0,"Belebt",0,"Saeugetier",0,"Gross",1
+"451","e","e1_w_24","Gloeckchen","UIK","Belebt","Vogel","Gross","Kondor","BVG","e2_w_25","02_06",0,0,"Unbelebt",0,"Instrument",0,"Klein",0
+"452","e","e3_w_22","Wanduhr","UGG","Belebt","Vogel","Gross","Kondor","BVG","e2_w_25","02_06",0,0,"Unbelebt",0,"Geraet",0,"Gross",1
+"453","f","f1_w_20","Gloeckchen","UIK","Unbelebt","Instrument","Klein","Gloeckchen","UIK","f2_m_38","02_06",1,1,"Unbelebt",1,"Instrument",1,"Klein",1
+"454","f","f3_w_24","Igel","BSK","Unbelebt","Instrument","Klein","Gloeckchen","UIK","f2_m_38","02_06",0,0,"Belebt",0,"Saeugetier",0,"Klein",1
+"455","g","g1_w_27","Wanduhr","UGG","Belebt","Reptil","Gross","Komodowaran","BRG","g2_w_25","02_06",0,0,"Unbelebt",0,"Geraet",0,"Gross",1
+"456","g","g3_w_26","Baer","BSG","Belebt","Reptil","Gross","Komodowaran","BRG","g2_w_25","02_06",0,0,"Belebt",1,"Saeugetier",0,"Gross",1
+"457","h","h1_w_27","Dompfaff","BVK","Belebt","Saeugetier","Klein","Igel","BSK","h2_m_34","02_06",0,0,"Belebt",1,"Vogel",0,"Klein",1
+"458","h","h3_m_30","Dompfaff","BVK","Belebt","Saeugetier","Klein","Igel","BSK","h2_m_34","02_06",0,0,"Belebt",1,"Vogel",0,"Klein",1
+"459","i","i1_w_30","Elefant","BSG","Unbelebt","Fahrzeug","Gross","Grosser Bagger","UFG","i2_w_24","02_06",0,0,"Belebt",0,"Saeugetier",0,"Gross",1
+"460","i","i3_m_21","Baer","BSG","Unbelebt","Fahrzeug","Gross","Grosser Bagger","UFG","i2_w_24","02_06",0,0,"Belebt",0,"Saeugetier",0,"Gross",1
+"461","j","j1_w_21","Armbanduhr","UGK","Unbelebt","Geraet","Klein","Armbanduhr","UGK","j2_w_20","02_06",1,1,"Unbelebt",1,"Geraet",1,"Klein",1
+"462","j","j3_w_21","Armbanduhr","UGK","Unbelebt","Geraet","Klein","Armbanduhr","UGK","j2_w_20","02_06",1,1,"Unbelebt",1,"Geraet",1,"Klein",1
+"463","k","k1_w_22","Kaninchen","BSK","Belebt","Saeugetier","Klein","Kaninchen","BSK","k2_w_22","02_06",1,1,"Belebt",1,"Saeugetier",1,"Klein",1
+"464","k","k3_w_25","Dompfaff","BVK","Belebt","Saeugetier","Klein","Kaninchen","BSK","k2_w_22","02_06",0,0,"Belebt",1,"Vogel",0,"Klein",1
+"465","l","l1_w_20","Kleinflugzeug","UFK","Unbelebt","Fahrzeug","Klein","Kleinflugzeug","UFK","l2_w_22","02_06",1,1,"Unbelebt",1,"Fahrzeug",1,"Klein",1
+"466","l","l3_w_21","Kleinflugzeug","UFK","Unbelebt","Fahrzeug","Klein","Kleinflugzeug","UFK","l2_w_22","02_06",1,1,"Unbelebt",1,"Fahrzeug",1,"Klein",1
+"467","m","m1_w_18","Aeffchen","BSK","Belebt","Saeugetier","Klein","Aeffchen","BSK","m2_w_19","02_06",1,1,"Belebt",1,"Saeugetier",1,"Klein",1
+"468","m","m3_w_18","Blaumeise","BVK","Belebt","Saeugetier","Klein","Aeffchen","BSK","m2_w_19","02_06",0,0,"Belebt",1,"Vogel",0,"Klein",1
+"469","a","a1_m_31","Handtrommel","UIK","Unbelebt","Geraet","Klein","Armbanduhr","UGK","a2_w_26","02_07",0,0,"Unbelebt",1,"Instrument",0,"Klein",1
+"470","a","a3_m_22","Handtrommel","UIK","Unbelebt","Geraet","Klein","Armbanduhr","UGK","a2_w_26","02_07",0,0,"Unbelebt",1,"Instrument",0,"Klein",1
+"471","b","b1_w_20","Elefant","BSG","Unbelebt","Fahrzeug","Klein","Kleinwagen","UFK","b2_m_27","02_07",0,0,"Belebt",0,"Saeugetier",0,"Gross",0
+"472","b","b3_w_20","SUV","UFG","Unbelebt","Fahrzeug","Klein","Kleinwagen","UFK","b2_m_27","02_07",0,0,"Unbelebt",1,"Fahrzeug",1,"Gross",0
+"473","c","c1_w_41","Spatz","BVK","Unbelebt","Instrument","Klein","Handtrommel","UIK","c2_w_20","02_07",0,0,"Belebt",0,"Vogel",0,"Klein",1
+"474","c","c3_w_31","Kleinflugzeug","UFK","Unbelebt","Instrument","Klein","Handtrommel","UIK","c2_w_20","02_07",0,0,"Unbelebt",1,"Fahrzeug",0,"Klein",1
+"475","d","d1_w_24","Kleinwagen","UFK","Belebt","Reptil","Gross","Krokodil","BRG","d2_w_32","02_07",0,0,"Unbelebt",0,"Fahrzeug",0,"Klein",0
+"476","d","d3_w_24","Storch","BVG","Belebt","Reptil","Gross","Krokodil","BRG","d2_w_32","02_07",0,0,"Belebt",1,"Vogel",0,"Gross",1
+"477","e","e1_w_24","Baer","BSG","Belebt","Saeugetier","Gross","Baer","BSG","e2_w_25","02_07",1,1,"Belebt",1,"Saeugetier",1,"Gross",1
+"478","e","e3_w_22","Baer","BSG","Belebt","Saeugetier","Gross","Baer","BSG","e2_w_25","02_07",1,1,"Belebt",1,"Saeugetier",1,"Gross",1
+"479","f","f1_w_20","Drucker","UGK","Unbelebt","Geraet","Klein","Drucker","UGK","f2_m_38","02_07",1,1,"Unbelebt",1,"Geraet",1,"Klein",1
+"480","f","f3_w_24","Drucker","UGK","Unbelebt","Geraet","Klein","Drucker","UGK","f2_m_38","02_07",1,1,"Unbelebt",1,"Geraet",1,"Klein",1
+"481","g","g1_w_27","Aeffchen","BSK","Belebt","Reptil","Klein","Schildkroete","BRK","g2_w_25","02_07",0,0,"Belebt",1,"Saeugetier",0,"Klein",1
+"482","g","g3_w_26","Dompfaff","BVK","Belebt","Reptil","Klein","Schildkroete","BRK","g2_w_25","02_07",0,0,"Belebt",1,"Vogel",0,"Klein",1
+"483","h","h1_w_27","Schildkroete","BRK","Belebt","Reptil","Klein","Schildkroete","BRK","h2_m_34","02_07",1,1,"Belebt",1,"Reptil",1,"Klein",1
+"484","h","h3_m_30","Schildkroete","BRK","Belebt","Reptil","Klein","Schildkroete","BRK","h2_m_34","02_07",1,1,"Belebt",1,"Reptil",1,"Klein",1
+"485","i","i1_w_30","Armbanduhr","UGK","Unbelebt","Instrument","Gross","Kirchenglocke","UIG","i2_w_24","02_07",0,0,"Unbelebt",1,"Geraet",0,"Klein",0
+"486","i","i3_m_21","Buerodrucker","UGG","Unbelebt","Instrument","Gross","Kirchenglocke","UIG","i2_w_24","02_07",0,0,"Unbelebt",1,"Geraet",0,"Gross",1
+"487","j","j1_w_21","Kontrabass","UIG","Unbelebt","Fahrzeug","Gross","Grosser Bagger","UFG","j2_w_20","02_07",0,0,"Unbelebt",1,"Instrument",0,"Gross",1
+"488","j","j3_w_21","Grosser Bagger","UFG","Unbelebt","Fahrzeug","Gross","Grosser Bagger","UFG","j2_w_20","02_07",1,1,"Unbelebt",1,"Fahrzeug",1,"Gross",1
+"489","k","k1_w_22","Elefant","BSG","Unbelebt","Fahrzeug","Gross","SUV","UFG","k2_w_22","02_07",0,0,"Belebt",0,"Saeugetier",0,"Gross",1
+"490","k","k3_w_25","Elefant","BSG","Unbelebt","Fahrzeug","Gross","SUV","UFG","k2_w_22","02_07",0,0,"Belebt",0,"Saeugetier",0,"Gross",1
+"491","l","l1_w_20","Kondor","BVG","Belebt","Reptil","Klein","Schildkroete","BRK","l2_w_22","02_07",0,0,"Belebt",1,"Vogel",0,"Gross",0
+"492","l","l3_w_21","Schildkroete","BRK","Belebt","Reptil","Klein","Schildkroete","BRK","l2_w_22","02_07",1,1,"Belebt",1,"Reptil",1,"Klein",1
+"493","m","m1_w_18","Storch","BVG","Unbelebt","Instrument","Klein","Violine ","UIK","m2_w_19","02_07",0,0,"Belebt",0,"Vogel",0,"Gross",0
+"494","m","m3_w_18","Kondor","BVG","Unbelebt","Instrument","Klein","Violine ","UIK","m2_w_19","02_07",0,0,"Belebt",0,"Vogel",0,"Gross",0
+"495","a","a1_m_31","Wanduhr","UGG","Unbelebt","Instrument","Klein","Handtrommel","UIK","a2_w_26","02_08",0,0,"Unbelebt",1,"Geraet",0,"Gross",0
+"496","a","a3_m_22","Wanduhr","UGG","Unbelebt","Instrument","Klein","Handtrommel","UIK","a2_w_26","02_08",0,0,"Unbelebt",1,"Geraet",0,"Gross",0
+"497","b","b1_w_20","Elefant","BSG","Belebt","Saeugetier","Gross","Elefant","BSG","b2_m_27","02_08",1,1,"Belebt",1,"Saeugetier",1,"Gross",1
+"498","b","b3_w_20","Elefant","BSG","Belebt","Saeugetier","Gross","Elefant","BSG","b2_m_27","02_08",1,1,"Belebt",1,"Saeugetier",1,"Gross",1
+"499","c","c1_w_41","Gecko","BRK","Unbelebt","Geraet","Gross","Industriebackofen","UGG","c2_w_20","02_08",0,0,"Belebt",0,"Reptil",0,"Klein",0
+"500","c","c3_w_31","Jumbojet","UFG","Unbelebt","Geraet","Gross","Industriebackofen","UGG","c2_w_20","02_08",0,0,"Unbelebt",1,"Fahrzeug",0,"Gross",1
+"501","d","d1_w_24","Buerodrucker","UGG","Unbelebt","Instrument","Klein","Handtrommel","UIK","d2_w_32","02_08",0,0,"Unbelebt",1,"Geraet",0,"Gross",0
+"502","d","d3_w_24","Handtrommel","UIK","Unbelebt","Instrument","Klein","Handtrommel","UIK","d2_w_32","02_08",1,1,"Unbelebt",1,"Instrument",1,"Klein",1
+"503","e","e1_w_24","Kaninchen","BSK","Unbelebt","Instrument","Klein","Gloeckchen","UIK","e2_w_25","02_08",0,0,"Belebt",0,"Saeugetier",0,"Klein",1
+"504","e","e3_w_22","Armbanduhr","UGK","Unbelebt","Instrument","Klein","Gloeckchen","UIK","e2_w_25","02_08",0,0,"Unbelebt",1,"Geraet",0,"Klein",1
+"505","f","f1_w_20","Handtrommel","UIK","Belebt","Vogel","Klein","Blaumeise","BVK","f2_m_38","02_08",0,0,"Unbelebt",0,"Instrument",0,"Klein",1
+"506","f","f3_w_24","Spatz","BVK","Belebt","Vogel","Klein","Blaumeise","BVK","f2_m_38","02_08",0,1,"Belebt",1,"Vogel",1,"Klein",1
+"507","g","g1_w_27","Dompfaff","BVK","Unbelebt","Fahrzeug","Klein","Kleinflugzeug","UFK","g2_w_25","02_08",0,0,"Belebt",0,"Vogel",0,"Klein",1
+"508","g","g3_w_26","Kleinflugzeug","UFK","Unbelebt","Fahrzeug","Klein","Kleinflugzeug","UFK","g2_w_25","02_08",1,1,"Unbelebt",1,"Fahrzeug",1,"Klein",1
+"509","h","h1_w_27","Kontrabass","UIG","Unbelebt","Instrument","Gross","Kontrabass","UIG","h2_m_34","02_08",1,1,"Unbelebt",1,"Instrument",1,"Gross",1
+"510","h","h3_m_30","Bodentrommel","UIG","Unbelebt","Instrument","Gross","Kontrabass","UIG","h2_m_34","02_08",0,1,"Unbelebt",1,"Instrument",1,"Gross",1
+"511","i","i1_w_30","Aeffchen","BSK","Belebt","Vogel","Klein","Spatz","BVK","i2_w_24","02_08",0,0,"Belebt",1,"Saeugetier",0,"Klein",1
+"512","i","i3_m_21","Spatz","BVK","Belebt","Vogel","Klein","Spatz","BVK","i2_w_24","02_08",1,1,"Belebt",1,"Vogel",1,"Klein",1
+"513","j","j1_w_21","Storch","BVG","Unbelebt","Fahrzeug","Klein","Kleiner Bagger","UFK","j2_w_20","02_08",0,0,"Belebt",0,"Vogel",0,"Gross",0
+"514","j","j3_w_21","Schildkroete","BRK","Unbelebt","Fahrzeug","Klein","Kleiner Bagger","UFK","j2_w_20","02_08",0,0,"Belebt",0,"Reptil",0,"Klein",1
+"515","k","k1_w_22","Blindschleiche","BRK","Belebt","Reptil","Klein","Blindschleiche","BRK","k2_w_22","02_08",1,1,"Belebt",1,"Reptil",1,"Klein",1
+"516","k","k3_w_25","Armbanduhr","UGK","Belebt","Reptil","Klein","Blindschleiche","BRK","k2_w_22","02_08",0,0,"Unbelebt",0,"Geraet",0,"Klein",1
+"517","l","l1_w_20","Buerodrucker","UGG","Unbelebt","Instrument","Gross","Kirchenglocke","UIG","l2_w_22","02_08",0,0,"Unbelebt",1,"Geraet",0,"Gross",1
+"518","l","l3_w_21","Buerodrucker","UGG","Unbelebt","Instrument","Gross","Kirchenglocke","UIG","l2_w_22","02_08",0,0,"Unbelebt",1,"Geraet",0,"Gross",1
+"519","m","m1_w_18","Kontrabass","UIG","Unbelebt","Fahrzeug","Gross","Grosser Bagger","UFG","m2_w_19","02_08",0,0,"Unbelebt",1,"Instrument",0,"Gross",1
+"520","m","m3_w_18","Baer","BSG","Unbelebt","Fahrzeug","Gross","Grosser Bagger","UFG","m2_w_19","02_08",0,0,"Belebt",0,"Saeugetier",0,"Gross",1
+"521","a","a1_m_31","Industriebackofen","UGG","Unbelebt","Geraet","Gross","Industriebackofen","UGG","a2_w_26","02_09",1,1,"Unbelebt",1,"Geraet",1,"Gross",1
+"522","a","a3_m_22","Krokodil","BRG","Unbelebt","Geraet","Gross","Industriebackofen","UGG","a2_w_26","02_09",0,0,"Belebt",0,"Reptil",0,"Gross",1
+"523","b","b1_w_20","Buerodrucker","UGG","Unbelebt","Instrument","Gross","Bodentrommel","UIG","b2_m_27","02_09",0,0,"Unbelebt",1,"Geraet",0,"Gross",1
+"524","b","b3_w_20","Backofen","UGK","Unbelebt","Instrument","Gross","Bodentrommel","UIG","b2_m_27","02_09",0,0,"Unbelebt",1,"Geraet",0,"Klein",0
+"525","c","c1_w_41","Dompfaff","BVK","Belebt","Saeugetier","Klein","Aeffchen","BSK","c2_w_20","02_09",0,0,"Belebt",1,"Vogel",0,"Klein",1
+"526","c","c3_w_31","Dompfaff","BVK","Belebt","Saeugetier","Klein","Aeffchen","BSK","c2_w_20","02_09",0,0,"Belebt",1,"Vogel",0,"Klein",1
+"527","d","d1_w_24","Krokodil","BRG","Unbelebt","Fahrzeug","Gross","Jumbojet","UFG","d2_w_32","02_09",0,0,"Belebt",0,"Reptil",0,"Gross",1
+"528","d","d3_w_24","Jumbojet","UFG","Unbelebt","Fahrzeug","Gross","Jumbojet","UFG","d2_w_32","02_09",1,1,"Unbelebt",1,"Fahrzeug",1,"Gross",1
+"529","e","e1_w_24","Armbanduhr","UGK","Belebt","Saeugetier","Klein","Kaninchen","BSK","e2_w_25","02_09",0,0,"Unbelebt",0,"Geraet",0,"Klein",1
+"530","e","e3_w_22","Kleinflugzeug","UFK","Belebt","Saeugetier","Klein","Kaninchen","BSK","e2_w_25","02_09",0,0,"Unbelebt",0,"Fahrzeug",0,"Klein",1
+"531","f","f1_w_20","Elefant","BSG","Belebt","Saeugetier","Gross","Baer","BSG","f2_m_38","02_09",0,1,"Belebt",1,"Saeugetier",1,"Gross",1
+"532","f","f3_w_24","Elefant","BSG","Belebt","Saeugetier","Gross","Baer","BSG","f2_m_38","02_09",0,1,"Belebt",1,"Saeugetier",1,"Gross",1
+"533","g","g1_w_27","Industriebackofen","UGG","Belebt","Saeugetier","Gross","Baer","BSG","g2_w_25","02_09",0,0,"Unbelebt",0,"Geraet",0,"Gross",1
+"534","g","g3_w_26","Grosser Bagger","UFG","Belebt","Saeugetier","Gross","Baer","BSG","g2_w_25","02_09",0,0,"Unbelebt",0,"Fahrzeug",0,"Gross",1
+"535","h","h1_w_27","Violine","UIK","Unbelebt","Instrument","Klein","Violine ","UIK","h2_m_34","02_09",0,1,"Unbelebt",1,"Instrument",1,"Klein",1
+"536","h","h3_m_30","Violine","UIK","Unbelebt","Instrument","Klein","Violine ","UIK","h2_m_34","02_09",0,1,"Unbelebt",1,"Instrument",1,"Klein",1
+"537","i","i1_w_30","Buerodrucker","UGG","Unbelebt","Fahrzeug","Klein","Kleinwagen","UFK","i2_w_24","02_09",0,0,"Unbelebt",1,"Geraet",0,"Gross",0
+"538","i","i3_m_21","Industriebackofen","UGG","Unbelebt","Fahrzeug","Klein","Kleinwagen","UFK","i2_w_24","02_09",0,0,"Unbelebt",1,"Geraet",0,"Gross",0
+"539","j","j1_w_21","SUV","UFG","Belebt","Saeugetier","Gross","Elefant","BSG","j2_w_20","02_09",0,0,"Unbelebt",0,"Fahrzeug",0,"Gross",1
+"540","j","j3_w_21","SUV","UFG","Belebt","Saeugetier","Gross","Elefant","BSG","j2_w_20","02_09",0,0,"Unbelebt",0,"Fahrzeug",0,"Gross",1
+"541","k","k1_w_22","Kondor","BVG","Belebt","Vogel","Gross","Harpyie","BVG","k2_w_22","02_09",0,1,"Belebt",1,"Vogel",1,"Gross",1
+"542","k","k3_w_25","Kontrabass","UIG","Belebt","Vogel","Gross","Harpyie","BVG","k2_w_22","02_09",0,0,"Unbelebt",0,"Instrument",0,"Gross",1
+"543","l","l1_w_20","Aeffchen","BSK","Belebt","Saeugetier","Klein","Kaninchen","BSK","l2_w_22","02_09",0,1,"Belebt",1,"Saeugetier",1,"Klein",1
+"544","l","l3_w_21","Kaninchen","BSK","Belebt","Saeugetier","Klein","Kaninchen","BSK","l2_w_22","02_09",1,1,"Belebt",1,"Saeugetier",1,"Klein",1
+"545","m","m1_w_18","Baer","BSG","Belebt","Saeugetier","Gross","Baer","BSG","m2_w_19","02_09",1,1,"Belebt",1,"Saeugetier",1,"Gross",1
+"546","m","m3_w_18","Komodowaran","BRG","Belebt","Saeugetier","Gross","Baer","BSG","m2_w_19","02_09",0,0,"Belebt",1,"Reptil",0,"Gross",1
+"547","a","a1_m_31","Dompfaff","BVK","Unbelebt","Instrument","Gross","Kirchenglocke","UIG","a2_w_26","02_10",0,0,"Belebt",0,"Vogel",0,"Klein",0
+"548","a","a3_m_22","Blaumeise","BVK","Unbelebt","Instrument","Gross","Kirchenglocke","UIG","a2_w_26","02_10",0,0,"Belebt",0,"Vogel",0,"Klein",0
+"549","b","b1_w_20","Blaumeise","BVK","Unbelebt","Instrument","Klein","Gloeckchen","UIK","b2_m_27","02_10",0,0,"Belebt",0,"Vogel",0,"Klein",1
+"550","b","b3_w_20","Blaumeise","BVK","Unbelebt","Instrument","Klein","Gloeckchen","UIK","b2_m_27","02_10",0,0,"Belebt",0,"Vogel",0,"Klein",1
+"551","c","c1_w_41","Armbanduhr","UGK","Belebt","Reptil","Klein","Gecko","BRK","c2_w_20","02_10",0,0,"Unbelebt",0,"Geraet",0,"Klein",1
+"552","c","c3_w_31","Aeffchen","BSK","Belebt","Reptil","Klein","Gecko","BRK","c2_w_20","02_10",0,0,"Belebt",1,"Saeugetier",0,"Klein",1
+"553","d","d1_w_24","Storch","BVG","Belebt","Vogel","Gross","Kondor","BVG","d2_w_32","02_10",0,1,"Belebt",1,"Vogel",1,"Gross",1
+"554","d","d3_w_24","Elefant","BSG","Belebt","Vogel","Gross","Kondor","BVG","d2_w_32","02_10",0,0,"Belebt",1,"Saeugetier",0,"Gross",1
+"555","e","e1_w_24","Grosser Bagger","UFG","Unbelebt","Geraet","Gross","Wanduhr","UGG","e2_w_25","02_10",0,0,"Unbelebt",1,"Fahrzeug",0,"Gross",1
+"556","e","e3_w_22","Jumbojet","UFG","Unbelebt","Geraet","Gross","Wanduhr","UGG","e2_w_25","02_10",0,0,"Unbelebt",1,"Fahrzeug",0,"Gross",1
+"557","f","f1_w_20","Harpyie","BVG","Unbelebt","Fahrzeug","Klein","Kleinwagen","UFK","f2_m_38","02_10",0,0,"Belebt",0,"Vogel",0,"Gross",0
+"558","f","f3_w_24","Kleinwagen","UFK","Unbelebt","Fahrzeug","Klein","Kleinwagen","UFK","f2_m_38","02_10",1,1,"Unbelebt",1,"Fahrzeug",1,"Klein",1
+"559","g","g1_w_27","Violine","UIK","Belebt","Saeugetier","Klein","Aeffchen","BSK","g2_w_25","02_10",0,0,"Unbelebt",0,"Instrument",0,"Klein",1
+"560","g","g3_w_26","Kirchenglocke","UIG","Belebt","Saeugetier","Klein","Aeffchen","BSK","g2_w_25","02_10",0,0,"Unbelebt",0,"Instrument",0,"Gross",0
+"561","h","h1_w_27","Kleinwagen","UFK","Unbelebt","Fahrzeug","Gross","Jumbojet","UFG","h2_m_34","02_10",0,0,"Unbelebt",1,"Fahrzeug",1,"Klein",0
+"562","h","h3_m_30","Kleinwagen","UFK","Unbelebt","Fahrzeug","Gross","Jumbojet","UFG","h2_m_34","02_10",0,0,"Unbelebt",1,"Fahrzeug",1,"Klein",0
+"563","i","i1_w_30","Industriebackofen","UGG","Belebt","Saeugetier","Gross","Baer","BSG","i2_w_24","02_10",0,0,"Unbelebt",0,"Geraet",0,"Gross",1
+"564","i","i3_m_21","Elefant","BSG","Belebt","Saeugetier","Gross","Baer","BSG","i2_w_24","02_10",0,1,"Belebt",1,"Saeugetier",1,"Gross",1
+"565","j","j1_w_21","Kaninchen","BSK","Belebt","Vogel","Gross","Kondor","BVG","j2_w_20","02_10",0,0,"Belebt",1,"Saeugetier",0,"Klein",0
+"566","j","j3_w_21","Igel","BSK","Belebt","Vogel","Gross","Kondor","BVG","j2_w_20","02_10",0,0,"Belebt",1,"Saeugetier",0,"Klein",0
+"567","k","k1_w_22","Harpyie","BVG","Belebt","Reptil","Gross","Krokodil","BRG","k2_w_22","02_10",0,0,"Belebt",1,"Vogel",0,"Gross",1
+"568","k","k3_w_25","Harpyie","BVG","Belebt","Reptil","Gross","Krokodil","BRG","k2_w_22","02_10",0,0,"Belebt",1,"Vogel",0,"Gross",1
+"569","l","l1_w_20","Blaumeise","BVK","Belebt","Vogel","Klein","Blaumeise","BVK","l2_w_22","02_10",1,1,"Belebt",1,"Vogel",1,"Klein",1
+"570","l","l3_w_21","Aeffchen","BSK","Belebt","Vogel","Klein","Blaumeise","BVK","l2_w_22","02_10",0,0,"Belebt",1,"Saeugetier",0,"Klein",1
+"571","m","m1_w_18","Blaumeise","BVK","Belebt","Vogel","Klein","Blaumeise","BVK","m2_w_19","02_10",1,1,"Belebt",1,"Vogel",1,"Klein",1
+"572","m","m3_w_18","Aeffchen","BSK","Belebt","Vogel","Klein","Blaumeise","BVK","m2_w_19","02_10",0,0,"Belebt",1,"Saeugetier",0,"Klein",1
+"573","a","a1_m_31","Industriebackofen","UGG","Unbelebt","Fahrzeug","Gross","Jumbojet","UFG","a2_w_26","02_11",0,0,"Unbelebt",1,"Geraet",0,"Gross",1
+"574","a","a3_m_22","Kirchenglocke","UIG","Unbelebt","Fahrzeug","Gross","Jumbojet","UFG","a2_w_26","02_11",0,0,"Unbelebt",1,"Instrument",0,"Gross",1
+"575","b","b1_w_20","Spatz","BVK","Belebt","Vogel","Klein","Blaumeise","BVK","b2_m_27","02_11",0,1,"Belebt",1,"Vogel",1,"Klein",1
+"576","b","b3_w_20","Gloeckchen","UIK","Belebt","Vogel","Klein","Blaumeise","BVK","b2_m_27","02_11",0,0,"Unbelebt",0,"Instrument",0,"Klein",1
+"577","c","c1_w_41","Industriebackofen","UGG","Unbelebt","Fahrzeug","Klein","Kleiner Bagger","UFK","c2_w_20","02_11",0,0,"Unbelebt",1,"Geraet",0,"Gross",0
+"578","c","c3_w_31","Schildkroete","BRK","Unbelebt","Fahrzeug","Klein","Kleiner Bagger","UFK","c2_w_20","02_11",0,0,"Belebt",0,"Reptil",0,"Klein",1
+"579","d","d1_w_24","Dompfaff","BVK","Belebt","Saeugetier","Klein","Kaninchen","BSK","d2_w_32","02_11",0,0,"Belebt",1,"Vogel",0,"Klein",1
+"580","d","d3_w_24","Dompfaff","BVK","Belebt","Saeugetier","Klein","Kaninchen","BSK","d2_w_32","02_11",0,0,"Belebt",1,"Vogel",0,"Klein",1
+"581","e","e1_w_24","Wanduhr","UGG","Belebt","Reptil","Gross","Krokodil","BRG","e2_w_25","02_11",0,0,"Unbelebt",0,"Geraet",0,"Gross",1
+"582","e","e3_w_22","SUV","UFG","Belebt","Reptil","Gross","Krokodil","BRG","e2_w_25","02_11",0,0,"Unbelebt",0,"Fahrzeug",0,"Gross",1
+"583","f","f1_w_20","Baer","BSG","Belebt","Vogel","Gross","Storch","BVG","f2_m_38","02_11",0,0,"Belebt",1,"Saeugetier",0,"Gross",1
+"584","f","f3_w_24","Baer","BSG","Belebt","Vogel","Gross","Storch","BVG","f2_m_38","02_11",0,0,"Belebt",1,"Saeugetier",0,"Gross",1
+"585","g","g1_w_27","Kirchenglocke","UIG","Belebt","Vogel","Klein","Dompfaff","BVK","g2_w_25","02_11",0,0,"Unbelebt",0,"Instrument",0,"Gross",0
+"586","g","g3_w_26","Wanduhr","UGG","Belebt","Vogel","Klein","Dompfaff","BVK","g2_w_25","02_11",0,0,"Unbelebt",0,"Geraet",0,"Gross",0
+"587","h","h1_w_27","Harpyie","BVG","Belebt","Vogel","Klein","Dompfaff","BVK","h2_m_34","02_11",0,0,"Belebt",1,"Vogel",1,"Gross",0
+"588","h","h3_m_30","Drucker","UGK","Belebt","Vogel","Klein","Dompfaff","BVK","h2_m_34","02_11",0,0,"Unbelebt",0,"Geraet",0,"Klein",1
+"589","i","i1_w_30","Anakonda","BRG","Unbelebt","Geraet","Klein","Backofen","UGK","i2_w_24","02_11",0,0,"Belebt",0,"Reptil",0,"Gross",0
+"590","i","i3_m_21","Anakonda","BRG","Unbelebt","Geraet","Klein","Backofen","UGK","i2_w_24","02_11",0,0,"Belebt",0,"Reptil",0,"Gross",0
+"591","j","j1_w_21","Igel","BSK","Belebt","Saeugetier","Klein","Igel","BSK","j2_w_20","02_11",1,1,"Belebt",1,"Saeugetier",1,"Klein",1
+"592","j","j3_w_21","Kaninchen","BSK","Belebt","Saeugetier","Klein","Igel","BSK","j2_w_20","02_11",0,1,"Belebt",1,"Saeugetier",1,"Klein",1
+"593","k","k1_w_22","Kleinwagen","UFK","Belebt","Saeugetier","Gross","Elefant","BSG","k2_w_22","02_11",0,0,"Unbelebt",0,"Fahrzeug",0,"Klein",0
+"594","k","k3_w_25","Kondor","BVG","Belebt","Saeugetier","Gross","Elefant","BSG","k2_w_22","02_11",0,0,"Belebt",1,"Vogel",0,"Gross",1
+"595","l","l1_w_20","Armbanduhr","UGK","Unbelebt","Geraet","Gross","Wanduhr","UGG","l2_w_22","02_11",0,0,"Unbelebt",1,"Geraet",1,"Klein",0
+"596","l","l3_w_21","Wanduhr","UGG","Unbelebt","Geraet","Gross","Wanduhr","UGG","l2_w_22","02_11",1,1,"Unbelebt",1,"Geraet",1,"Gross",1
+"597","m","m1_w_18","Schildkroete","BRK","Belebt","Reptil","Klein","Blindschleiche","BRK","m2_w_19","02_11",0,1,"Belebt",1,"Reptil",1,"Klein",1
+"598","m","m3_w_18","Blindschleiche","BRK","Belebt","Reptil","Klein","Blindschleiche","BRK","m2_w_19","02_11",1,1,"Belebt",1,"Reptil",1,"Klein",1
+"599","a","a1_m_31","Krokodil","BRG","Belebt","Reptil","Gross","Krokodil","BRG","a2_w_26","02_12",1,1,"Belebt",1,"Reptil",1,"Gross",1
+"600","a","a3_m_22","Grosser Bagger","UFG","Belebt","Reptil","Gross","Krokodil","BRG","a2_w_26","02_12",0,0,"Unbelebt",0,"Fahrzeug",0,"Gross",1
+"601","b","b1_w_20","Blindschleiche","BRK","Belebt","Reptil","Klein","Blindschleiche","BRK","b2_m_27","02_12",1,1,"Belebt",1,"Reptil",1,"Klein",1
+"602","b","b3_w_20","Blindschleiche","BRK","Belebt","Reptil","Klein","Blindschleiche","BRK","b2_m_27","02_12",1,1,"Belebt",1,"Reptil",1,"Klein",1
+"603","c","c1_w_41","Jumbojet","UFG","Belebt","Saeugetier","Gross","Kuh","BSG","c2_w_20","02_12",0,0,"Unbelebt",0,"Fahrzeug",0,"Gross",1
+"604","c","c3_w_31","Bodentrommel","UIG","Belebt","Saeugetier","Gross","Kuh","BSG","c2_w_20","02_12",0,0,"Unbelebt",0,"Instrument",0,"Gross",1
+"605","d","d1_w_24","Schildkroete","BRK","Belebt","Reptil","Klein","Schildkroete","BRK","d2_w_32","02_12",1,1,"Belebt",1,"Reptil",1,"Klein",1
+"606","d","d3_w_24","Schildkroete","BRK","Belebt","Reptil","Klein","Schildkroete","BRK","d2_w_32","02_12",1,1,"Belebt",1,"Reptil",1,"Klein",1
+"607","e","e1_w_24","Spatz","BVK","Belebt","Reptil","Klein","Gecko","BRK","e2_w_25","02_12",0,0,"Belebt",1,"Vogel",0,"Klein",1
+"608","e","e3_w_22","Kleinflugzeug","UFK","Belebt","Reptil","Klein","Gecko","BRK","e2_w_25","02_12",0,0,"Unbelebt",0,"Fahrzeug",0,"Klein",1
+"609","f","f1_w_20","Igel","BSK","Belebt","Saeugetier","Klein","Igel","BSK","f2_m_38","02_12",1,1,"Belebt",1,"Saeugetier",1,"Klein",1
+"610","f","f3_w_24","Igel","BSK","Belebt","Saeugetier","Klein","Igel","BSK","f2_m_38","02_12",1,1,"Belebt",1,"Saeugetier",1,"Klein",1
+"611","g","g1_w_27","Kleinflugzeug","UFK","Unbelebt","Geraet","Klein","Drucker","UGK","g2_w_25","02_12",0,0,"Unbelebt",1,"Fahrzeug",0,"Klein",1
+"612","g","g3_w_26","Handtrommel","UIK","Unbelebt","Geraet","Klein","Drucker","UGK","g2_w_25","02_12",0,0,"Unbelebt",1,"Instrument",0,"Klein",1
+"613","h","h1_w_27","Jumbojet","UFG","Unbelebt","Fahrzeug","Klein","Kleinwagen","UFK","h2_m_34","02_12",0,0,"Unbelebt",1,"Fahrzeug",1,"Gross",0
+"614","h","h3_m_30","Drucker","UGK","Unbelebt","Fahrzeug","Klein","Kleinwagen","UFK","h2_m_34","02_12",0,0,"Unbelebt",1,"Geraet",0,"Klein",1
+"615","i","i1_w_30","Gloeckchen","UIK","Unbelebt","Instrument","Klein","Gloeckchen","UIK","i2_w_24","02_12",1,1,"Unbelebt",1,"Instrument",1,"Klein",1
+"616","i","i3_m_21","Blindschleiche","BRK","Unbelebt","Instrument","Klein","Gloeckchen","UIK","i2_w_24","02_12",0,0,"Belebt",0,"Reptil",0,"Klein",1
+"617","j","j1_w_21","Spatz","BVK","Unbelebt","Instrument","Klein","Gloeckchen","UIK","j2_w_20","02_12",0,0,"Belebt",0,"Vogel",0,"Klein",1
+"618","j","j3_w_21","Gloeckchen","UIK","Unbelebt","Instrument","Klein","Gloeckchen","UIK","j2_w_20","02_12",1,1,"Unbelebt",1,"Instrument",1,"Klein",1
+"619","k","k1_w_22","Kontrabass","UIG","Unbelebt","Instrument","Gross","Kontrabass","UIG","k2_w_22","02_12",1,1,"Unbelebt",1,"Instrument",1,"Gross",1
+"620","k","k3_w_25","Schildkroete","BRK","Unbelebt","Instrument","Gross","Kontrabass","UIG","k2_w_22","02_12",0,0,"Belebt",0,"Reptil",0,"Klein",0
+"621","l","l1_w_20","Grosser Bagger","UFG","Belebt","Saeugetier","Gross","Kuh","BSG","l2_w_22","02_12",0,0,"Unbelebt",0,"Fahrzeug",0,"Gross",1
+"622","l","l3_w_21","Grosser Bagger","UFG","Belebt","Saeugetier","Gross","Kuh","BSG","l2_w_22","02_12",0,0,"Unbelebt",0,"Fahrzeug",0,"Gross",1
+"623","m","m1_w_18","Komodowaran","BRG","Belebt","Vogel","Gross","Kondor","BVG","m2_w_19","02_12",0,0,"Belebt",1,"Reptil",0,"Gross",1
+"624","m","m3_w_18","Krokodil","BRG","Belebt","Vogel","Gross","Kondor","BVG","m2_w_19","02_12",0,0,"Belebt",1,"Reptil",0,"Gross",1
+"625","a","a1_m_31","Schildkroete","BRK","Belebt","Reptil","Klein","Schildkroete","BRK","a3_m_22","03_01",1,1,"Belebt",1,"Reptil",1,"Klein",1
+"626","a","a2_w_26","Drucker","UGK","Belebt","Reptil","Klein","Schildkroete","BRK","a3_m_22","03_01",0,0,"Unbelebt",0,"Geraet",0,"Klein",1
+"627","b","b1_w_20","Schildkroete","BRK","Belebt","Saeugetier","Klein","Kaninchen","BSK","b3_w_20","03_01",0,0,"Belebt",1,"Reptil",0,"Klein",1
+"628","b","b2_m_27","Spatz","BVK","Belebt","Saeugetier","Klein","Kaninchen","BSK","b3_w_20","03_01",0,0,"Belebt",1,"Vogel",0,"Klein",1
+"629","c","c1_w_41","Kaninchen","BSK","Belebt","Vogel","Klein","Spatz","BVK","c3_w_31","03_01",0,0,"Belebt",1,"Saeugetier",0,"Klein",1
+"630","c","c2_w_20","Kaninchen","BSK","Belebt","Vogel","Klein","Spatz","BVK","c3_w_31","03_01",0,0,"Belebt",1,"Saeugetier",0,"Klein",1
+"631","d","d1_w_24","Wanduhr","UGG","Unbelebt","Instrument","Gross","Bodentrommel","UIG","d3_w_24","03_01",0,0,"Unbelebt",1,"Geraet",0,"Gross",1
+"632","d","d2_w_32","Buerodrucker","UGG","Unbelebt","Instrument","Gross","Bodentrommel","UIG","d3_w_24","03_01",0,0,"Unbelebt",1,"Geraet",0,"Gross",1
+"633","e","e1_w_24","Storch","BVG","Unbelebt","Fahrzeug","Klein","Kleinwagen","UFK","e3_w_22","03_01",0,0,"Belebt",0,"Vogel",0,"Gross",0
+"634","e","e2_w_25","Drucker","UGK","Unbelebt","Fahrzeug","Klein","Kleinwagen","UFK","e3_w_22","03_01",0,0,"Unbelebt",1,"Geraet",0,"Klein",1
+"635","f","f1_w_20","Violine","UIK","Unbelebt","Instrument","Klein","Violine ","UIK","f3_w_24","03_01",0,1,"Unbelebt",1,"Instrument",1,"Klein",1
+"636","f","f2_m_38","Violine","UIK","Unbelebt","Instrument","Klein","Violine ","UIK","f3_w_24","03_01",0,1,"Unbelebt",1,"Instrument",1,"Klein",1
+"637","g","g1_w_27","Gecko","BRK","Belebt","Saeugetier","Klein","Igel","BSK","g3_w_26","03_01",0,0,"Belebt",1,"Reptil",0,"Klein",1
+"638","g","g2_w_25","Gecko","BRK","Belebt","Saeugetier","Klein","Igel","BSK","g3_w_26","03_01",0,0,"Belebt",1,"Reptil",0,"Klein",1
+"639","h","h1_w_27","Aeffchen","BSK","Belebt","Vogel","Klein","Spatz","BVK","h3_m_30","03_01",0,0,"Belebt",1,"Saeugetier",0,"Klein",1
+"640","h","h2_m_34","Kondor","BVG","Belebt","Vogel","Klein","Spatz","BVK","h3_m_30","03_01",0,0,"Belebt",1,"Vogel",1,"Gross",0
+"641","i","i1_w_30","Industriebackofen","UGG","Unbelebt","Instrument","Gross","Bodentrommel","UIG","i3_m_21","03_01",0,0,"Unbelebt",1,"Geraet",0,"Gross",1
+"642","i","i2_w_24","Schildkroete","BRK","Unbelebt","Instrument","Gross","Bodentrommel","UIG","i3_m_21","03_01",0,0,"Belebt",0,"Reptil",0,"Klein",0
+"643","j","j1_w_21","Buerodrucker","UGG","Unbelebt","Geraet","Klein","Drucker","UGK","j3_w_21","03_01",0,0,"Unbelebt",1,"Geraet",1,"Gross",0
+"644","j","j2_w_20","Drucker","UGK","Unbelebt","Geraet","Klein","Drucker","UGK","j3_w_21","03_01",1,1,"Unbelebt",1,"Geraet",1,"Klein",1
+"645","k","k1_w_22","Aeffchen","BSK","Belebt","Saeugetier","Klein","Aeffchen","BSK","k3_w_25","03_01",1,1,"Belebt",1,"Saeugetier",1,"Klein",1
+"646","k","k2_w_22","Kleiner Bagger","UFK","Belebt","Saeugetier","Klein","Aeffchen","BSK","k3_w_25","03_01",0,0,"Unbelebt",0,"Fahrzeug",0,"Klein",1
+"647","l","l1_w_20","Kleinflugzeug","UFK","Belebt","Vogel","Klein","Dompfaff","BVK","l3_w_21","03_01",0,0,"Unbelebt",0,"Fahrzeug",0,"Klein",1
+"648","l","l2_w_22","Igel","BSK","Belebt","Vogel","Klein","Dompfaff","BVK","l3_w_21","03_01",0,0,"Belebt",1,"Saeugetier",0,"Klein",1
+"649","m","m1_w_18","Gecko","BRK","Belebt","Saeugetier","Klein","Igel","BSK","m3_w_18","03_01",0,0,"Belebt",1,"Reptil",0,"Klein",1
+"650","m","m2_w_19","Igel","BSK","Belebt","Saeugetier","Klein","Igel","BSK","m3_w_18","03_01",1,1,"Belebt",1,"Saeugetier",1,"Klein",1
+"651","a","a1_m_31","Baer","BSG","Unbelebt","Fahrzeug","Gross","SUV","UFG","a3_m_22","03_02",0,0,"Belebt",0,"Saeugetier",0,"Gross",1
+"652","a","a2_w_26","Grosser Bagger","UFG","Unbelebt","Fahrzeug","Gross","SUV","UFG","a3_m_22","03_02",0,1,"Unbelebt",1,"Fahrzeug",1,"Gross",1
+"653","b","b1_w_20","Kaninchen","BSK","Belebt","Vogel","Gross","Harpyie","BVG","b3_w_20","03_02",0,0,"Belebt",1,"Saeugetier",0,"Klein",0
+"654","b","b2_m_27","Dompfaff","BVK","Belebt","Vogel","Gross","Harpyie","BVG","b3_w_20","03_02",0,0,"Belebt",1,"Vogel",1,"Klein",0
+"655","c","c1_w_41","Spatz","BVK","Unbelebt","Instrument","Klein","Violine ","UIK","c3_w_31","03_02",0,0,"Belebt",0,"Vogel",0,"Klein",1
+"656","c","c2_w_20","Violine","UIK","Unbelebt","Instrument","Klein","Violine ","UIK","c3_w_31","03_02",0,1,"Unbelebt",1,"Instrument",1,"Klein",1
+"657","d","d1_w_24","Spatz","BVK","Belebt","Vogel","Klein","Spatz","BVK","d3_w_24","03_02",1,1,"Belebt",1,"Vogel",1,"Klein",1
+"658","d","d2_w_32","Spatz","BVK","Belebt","Vogel","Klein","Spatz","BVK","d3_w_24","03_02",1,1,"Belebt",1,"Vogel",1,"Klein",1
+"659","e","e1_w_24","Kleiner Bagger","UFK","Belebt","Reptil","Klein","Blindschleiche","BRK","e3_w_22","03_02",0,0,"Unbelebt",0,"Fahrzeug",0,"Klein",1
+"660","e","e2_w_25","Blindschleiche","BRK","Belebt","Reptil","Klein","Blindschleiche","BRK","e3_w_22","03_02",1,1,"Belebt",1,"Reptil",1,"Klein",1
+"661","f","f1_w_20","Dompfaff","BVK","Unbelebt","Geraet","Klein","Backofen","UGK","f3_w_24","03_02",0,0,"Belebt",0,"Vogel",0,"Klein",1
+"662","f","f2_m_38","Dompfaff","BVK","Unbelebt","Geraet","Klein","Backofen","UGK","f3_w_24","03_02",0,0,"Belebt",0,"Vogel",0,"Klein",1
+"663","g","g1_w_27","Grosser Bagger","UFG","Belebt","Saeugetier","Gross","Kuh","BSG","g3_w_26","03_02",0,0,"Unbelebt",0,"Fahrzeug",0,"Gross",1
+"664","g","g2_w_25","SUV","UFG","Belebt","Saeugetier","Gross","Kuh","BSG","g3_w_26","03_02",0,0,"Unbelebt",0,"Fahrzeug",0,"Gross",1
+"665","h","h1_w_27","Baer","BSG","Belebt","Saeugetier","Gross","Baer","BSG","h3_m_30","03_02",1,1,"Belebt",1,"Saeugetier",1,"Gross",1
+"666","h","h2_m_34","Baer","BSG","Belebt","Saeugetier","Gross","Baer","BSG","h3_m_30","03_02",1,1,"Belebt",1,"Saeugetier",1,"Gross",1
+"667","i","i1_w_30","Kondor","BVG","Belebt","Vogel","Gross","Kondor","BVG","i3_m_21","03_02",1,1,"Belebt",1,"Vogel",1,"Gross",1
+"668","i","i2_w_24","Krokodil","BRG","Belebt","Vogel","Gross","Kondor","BVG","i3_m_21","03_02",0,0,"Belebt",1,"Reptil",0,"Gross",1
+"669","j","j1_w_21","Dompfaff","BVK","Belebt","Saeugetier","Klein","Kaninchen","BSK","j3_w_21","03_02",0,0,"Belebt",1,"Vogel",0,"Klein",1
+"670","j","j2_w_20","Dompfaff","BVK","Belebt","Saeugetier","Klein","Kaninchen","BSK","j3_w_21","03_02",0,0,"Belebt",1,"Vogel",0,"Klein",1
+"671","k","k1_w_22","Schildkroete","BRK","Belebt","Reptil","Klein","Schildkroete","BRK","k3_w_25","03_02",1,1,"Belebt",1,"Reptil",1,"Klein",1
+"672","k","k2_w_22","Schildkroete","BRK","Belebt","Reptil","Klein","Schildkroete","BRK","k3_w_25","03_02",1,1,"Belebt",1,"Reptil",1,"Klein",1
+"673","l","l1_w_20","Blindschleiche","BRK","Belebt","Reptil","Klein","Blindschleiche","BRK","l3_w_21","03_02",1,1,"Belebt",1,"Reptil",1,"Klein",1
+"674","l","l2_w_22","Blindschleiche","BRK","Belebt","Reptil","Klein","Blindschleiche","BRK","l3_w_21","03_02",1,1,"Belebt",1,"Reptil",1,"Klein",1
+"675","m","m1_w_18","Komodowaran","BRG","Belebt","Reptil","Klein","Gecko","BRK","m3_w_18","03_02",0,0,"Belebt",1,"Reptil",1,"Gross",0
+"676","m","m2_w_19","Igel","BSK","Belebt","Reptil","Klein","Gecko","BRK","m3_w_18","03_02",0,0,"Belebt",1,"Saeugetier",0,"Klein",1
+"677","a","a1_m_31","Kaninchen","BSK","Belebt","Saeugetier","Klein","Kaninchen","BSK","a3_m_22","03_03",1,1,"Belebt",1,"Saeugetier",1,"Klein",1
+"678","a","a2_w_26","Kaninchen","BSK","Belebt","Saeugetier","Klein","Kaninchen","BSK","a3_m_22","03_03",1,1,"Belebt",1,"Saeugetier",1,"Klein",1
+"679","b","b1_w_20","Spatz","BVK","Unbelebt","Fahrzeug","Klein","Kleiner Bagger","UFK","b3_w_20","03_03",0,0,"Belebt",0,"Vogel",0,"Klein",1
+"680","b","b2_m_27","Armbanduhr","UGK","Unbelebt","Fahrzeug","Klein","Kleiner Bagger","UFK","b3_w_20","03_03",0,0,"Unbelebt",1,"Geraet",0,"Klein",1
+"681","c","c1_w_41","Gecko","BRK","Belebt","Vogel","Gross","Harpyie","BVG","c3_w_31","03_03",0,0,"Belebt",1,"Reptil",0,"Klein",0
+"682","c","c2_w_20","Kleinflugzeug","UFK","Belebt","Vogel","Gross","Harpyie","BVG","c3_w_31","03_03",0,0,"Unbelebt",0,"Fahrzeug",0,"Klein",0
+"683","d","d1_w_24","Baer","BSG","Unbelebt","Fahrzeug","Gross","Grosser Bagger","UFG","d3_w_24","03_03",0,0,"Belebt",0,"Saeugetier",0,"Gross",1
+"684","d","d2_w_32","Baer","BSG","Unbelebt","Fahrzeug","Gross","Grosser Bagger","UFG","d3_w_24","03_03",0,0,"Belebt",0,"Saeugetier",0,"Gross",1
+"685","e","e1_w_24","Buerodrucker","UGG","Unbelebt","Geraet","Klein","Drucker","UGK","e3_w_22","03_03",0,0,"Unbelebt",1,"Geraet",1,"Gross",0
+"686","e","e2_w_25","Komodowaran","BRG","Unbelebt","Geraet","Klein","Drucker","UGK","e3_w_22","03_03",0,0,"Belebt",0,"Reptil",0,"Gross",0
+"687","f","f1_w_20","Grosser Bagger","UFG","Unbelebt","Fahrzeug","Gross","Jumbojet","UFG","f3_w_24","03_03",0,1,"Unbelebt",1,"Fahrzeug",1,"Gross",1
+"688","f","f2_m_38","Jumbojet","UFG","Unbelebt","Fahrzeug","Gross","Jumbojet","UFG","f3_w_24","03_03",1,1,"Unbelebt",1,"Fahrzeug",1,"Gross",1
+"689","g","g1_w_27","Drucker","UGK","Unbelebt","Instrument","Klein","Handtrommel","UIK","g3_w_26","03_03",0,0,"Unbelebt",1,"Geraet",0,"Klein",1
+"690","g","g2_w_25","Dompfaff","BVK","Unbelebt","Instrument","Klein","Handtrommel","UIK","g3_w_26","03_03",0,0,"Belebt",0,"Vogel",0,"Klein",1
+"691","h","h1_w_27","Krokodil","BRG","Unbelebt","Geraet","Gross","Industriebackofen","UGG","h3_m_30","03_03",0,0,"Belebt",0,"Reptil",0,"Gross",1
+"692","h","h2_m_34","Krokodil","BRG","Unbelebt","Geraet","Gross","Industriebackofen","UGG","h3_m_30","03_03",0,0,"Belebt",0,"Reptil",0,"Gross",1
+"693","i","i1_w_30","Grosser Bagger","UFG","Belebt","Saeugetier","Gross","Kuh","BSG","i3_m_21","03_03",0,0,"Unbelebt",0,"Fahrzeug",0,"Gross",1
+"694","i","i2_w_24","Schildkroete","BRK","Belebt","Saeugetier","Gross","Kuh","BSG","i3_m_21","03_03",0,0,"Belebt",1,"Reptil",0,"Klein",0
+"695","j","j1_w_21","Kontrabass","UIG","Unbelebt","Fahrzeug","Gross","SUV","UFG","j3_w_21","03_03",0,0,"Unbelebt",1,"Instrument",0,"Gross",1
+"696","j","j2_w_20","Industriebackofen","UGG","Unbelebt","Fahrzeug","Gross","SUV","UFG","j3_w_21","03_03",0,0,"Unbelebt",1,"Geraet",0,"Gross",1
+"697","k","k1_w_22","Harpyie","BVG","Belebt","Vogel","Gross","Kondor","BVG","k3_w_25","03_03",0,1,"Belebt",1,"Vogel",1,"Gross",1
+"698","k","k2_w_22","Grosser Bagger","UFG","Belebt","Vogel","Gross","Kondor","BVG","k3_w_25","03_03",0,0,"Unbelebt",0,"Fahrzeug",0,"Gross",1
+"699","l","l1_w_20","Drucker","UGK","Unbelebt","Geraet","Klein","Drucker","UGK","l3_w_21","03_03",1,1,"Unbelebt",1,"Geraet",1,"Klein",1
+"700","l","l2_w_22","Armbanduhr","UGK","Unbelebt","Geraet","Klein","Drucker","UGK","l3_w_21","03_03",0,1,"Unbelebt",1,"Geraet",1,"Klein",1
+"701","m","m1_w_18","Backofen","UGK","Unbelebt","Geraet","Klein","Backofen","UGK","m3_w_18","03_03",1,1,"Unbelebt",1,"Geraet",1,"Klein",1
+"702","m","m2_w_19","Handtrommel","UIK","Unbelebt","Geraet","Klein","Backofen","UGK","m3_w_18","03_03",0,0,"Unbelebt",1,"Instrument",0,"Klein",1
+"703","a","a1_m_31","Gloeckchen","UIK","Belebt","Vogel","Klein","Blaumeise","BVK","a3_m_22","03_04",0,0,"Unbelebt",0,"Instrument",0,"Klein",1
+"704","a","a2_w_26","Blaumeise","BVK","Belebt","Vogel","Klein","Blaumeise","BVK","a3_m_22","03_04",1,1,"Belebt",1,"Vogel",1,"Klein",1
+"705","b","b1_w_20","Baer","BSG","Unbelebt","Geraet","Gross","Industriebackofen","UGG","b3_w_20","03_04",0,0,"Belebt",0,"Saeugetier",0,"Gross",1
+"706","b","b2_m_27","Jumbojet","UFG","Unbelebt","Geraet","Gross","Industriebackofen","UGG","b3_w_20","03_04",0,0,"Unbelebt",1,"Fahrzeug",0,"Gross",1
+"707","c","c1_w_41","Wanduhr","UGG","Unbelebt","Geraet","Gross","Wanduhr","UGG","c3_w_31","03_04",1,1,"Unbelebt",1,"Geraet",1,"Gross",1
+"708","c","c2_w_20","Kontrabass","UIG","Unbelebt","Geraet","Gross","Wanduhr","UGG","c3_w_31","03_04",0,0,"Unbelebt",1,"Instrument",0,"Gross",1
+"709","d","d1_w_24","Violine","UIK","Unbelebt","Instrument","Klein","Violine ","UIK","d3_w_24","03_04",0,1,"Unbelebt",1,"Instrument",1,"Klein",1
+"710","d","d2_w_32","Gloeckchen","UIK","Unbelebt","Instrument","Klein","Violine ","UIK","d3_w_24","03_04",0,1,"Unbelebt",1,"Instrument",1,"Klein",1
+"711","e","e1_w_24","Kirchenglocke","UIG","Belebt","Saeugetier","Gross","Kuh","BSG","e3_w_22","03_04",0,0,"Unbelebt",0,"Instrument",0,"Gross",1
+"712","e","e2_w_25","Buerodrucker","UGG","Belebt","Saeugetier","Gross","Kuh","BSG","e3_w_22","03_04",0,0,"Unbelebt",0,"Geraet",0,"Gross",1
+"713","f","f1_w_20","Kaninchen","BSK","Belebt","Saeugetier","Klein","Kaninchen","BSK","f3_w_24","03_04",1,1,"Belebt",1,"Saeugetier",1,"Klein",1
+"714","f","f2_m_38","Kaninchen","BSK","Belebt","Saeugetier","Klein","Kaninchen","BSK","f3_w_24","03_04",1,1,"Belebt",1,"Saeugetier",1,"Klein",1
+"715","g","g1_w_27","Kleinwagen","UFK","Unbelebt","Fahrzeug","Gross","Jumbojet","UFG","g3_w_26","03_04",0,0,"Unbelebt",1,"Fahrzeug",1,"Klein",0
+"716","g","g2_w_25","Wanduhr","UGG","Unbelebt","Fahrzeug","Gross","Jumbojet","UFG","g3_w_26","03_04",0,0,"Unbelebt",1,"Geraet",0,"Gross",1
+"717","h","h1_w_27","Wanduhr","UGG","Unbelebt","Geraet","Klein","Armbanduhr","UGK","h3_m_30","03_04",0,0,"Unbelebt",1,"Geraet",1,"Gross",0
+"718","h","h2_m_34","Wanduhr","UGG","Unbelebt","Geraet","Klein","Armbanduhr","UGK","h3_m_30","03_04",0,0,"Unbelebt",1,"Geraet",1,"Gross",0
+"719","i","i1_w_30","Schildkroete","BRK","Unbelebt","Geraet","Gross","Industriebackofen","UGG","i3_m_21","03_04",0,0,"Belebt",0,"Reptil",0,"Klein",0
+"720","i","i2_w_24","SUV","UFG","Unbelebt","Geraet","Gross","Industriebackofen","UGG","i3_m_21","03_04",0,0,"Unbelebt",1,"Fahrzeug",0,"Gross",1
+"721","j","j1_w_21","Spatz","BVK","Belebt","Vogel","Klein","Dompfaff","BVK","j3_w_21","03_04",0,1,"Belebt",1,"Vogel",1,"Klein",1
+"722","j","j2_w_20","Blaumeise","BVK","Belebt","Vogel","Klein","Dompfaff","BVK","j3_w_21","03_04",0,1,"Belebt",1,"Vogel",1,"Klein",1
+"723","k","k1_w_22","Backofen","UGK","Unbelebt","Fahrzeug","Gross","Grosser Bagger","UFG","k3_w_25","03_04",0,0,"Unbelebt",1,"Geraet",0,"Klein",0
+"724","k","k2_w_22","Buerodrucker","UGG","Unbelebt","Fahrzeug","Gross","Grosser Bagger","UFG","k3_w_25","03_04",0,0,"Unbelebt",1,"Geraet",0,"Gross",1
+"725","l","l1_w_20","Dompfaff","BVK","Belebt","Saeugetier","Klein","Igel","BSK","l3_w_21","03_04",0,0,"Belebt",1,"Vogel",0,"Klein",1
+"726","l","l2_w_22","Igel","BSK","Belebt","Saeugetier","Klein","Igel","BSK","l3_w_21","03_04",1,1,"Belebt",1,"Saeugetier",1,"Klein",1
+"727","m","m1_w_18","Gloeckchen","UIK","Unbelebt","Instrument","Klein","Gloeckchen","UIK","m3_w_18","03_04",1,1,"Unbelebt",1,"Instrument",1,"Klein",1
+"728","m","m2_w_19","Blaumeise","BVK","Unbelebt","Instrument","Klein","Gloeckchen","UIK","m3_w_18","03_04",0,0,"Belebt",0,"Vogel",0,"Klein",1
+"729","a","a1_m_31","Drucker","UGK","Unbelebt","Geraet","Gross","Wanduhr","UGG","a3_m_22","03_05",0,0,"Unbelebt",1,"Geraet",1,"Klein",0
+"730","a","a2_w_26","Wanduhr","UGG","Unbelebt","Geraet","Gross","Wanduhr","UGG","a3_m_22","03_05",1,1,"Unbelebt",1,"Geraet",1,"Gross",1
+"731","b","b1_w_20","Krokodil","BRG","Unbelebt","Fahrzeug","Gross","Jumbojet","UFG","b3_w_20","03_05",0,0,"Belebt",0,"Reptil",0,"Gross",1
+"732","b","b2_m_27","Industriebackofen","UGG","Unbelebt","Fahrzeug","Gross","Jumbojet","UFG","b3_w_20","03_05",0,0,"Unbelebt",1,"Geraet",0,"Gross",1
+"733","c","c1_w_41","Grosser Bagger","UFG","Unbelebt","Instrument","Gross","Kontrabass","UIG","c3_w_31","03_05",0,0,"Unbelebt",1,"Fahrzeug",0,"Gross",1
+"734","c","c2_w_20","Violine","UIK","Unbelebt","Instrument","Gross","Kontrabass","UIG","c3_w_31","03_05",0,0,"Unbelebt",1,"Instrument",1,"Klein",0
+"735","d","d1_w_24","Kleinwagen","UFK","Unbelebt","Fahrzeug","Klein","Kleinflugzeug","UFK","d3_w_24","03_05",0,1,"Unbelebt",1,"Fahrzeug",1,"Klein",1
+"736","d","d2_w_32","Kleinflugzeug","UFK","Unbelebt","Fahrzeug","Klein","Kleinflugzeug","UFK","d3_w_24","03_05",1,1,"Unbelebt",1,"Fahrzeug",1,"Klein",1
+"737","e","e1_w_24","Elefant","BSG","Unbelebt","Fahrzeug","Gross","Grosser Bagger","UFG","e3_w_22","03_05",0,0,"Belebt",0,"Saeugetier",0,"Gross",1
+"738","e","e2_w_25","Elefant","BSG","Unbelebt","Fahrzeug","Gross","Grosser Bagger","UFG","e3_w_22","03_05",0,0,"Belebt",0,"Saeugetier",0,"Gross",1
+"739","f","f1_w_20","Gecko","BRK","Belebt","Vogel","Gross","Kondor","BVG","f3_w_24","03_05",0,0,"Belebt",1,"Reptil",0,"Klein",0
+"740","f","f2_m_38","Harpyie","BVG","Belebt","Vogel","Gross","Kondor","BVG","f3_w_24","03_05",0,1,"Belebt",1,"Vogel",1,"Gross",1
+"741","g","g1_w_27","Jumbojet","UFG","Unbelebt","Instrument","Gross","Bodentrommel","UIG","g3_w_26","03_05",0,0,"Unbelebt",1,"Fahrzeug",0,"Gross",1
+"742","g","g2_w_25","Krokodil","BRG","Unbelebt","Instrument","Gross","Bodentrommel","UIG","g3_w_26","03_05",0,0,"Belebt",0,"Reptil",0,"Gross",1
+"743","h","h1_w_27","Kirchenglocke","UIG","Unbelebt","Instrument","Gross","Kirchenglocke","UIG","h3_m_30","03_05",1,1,"Unbelebt",1,"Instrument",1,"Gross",1
+"744","h","h2_m_34","Drucker","UGK","Unbelebt","Instrument","Gross","Kirchenglocke","UIG","h3_m_30","03_05",0,0,"Unbelebt",1,"Geraet",0,"Klein",0
+"745","i","i1_w_30","Kaninchen","BSK","Belebt","Saeugetier","Klein","Kaninchen","BSK","i3_m_21","03_05",1,1,"Belebt",1,"Saeugetier",1,"Klein",1
+"746","i","i2_w_24","Dompfaff","BVK","Belebt","Saeugetier","Klein","Kaninchen","BSK","i3_m_21","03_05",0,0,"Belebt",1,"Vogel",0,"Klein",1
+"747","j","j1_w_21","Blindschleiche","BRK","Belebt","Reptil","Klein","Blindschleiche","BRK","j3_w_21","03_05",1,1,"Belebt",1,"Reptil",1,"Klein",1
+"748","j","j2_w_20","Blindschleiche","BRK","Belebt","Reptil","Klein","Blindschleiche","BRK","j3_w_21","03_05",1,1,"Belebt",1,"Reptil",1,"Klein",1
+"749","k","k1_w_22","Anakonda","BRG","Belebt","Reptil","Gross","Anakonda","BRG","k3_w_25","03_05",1,1,"Belebt",1,"Reptil",1,"Gross",1
+"750","k","k2_w_22","Anakonda","BRG","Belebt","Reptil","Gross","Anakonda","BRG","k3_w_25","03_05",1,1,"Belebt",1,"Reptil",1,"Gross",1
+"751","l","l1_w_20","Baer","BSG","Belebt","Reptil","Gross","Krokodil","BRG","l3_w_21","03_05",0,0,"Belebt",1,"Saeugetier",0,"Gross",1
+"752","l","l2_w_22","Baer","BSG","Belebt","Reptil","Gross","Krokodil","BRG","l3_w_21","03_05",0,0,"Belebt",1,"Saeugetier",0,"Gross",1
+"753","m","m1_w_18","SUV","UFG","Unbelebt","Fahrzeug","Klein","Kleinwagen","UFK","m3_w_18","03_05",0,0,"Unbelebt",1,"Fahrzeug",1,"Gross",0
+"754","m","m2_w_19","SUV","UFG","Unbelebt","Fahrzeug","Klein","Kleinwagen","UFK","m3_w_18","03_05",0,0,"Unbelebt",1,"Fahrzeug",1,"Gross",0
+"755","a","a1_m_31","Kleinflugzeug","UFK","Unbelebt","Fahrzeug","Klein","Kleinflugzeug","UFK","a3_m_22","03_06",1,1,"Unbelebt",1,"Fahrzeug",1,"Klein",1
+"756","a","a2_w_26","Drucker","UGK","Unbelebt","Fahrzeug","Klein","Kleinflugzeug","UFK","a3_m_22","03_06",0,0,"Unbelebt",1,"Geraet",0,"Klein",1
+"757","b","b1_w_20","Kaninchen","BSK","Belebt","Vogel","Klein","Dompfaff","BVK","b3_w_20","03_06",0,0,"Belebt",1,"Saeugetier",0,"Klein",1
+"758","b","b2_m_27","Spatz","BVK","Belebt","Vogel","Klein","Dompfaff","BVK","b3_w_20","03_06",0,1,"Belebt",1,"Vogel",1,"Klein",1
+"759","c","c1_w_41","Elefant","BSG","Belebt","Saeugetier","Gross","Elefant","BSG","c3_w_31","03_06",1,1,"Belebt",1,"Saeugetier",1,"Gross",1
+"760","c","c2_w_20","Elefant","BSG","Belebt","Saeugetier","Gross","Elefant","BSG","c3_w_31","03_06",1,1,"Belebt",1,"Saeugetier",1,"Gross",1
+"761","d","d1_w_24","Blindschleiche","BRK","Belebt","Reptil","Klein","Gecko","BRK","d3_w_24","03_06",0,1,"Belebt",1,"Reptil",1,"Klein",1
+"762","d","d2_w_32","Gecko","BRK","Belebt","Reptil","Klein","Gecko","BRK","d3_w_24","03_06",1,1,"Belebt",1,"Reptil",1,"Klein",1
+"763","e","e1_w_24","Komodowaran","BRG","Unbelebt","Geraet","Gross","Buerodrucker","UGG","e3_w_22","03_06",0,0,"Belebt",0,"Reptil",0,"Gross",1
+"764","e","e2_w_25","Backofen","UGK","Unbelebt","Geraet","Gross","Buerodrucker","UGG","e3_w_22","03_06",0,0,"Unbelebt",1,"Geraet",1,"Klein",0
+"765","f","f1_w_20","Harpyie","BVG","Belebt","Reptil","Klein","Gecko","BRK","f3_w_24","03_06",0,0,"Belebt",1,"Vogel",0,"Gross",0
+"766","f","f2_m_38","Aeffchen","BSK","Belebt","Reptil","Klein","Gecko","BRK","f3_w_24","03_06",0,0,"Belebt",1,"Saeugetier",0,"Klein",1
+"767","g","g1_w_27","Backofen","UGK","Unbelebt","Geraet","Gross","Wanduhr","UGG","g3_w_26","03_06",0,0,"Unbelebt",1,"Geraet",1,"Klein",0
+"768","g","g2_w_25","Wanduhr","UGG","Unbelebt","Geraet","Gross","Wanduhr","UGG","g3_w_26","03_06",1,1,"Unbelebt",1,"Geraet",1,"Gross",1
+"769","h","h1_w_27","Drucker","UGK","Unbelebt","Instrument","Klein","Handtrommel","UIK","h3_m_30","03_06",0,0,"Unbelebt",1,"Geraet",0,"Klein",1
+"770","h","h2_m_34","Handtrommel","UIK","Unbelebt","Instrument","Klein","Handtrommel","UIK","h3_m_30","03_06",1,1,"Unbelebt",1,"Instrument",1,"Klein",1
+"771","i","i1_w_30","SUV","UFG","Unbelebt","Geraet","Klein","Drucker","UGK","i3_m_21","03_06",0,0,"Unbelebt",1,"Fahrzeug",0,"Gross",0
+"772","i","i2_w_24","Buerodrucker","UGG","Unbelebt","Geraet","Klein","Drucker","UGK","i3_m_21","03_06",0,0,"Unbelebt",1,"Geraet",1,"Gross",0
+"773","j","j1_w_21","Baer","BSG","Belebt","Saeugetier","Gross","Kuh","BSG","j3_w_21","03_06",0,1,"Belebt",1,"Saeugetier",1,"Gross",1
+"774","j","j2_w_20","Kleinflugzeug","UFK","Belebt","Saeugetier","Gross","Kuh","BSG","j3_w_21","03_06",0,0,"Unbelebt",0,"Fahrzeug",0,"Klein",0
+"775","k","k1_w_22","Baer","BSG","Belebt","Saeugetier","Gross","Baer","BSG","k3_w_25","03_06",1,1,"Belebt",1,"Saeugetier",1,"Gross",1
+"776","k","k2_w_22","Backofen","UGK","Belebt","Saeugetier","Gross","Baer","BSG","k3_w_25","03_06",0,0,"Unbelebt",0,"Geraet",0,"Klein",0
+"777","l","l1_w_20","Industriebackofen","UGG","Belebt","Saeugetier","Gross","Elefant","BSG","l3_w_21","03_06",0,0,"Unbelebt",0,"Geraet",0,"Gross",1
+"778","l","l2_w_22","SUV","UFG","Belebt","Saeugetier","Gross","Elefant","BSG","l3_w_21","03_06",0,0,"Unbelebt",0,"Fahrzeug",0,"Gross",1
+"779","m","m1_w_18","Jumbojet","UFG","Unbelebt","Geraet","Gross","Wanduhr","UGG","m3_w_18","03_06",0,0,"Unbelebt",1,"Fahrzeug",0,"Gross",1
+"780","m","m2_w_19","Kleinwagen","UFK","Unbelebt","Geraet","Gross","Wanduhr","UGG","m3_w_18","03_06",0,0,"Unbelebt",1,"Fahrzeug",0,"Klein",0
+"781","a","a1_m_31","Kleiner Bagger","UFK","Unbelebt","Instrument","Klein","Gloeckchen","UIK","a3_m_22","03_07",0,0,"Unbelebt",1,"Fahrzeug",0,"Klein",1
+"782","a","a2_w_26","Gloeckchen","UIK","Unbelebt","Instrument","Klein","Gloeckchen","UIK","a3_m_22","03_07",1,1,"Unbelebt",1,"Instrument",1,"Klein",1
+"783","b","b1_w_20","Schildkroete","BRK","Belebt","Reptil","Klein","Schildkroete","BRK","b3_w_20","03_07",1,1,"Belebt",1,"Reptil",1,"Klein",1
+"784","b","b2_m_27","Schildkroete","BRK","Belebt","Reptil","Klein","Schildkroete","BRK","b3_w_20","03_07",1,1,"Belebt",1,"Reptil",1,"Klein",1
+"785","c","c1_w_41","Drucker","UGK","Unbelebt","Geraet","Klein","Drucker","UGK","c3_w_31","03_07",1,1,"Unbelebt",1,"Geraet",1,"Klein",1
+"786","c","c2_w_20","Wanduhr","UGG","Unbelebt","Geraet","Klein","Drucker","UGK","c3_w_31","03_07",0,0,"Unbelebt",1,"Geraet",1,"Gross",0
+"787","d","d1_w_24","Grosser Bagger","UFG","Belebt","Reptil","Gross","Komodowaran","BRG","d3_w_24","03_07",0,0,"Unbelebt",0,"Fahrzeug",0,"Gross",1
+"788","d","d2_w_32","Grosser Bagger","UFG","Belebt","Reptil","Gross","Komodowaran","BRG","d3_w_24","03_07",0,0,"Unbelebt",0,"Fahrzeug",0,"Gross",1
+"789","e","e1_w_24","Kontrabass","UIG","Belebt","Vogel","Gross","Storch","BVG","e3_w_22","03_07",0,0,"Unbelebt",0,"Instrument",0,"Gross",1
+"790","e","e2_w_25","Kleinwagen","UFK","Belebt","Vogel","Gross","Storch","BVG","e3_w_22","03_07",0,0,"Unbelebt",0,"Fahrzeug",0,"Klein",0
+"791","f","f1_w_20","Kontrabass","UIG","Unbelebt","Instrument","Gross","Kontrabass","UIG","f3_w_24","03_07",1,1,"Unbelebt",1,"Instrument",1,"Gross",1
+"792","f","f2_m_38","Kontrabass","UIG","Unbelebt","Instrument","Gross","Kontrabass","UIG","f3_w_24","03_07",1,1,"Unbelebt",1,"Instrument",1,"Gross",1
+"793","g","g1_w_27","Bodentrommel","UIG","Belebt","Reptil","Gross","Krokodil","BRG","g3_w_26","03_07",0,0,"Unbelebt",0,"Instrument",0,"Gross",1
+"794","g","g2_w_25","Bodentrommel","UIG","Belebt","Reptil","Gross","Krokodil","BRG","g3_w_26","03_07",0,0,"Unbelebt",0,"Instrument",0,"Gross",1
+"795","h","h1_w_27","Buerodrucker","UGG","Unbelebt","Fahrzeug","Klein","Kleiner Bagger","UFK","h3_m_30","03_07",0,0,"Unbelebt",1,"Geraet",0,"Gross",0
+"796","h","h2_m_34","Buerodrucker","UGG","Unbelebt","Fahrzeug","Klein","Kleiner Bagger","UFK","h3_m_30","03_07",0,0,"Unbelebt",1,"Geraet",0,"Gross",0
+"797","i","i1_w_30","Dompfaff","BVK","Unbelebt","Instrument","Klein","Violine ","UIK","i3_m_21","03_07",0,0,"Belebt",0,"Vogel",0,"Klein",1
+"798","i","i2_w_24","Violine","UIK","Unbelebt","Instrument","Klein","Violine ","UIK","i3_m_21","03_07",0,1,"Unbelebt",1,"Instrument",1,"Klein",1
+"799","j","j1_w_21","Kontrabass","UIG","Unbelebt","Instrument","Gross","Kontrabass","UIG","j3_w_21","03_07",1,1,"Unbelebt",1,"Instrument",1,"Gross",1
+"800","j","j2_w_20","Kontrabass","UIG","Unbelebt","Instrument","Gross","Kontrabass","UIG","j3_w_21","03_07",1,1,"Unbelebt",1,"Instrument",1,"Gross",1
+"801","k","k1_w_22","Buerodrucker","UGG","Unbelebt","Instrument","Gross","Kirchenglocke","UIG","k3_w_25","03_07",0,0,"Unbelebt",1,"Geraet",0,"Gross",1
+"802","k","k2_w_22","Buerodrucker","UGG","Unbelebt","Instrument","Gross","Kirchenglocke","UIG","k3_w_25","03_07",0,0,"Unbelebt",1,"Geraet",0,"Gross",1
+"803","l","l1_w_20","Harpyie","BVG","Unbelebt","Geraet","Gross","Industriebackofen","UGG","l3_w_21","03_07",0,0,"Belebt",0,"Vogel",0,"Gross",1
+"804","l","l2_w_22","Drucker","UGK","Unbelebt","Geraet","Gross","Industriebackofen","UGG","l3_w_21","03_07",0,0,"Unbelebt",1,"Geraet",1,"Klein",0
+"805","m","m1_w_18","Blaumeise","BVK","Belebt","Vogel","Klein","Dompfaff","BVK","m3_w_18","03_07",0,1,"Belebt",1,"Vogel",1,"Klein",1
+"806","m","m2_w_19","Gecko","BRK","Belebt","Vogel","Klein","Dompfaff","BVK","m3_w_18","03_07",0,0,"Belebt",1,"Reptil",0,"Klein",1
+"807","a","a1_m_31","Wanduhr","UGG","Unbelebt","Geraet","Klein","Drucker","UGK","a3_m_22","03_08",0,0,"Unbelebt",1,"Geraet",1,"Gross",0
+"808","a","a2_w_26","Industriebackofen","UGG","Unbelebt","Geraet","Klein","Drucker","UGK","a3_m_22","03_08",0,0,"Unbelebt",1,"Geraet",1,"Gross",0
+"809","b","b1_w_20","Storch","BVG","Belebt","Reptil","Gross","Krokodil","BRG","b3_w_20","03_08",0,0,"Belebt",1,"Vogel",0,"Gross",1
+"810","b","b2_m_27","Harpyie","BVG","Belebt","Reptil","Gross","Krokodil","BRG","b3_w_20","03_08",0,0,"Belebt",1,"Vogel",0,"Gross",1
+"811","c","c1_w_41","Jumbojet","UFG","Unbelebt","Fahrzeug","Gross","Grosser Bagger","UFG","c3_w_31","03_08",0,1,"Unbelebt",1,"Fahrzeug",1,"Gross",1
+"812","c","c2_w_20","Grosser Bagger","UFG","Unbelebt","Fahrzeug","Gross","Grosser Bagger","UFG","c3_w_31","03_08",1,1,"Unbelebt",1,"Fahrzeug",1,"Gross",1
+"813","d","d1_w_24","Baer","BSG","Belebt","Saeugetier","Gross","Baer","BSG","d3_w_24","03_08",1,1,"Belebt",1,"Saeugetier",1,"Gross",1
+"814","d","d2_w_32","Baer","BSG","Belebt","Saeugetier","Gross","Baer","BSG","d3_w_24","03_08",1,1,"Belebt",1,"Saeugetier",1,"Gross",1
+"815","e","e1_w_24","Backofen","UGK","Unbelebt","Instrument","Gross","Kirchenglocke","UIG","e3_w_22","03_08",0,0,"Unbelebt",1,"Geraet",0,"Klein",0
+"816","e","e2_w_25","Grosser Bagger","UFG","Unbelebt","Instrument","Gross","Kirchenglocke","UIG","e3_w_22","03_08",0,0,"Unbelebt",1,"Fahrzeug",0,"Gross",1
+"817","f","f1_w_20","Dompfaff","BVK","Belebt","Vogel","Klein","Dompfaff","BVK","f3_w_24","03_08",1,1,"Belebt",1,"Vogel",1,"Klein",1
+"818","f","f2_m_38","Gecko","BRK","Belebt","Vogel","Klein","Dompfaff","BVK","f3_w_24","03_08",0,0,"Belebt",1,"Reptil",0,"Klein",1
+"819","g","g1_w_27","Igel","BSK","Belebt","Reptil","Klein","Gecko","BRK","g3_w_26","03_08",0,0,"Belebt",1,"Saeugetier",0,"Klein",1
+"820","g","g2_w_25","Spatz","BVK","Belebt","Reptil","Klein","Gecko","BRK","g3_w_26","03_08",0,0,"Belebt",1,"Vogel",0,"Klein",1
+"821","h","h1_w_27","Industriebackofen","UGG","Unbelebt","Fahrzeug","Gross","SUV","UFG","h3_m_30","03_08",0,0,"Unbelebt",1,"Geraet",0,"Gross",1
+"822","h","h2_m_34","SUV","UFG","Unbelebt","Fahrzeug","Gross","SUV","UFG","h3_m_30","03_08",1,1,"Unbelebt",1,"Fahrzeug",1,"Gross",1
+"823","i","i1_w_30","Storch","BVG","Belebt","Vogel","Klein","Dompfaff","BVK","i3_m_21","03_08",0,0,"Belebt",1,"Vogel",1,"Gross",0
+"824","i","i2_w_24","Kleiner Bagger","UFK","Belebt","Vogel","Klein","Dompfaff","BVK","i3_m_21","03_08",0,0,"Unbelebt",0,"Fahrzeug",0,"Klein",1
+"825","j","j1_w_21","Harpyie","BVG","Belebt","Reptil","Gross","Krokodil","BRG","j3_w_21","03_08",0,0,"Belebt",1,"Vogel",0,"Gross",1
+"826","j","j2_w_20","Harpyie","BVG","Belebt","Reptil","Gross","Krokodil","BRG","j3_w_21","03_08",0,0,"Belebt",1,"Vogel",0,"Gross",1
+"827","k","k1_w_22","Kaninchen","BSK","Unbelebt","Fahrzeug","Klein","Kleiner Bagger","UFK","k3_w_25","03_08",0,0,"Belebt",0,"Saeugetier",0,"Klein",1
+"828","k","k2_w_22","Aeffchen","BSK","Unbelebt","Fahrzeug","Klein","Kleiner Bagger","UFK","k3_w_25","03_08",0,0,"Belebt",0,"Saeugetier",0,"Klein",1
+"829","l","l1_w_20","Jumbojet","UFG","Unbelebt","Fahrzeug","Gross","Jumbojet","UFG","l3_w_21","03_08",1,1,"Unbelebt",1,"Fahrzeug",1,"Gross",1
+"830","l","l2_w_22","Dompfaff","BVK","Unbelebt","Fahrzeug","Gross","Jumbojet","UFG","l3_w_21","03_08",0,0,"Belebt",0,"Vogel",0,"Klein",0
+"831","m","m1_w_18","Drucker","UGK","Belebt","Reptil","Gross","Komodowaran","BRG","m3_w_18","03_08",0,0,"Unbelebt",0,"Geraet",0,"Klein",0
+"832","m","m2_w_19","Jumbojet","UFG","Belebt","Reptil","Gross","Komodowaran","BRG","m3_w_18","03_08",0,0,"Unbelebt",0,"Fahrzeug",0,"Gross",1
+"833","a","a1_m_31","Krokodil","BRG","Belebt","Reptil","Gross","Komodowaran","BRG","a3_m_22","03_09",0,1,"Belebt",1,"Reptil",1,"Gross",1
+"834","a","a2_w_26","Baer","BSG","Belebt","Reptil","Gross","Komodowaran","BRG","a3_m_22","03_09",0,0,"Belebt",1,"Saeugetier",0,"Gross",1
+"835","b","b1_w_20","Harpyie","BVG","Belebt","Saeugetier","Gross","Baer","BSG","b3_w_20","03_09",0,0,"Belebt",1,"Vogel",0,"Gross",1
+"836","b","b2_m_27","Baer","BSG","Belebt","Saeugetier","Gross","Baer","BSG","b3_w_20","03_09",1,1,"Belebt",1,"Saeugetier",1,"Gross",1
+"837","c","c1_w_41","Harpyie","BVG","Unbelebt","Fahrzeug","Klein","Kleinwagen","UFK","c3_w_31","03_09",0,0,"Belebt",0,"Vogel",0,"Gross",0
+"838","c","c2_w_20","Spatz","BVK","Unbelebt","Fahrzeug","Klein","Kleinwagen","UFK","c3_w_31","03_09",0,0,"Belebt",0,"Vogel",0,"Klein",1
+"839","d","d1_w_24","Drucker","UGK","Unbelebt","Geraet","Klein","Drucker","UGK","d3_w_24","03_09",1,1,"Unbelebt",1,"Geraet",1,"Klein",1
+"840","d","d2_w_32","Drucker","UGK","Unbelebt","Geraet","Klein","Drucker","UGK","d3_w_24","03_09",1,1,"Unbelebt",1,"Geraet",1,"Klein",1
+"841","e","e1_w_24","Kleinwagen","UFK","Unbelebt","Instrument","Klein","Violine ","UIK","e3_w_22","03_09",0,0,"Unbelebt",1,"Fahrzeug",0,"Klein",1
+"842","e","e2_w_25","Dompfaff","BVK","Unbelebt","Instrument","Klein","Violine ","UIK","e3_w_22","03_09",0,0,"Belebt",0,"Vogel",0,"Klein",1
+"843","f","f1_w_20","SUV","UFG","Unbelebt","Fahrzeug","Klein","Kleiner Bagger","UFK","f3_w_24","03_09",0,0,"Unbelebt",1,"Fahrzeug",1,"Gross",0
+"844","f","f2_m_38","Grosser Bagger","UFG","Unbelebt","Fahrzeug","Klein","Kleiner Bagger","UFK","f3_w_24","03_09",0,0,"Unbelebt",1,"Fahrzeug",1,"Gross",0
+"845","g","g1_w_27","Kirchenglocke","UIG","Unbelebt","Geraet","Klein","Backofen","UGK","g3_w_26","03_09",0,0,"Unbelebt",1,"Instrument",0,"Gross",0
+"846","g","g2_w_25","Drucker","UGK","Unbelebt","Geraet","Klein","Backofen","UGK","g3_w_26","03_09",0,1,"Unbelebt",1,"Geraet",1,"Klein",1
+"847","h","h1_w_27","Krokodil","BRG","Belebt","Reptil","Gross","Krokodil","BRG","h3_m_30","03_09",1,1,"Belebt",1,"Reptil",1,"Gross",1
+"848","h","h2_m_34","Krokodil","BRG","Belebt","Reptil","Gross","Krokodil","BRG","h3_m_30","03_09",1,1,"Belebt",1,"Reptil",1,"Gross",1
+"849","i","i1_w_30","Krokodil","BRG","Belebt","Reptil","Gross","Krokodil","BRG","i3_m_21","03_09",1,1,"Belebt",1,"Reptil",1,"Gross",1
+"850","i","i2_w_24","Elefant","BSG","Belebt","Reptil","Gross","Krokodil","BRG","i3_m_21","03_09",0,0,"Belebt",1,"Saeugetier",0,"Gross",1
+"851","j","j1_w_21","Buerodrucker","UGG","Unbelebt","Geraet","Gross","Buerodrucker","UGG","j3_w_21","03_09",1,1,"Unbelebt",1,"Geraet",1,"Gross",1
+"852","j","j2_w_20","Buerodrucker","UGG","Unbelebt","Geraet","Gross","Buerodrucker","UGG","j3_w_21","03_09",1,1,"Unbelebt",1,"Geraet",1,"Gross",1
+"853","k","k1_w_22","Kondor","BVG","Unbelebt","Geraet","Gross","Industriebackofen","UGG","k3_w_25","03_09",0,0,"Belebt",0,"Vogel",0,"Gross",1
+"854","k","k2_w_22","Baer","BSG","Unbelebt","Geraet","Gross","Industriebackofen","UGG","k3_w_25","03_09",0,0,"Belebt",0,"Saeugetier",0,"Gross",1
+"855","l","l1_w_20","Schildkroete","BRK","Unbelebt","Fahrzeug","Klein","Kleiner Bagger","UFK","l3_w_21","03_09",0,0,"Belebt",0,"Reptil",0,"Klein",1
+"856","l","l2_w_22","Schildkroete","BRK","Unbelebt","Fahrzeug","Klein","Kleiner Bagger","UFK","l3_w_21","03_09",0,0,"Belebt",0,"Reptil",0,"Klein",1
+"857","m","m1_w_18","Kleinwagen","UFK","Belebt","Saeugetier","Gross","Kuh","BSG","m3_w_18","03_09",0,0,"Unbelebt",0,"Fahrzeug",0,"Klein",0
+"858","m","m2_w_19","Backofen","UGK","Belebt","Saeugetier","Gross","Kuh","BSG","m3_w_18","03_09",0,0,"Unbelebt",0,"Geraet",0,"Klein",0
+"859","a","a1_m_31","Kondor","BVG","Belebt","Vogel","Gross","Harpyie","BVG","a3_m_22","03_10",0,1,"Belebt",1,"Vogel",1,"Gross",1
+"860","a","a2_w_26","Komodowaran","BRG","Belebt","Vogel","Gross","Harpyie","BVG","a3_m_22","03_10",0,0,"Belebt",1,"Reptil",0,"Gross",1
+"861","b","b1_w_20","Dompfaff","BVK","Unbelebt","Instrument","Klein","Handtrommel","UIK","b3_w_20","03_10",0,0,"Belebt",0,"Vogel",0,"Klein",1
+"862","b","b2_m_27","Kleiner Bagger","UFK","Unbelebt","Instrument","Klein","Handtrommel","UIK","b3_w_20","03_10",0,0,"Unbelebt",1,"Fahrzeug",0,"Klein",1
+"863","c","c1_w_41","Anakonda","BRG","Belebt","Reptil","Klein","Blindschleiche","BRK","c3_w_31","03_10",0,0,"Belebt",1,"Reptil",1,"Gross",0
+"864","c","c2_w_20","Blindschleiche","BRK","Belebt","Reptil","Klein","Blindschleiche","BRK","c3_w_31","03_10",1,1,"Belebt",1,"Reptil",1,"Klein",1
+"865","d","d1_w_24","Storch","BVG","Belebt","Vogel","Gross","Harpyie","BVG","d3_w_24","03_10",0,1,"Belebt",1,"Vogel",1,"Gross",1
+"866","d","d2_w_32","Aeffchen","BSK","Belebt","Vogel","Gross","Harpyie","BVG","d3_w_24","03_10",0,0,"Belebt",1,"Saeugetier",0,"Klein",0
+"867","e","e1_w_24","Dompfaff","BVK","Belebt","Vogel","Klein","Dompfaff","BVK","e3_w_22","03_10",1,1,"Belebt",1,"Vogel",1,"Klein",1
+"868","e","e2_w_25","Igel","BSK","Belebt","Vogel","Klein","Dompfaff","BVK","e3_w_22","03_10",0,0,"Belebt",1,"Saeugetier",0,"Klein",1
+"869","f","f1_w_20","Bodentrommel","UIG","Unbelebt","Geraet","Gross","Wanduhr","UGG","f3_w_24","03_10",0,0,"Unbelebt",1,"Instrument",0,"Gross",1
+"870","f","f2_m_38","Wanduhr","UGG","Unbelebt","Geraet","Gross","Wanduhr","UGG","f3_w_24","03_10",1,1,"Unbelebt",1,"Geraet",1,"Gross",1
+"871","g","g1_w_27","Spatz","BVK","Belebt","Vogel","Klein","Spatz","BVK","g3_w_26","03_10",1,1,"Belebt",1,"Vogel",1,"Klein",1
+"872","g","g2_w_25","Igel","BSK","Belebt","Vogel","Klein","Spatz","BVK","g3_w_26","03_10",0,0,"Belebt",1,"Saeugetier",0,"Klein",1
+"873","h","h1_w_27","Kondor","BVG","Belebt","Vogel","Gross","Kondor","BVG","h3_m_30","03_10",1,1,"Belebt",1,"Vogel",1,"Gross",1
+"874","h","h2_m_34","Kondor","BVG","Belebt","Vogel","Gross","Kondor","BVG","h3_m_30","03_10",1,1,"Belebt",1,"Vogel",1,"Gross",1
+"875","i","i1_w_30","Wanduhr","UGG","Unbelebt","Fahrzeug","Klein","Kleiner Bagger","UFK","i3_m_21","03_10",0,0,"Unbelebt",1,"Geraet",0,"Gross",0
+"876","i","i2_w_24","Elefant","BSG","Unbelebt","Fahrzeug","Klein","Kleiner Bagger","UFK","i3_m_21","03_10",0,0,"Belebt",0,"Saeugetier",0,"Gross",0
+"877","j","j1_w_21","Kleinflugzeug","UFK","Unbelebt","Fahrzeug","Klein","Kleinflugzeug","UFK","j3_w_21","03_10",1,1,"Unbelebt",1,"Fahrzeug",1,"Klein",1
+"878","j","j2_w_20","SUV","UFG","Unbelebt","Fahrzeug","Klein","Kleinflugzeug","UFK","j3_w_21","03_10",0,0,"Unbelebt",1,"Fahrzeug",1,"Gross",0
+"879","k","k1_w_22","Buerodrucker","UGG","Unbelebt","Instrument","Klein","Handtrommel","UIK","k3_w_25","03_10",0,0,"Unbelebt",1,"Geraet",0,"Gross",0
+"880","k","k2_w_22","Armbanduhr","UGK","Unbelebt","Instrument","Klein","Handtrommel","UIK","k3_w_25","03_10",0,0,"Unbelebt",1,"Geraet",0,"Klein",1
+"881","l","l1_w_20","Bodentrommel","UIG","Unbelebt","Instrument","Gross","Bodentrommel","UIG","l3_w_21","03_10",1,1,"Unbelebt",1,"Instrument",1,"Gross",1
+"882","l","l2_w_22","Bodentrommel","UIG","Unbelebt","Instrument","Gross","Bodentrommel","UIG","l3_w_21","03_10",1,1,"Unbelebt",1,"Instrument",1,"Gross",1
+"883","m","m1_w_18","Backofen","UGK","Unbelebt","Instrument","Gross","Kirchenglocke","UIG","m3_w_18","03_10",0,0,"Unbelebt",1,"Geraet",0,"Klein",0
+"884","m","m2_w_19","Drucker","UGK","Unbelebt","Instrument","Gross","Kirchenglocke","UIG","m3_w_18","03_10",0,0,"Unbelebt",1,"Geraet",0,"Klein",0
+"885","a","a1_m_31","Grosser Bagger","UFG","Belebt","Saeugetier","Gross","Baer","BSG","a3_m_22","03_11",0,0,"Unbelebt",0,"Fahrzeug",0,"Gross",1
+"886","a","a2_w_26","Kontrabass","UIG","Belebt","Saeugetier","Gross","Baer","BSG","a3_m_22","03_11",0,0,"Unbelebt",0,"Instrument",0,"Gross",1
+"887","b","b1_w_20","Komodowaran","BRG","Unbelebt","Geraet","Klein","Armbanduhr","UGK","b3_w_20","03_11",0,0,"Belebt",0,"Reptil",0,"Gross",0
+"888","b","b2_m_27","Storch","BVG","Unbelebt","Geraet","Klein","Armbanduhr","UGK","b3_w_20","03_11",0,0,"Belebt",0,"Vogel",0,"Gross",0
+"889","c","c1_w_41","Spatz","BVK","Belebt","Saeugetier","Klein","Kaninchen","BSK","c3_w_31","03_11",0,0,"Belebt",1,"Vogel",0,"Klein",1
+"890","c","c2_w_20","Schildkroete","BRK","Belebt","Saeugetier","Klein","Kaninchen","BSK","c3_w_31","03_11",0,0,"Belebt",1,"Reptil",0,"Klein",1
+"891","d","d1_w_24","Harpyie","BVG","Belebt","Saeugetier","Klein","Aeffchen","BSK","d3_w_24","03_11",0,0,"Belebt",1,"Vogel",0,"Gross",0
+"892","d","d2_w_32","Violine","UIK","Belebt","Saeugetier","Klein","Aeffchen","BSK","d3_w_24","03_11",0,0,"Unbelebt",0,"Instrument",0,"Klein",1
+"893","e","e1_w_24","Drucker","UGK","Belebt","Saeugetier","Klein","Igel","BSK","e3_w_22","03_11",0,0,"Unbelebt",0,"Geraet",0,"Klein",1
+"894","e","e2_w_25","Blindschleiche","BRK","Belebt","Saeugetier","Klein","Igel","BSK","e3_w_22","03_11",0,0,"Belebt",1,"Reptil",0,"Klein",1
+"895","f","f1_w_20","Backofen","UGK","Belebt","Reptil","Gross","Komodowaran","BRG","f3_w_24","03_11",0,0,"Unbelebt",0,"Geraet",0,"Klein",0
+"896","f","f2_m_38","Kondor","BVG","Belebt","Reptil","Gross","Komodowaran","BRG","f3_w_24","03_11",0,0,"Belebt",1,"Vogel",0,"Gross",1
+"897","g","g1_w_27","Krokodil","BRG","Belebt","Vogel","Gross","Storch","BVG","g3_w_26","03_11",0,0,"Belebt",1,"Reptil",0,"Gross",1
+"898","g","g2_w_25","Grosser Bagger","UFG","Belebt","Vogel","Gross","Storch","BVG","g3_w_26","03_11",0,0,"Unbelebt",0,"Fahrzeug",0,"Gross",1
+"899","h","h1_w_27","Spatz","BVK","Belebt","Reptil","Klein","Blindschleiche","BRK","h3_m_30","03_11",0,0,"Belebt",1,"Vogel",0,"Klein",1
+"900","h","h2_m_34","Blindschleiche","BRK","Belebt","Reptil","Klein","Blindschleiche","BRK","h3_m_30","03_11",1,1,"Belebt",1,"Reptil",1,"Klein",1
+"901","i","i1_w_30","Bodentrommel","UIG","Belebt","Reptil","Klein","Schildkroete","BRK","i3_m_21","03_11",0,0,"Unbelebt",0,"Instrument",0,"Gross",0
+"902","i","i2_w_24","Schildkroete","BRK","Belebt","Reptil","Klein","Schildkroete","BRK","i3_m_21","03_11",1,1,"Belebt",1,"Reptil",1,"Klein",1
+"903","j","j1_w_21","Violine","UIK","Unbelebt","Instrument","Klein","Violine ","UIK","j3_w_21","03_11",0,1,"Unbelebt",1,"Instrument",1,"Klein",1
+"904","j","j2_w_20","Violine","UIK","Unbelebt","Instrument","Klein","Violine ","UIK","j3_w_21","03_11",0,1,"Unbelebt",1,"Instrument",1,"Klein",1
+"905","k","k1_w_22","Blaumeise","BVK","Belebt","Vogel","Klein","Blaumeise","BVK","k3_w_25","03_11",1,1,"Belebt",1,"Vogel",1,"Klein",1
+"906","k","k2_w_22","Kaninchen","BSK","Belebt","Vogel","Klein","Blaumeise","BVK","k3_w_25","03_11",0,0,"Belebt",1,"Saeugetier",0,"Klein",1
+"907","l","l1_w_20","Violine","UIK","Unbelebt","Instrument","Klein","Violine ","UIK","l3_w_21","03_11",0,1,"Unbelebt",1,"Instrument",1,"Klein",1
+"908","l","l2_w_22","Violine","UIK","Unbelebt","Instrument","Klein","Violine ","UIK","l3_w_21","03_11",0,1,"Unbelebt",1,"Instrument",1,"Klein",1
+"909","m","m1_w_18","Igel","BSK","Belebt","Vogel","Gross","Harpyie","BVG","m3_w_18","03_11",0,0,"Belebt",1,"Saeugetier",0,"Klein",0
+"910","m","m2_w_19","Harpyie","BVG","Belebt","Vogel","Gross","Harpyie","BVG","m3_w_18","03_11",1,1,"Belebt",1,"Vogel",1,"Gross",1
+"911","a","a1_m_31","Kontrabass","UIG","Unbelebt","Instrument","Gross","Kontrabass","UIG","a3_m_22","03_12",1,1,"Unbelebt",1,"Instrument",1,"Gross",1
+"912","a","a2_w_26","Kontrabass","UIG","Unbelebt","Instrument","Gross","Kontrabass","UIG","a3_m_22","03_12",1,1,"Unbelebt",1,"Instrument",1,"Gross",1
+"913","b","b1_w_20","Kuh","BSG","Unbelebt","Instrument","Gross","Kontrabass","UIG","b3_w_20","03_12",0,0,"Belebt",0,"Saeugetier",0,"Gross",1
+"914","b","b2_m_27","Industriebackofen","UGG","Unbelebt","Instrument","Gross","Kontrabass","UIG","b3_w_20","03_12",0,0,"Unbelebt",1,"Geraet",0,"Gross",1
+"915","c","c1_w_41","Blindschleiche","BRK","Belebt","Reptil","Gross","Anakonda","BRG","c3_w_31","03_12",0,0,"Belebt",1,"Reptil",1,"Klein",0
+"916","c","c2_w_20","Anakonda","BRG","Belebt","Reptil","Gross","Anakonda","BRG","c3_w_31","03_12",1,1,"Belebt",1,"Reptil",1,"Gross",1
+"917","d","d1_w_24","Buerodrucker","UGG","Unbelebt","Geraet","Gross","Wanduhr","UGG","d3_w_24","03_12",0,1,"Unbelebt",1,"Geraet",1,"Gross",1
+"918","d","d2_w_32","Wanduhr","UGG","Unbelebt","Geraet","Gross","Wanduhr","UGG","d3_w_24","03_12",1,1,"Unbelebt",1,"Geraet",1,"Gross",1
+"919","e","e1_w_24","Grosser Bagger","UFG","Belebt","Reptil","Gross","Komodowaran","BRG","e3_w_22","03_12",0,0,"Unbelebt",0,"Fahrzeug",0,"Gross",1
+"920","e","e2_w_25","Anakonda","BRG","Belebt","Reptil","Gross","Komodowaran","BRG","e3_w_22","03_12",0,1,"Belebt",1,"Reptil",1,"Gross",1
+"921","f","f1_w_20","Komodowaran","BRG","Belebt","Saeugetier","Gross","Kuh","BSG","f3_w_24","03_12",0,0,"Belebt",1,"Reptil",0,"Gross",1
+"922","f","f2_m_38","Kuh","BSG","Belebt","Saeugetier","Gross","Kuh","BSG","f3_w_24","03_12",1,1,"Belebt",1,"Saeugetier",1,"Gross",1
+"923","g","g1_w_27","Handtrommel","UIK","Unbelebt","Fahrzeug","Klein","Kleinwagen","UFK","g3_w_26","03_12",0,0,"Unbelebt",1,"Instrument",0,"Klein",1
+"924","g","g2_w_25","Jumbojet","UFG","Unbelebt","Fahrzeug","Klein","Kleinwagen","UFK","g3_w_26","03_12",0,0,"Unbelebt",1,"Fahrzeug",1,"Gross",0
+"925","h","h1_w_27","Kleiner Bagger","UFK","Belebt","Saeugetier","Klein","Aeffchen","BSK","h3_m_30","03_12",0,0,"Unbelebt",0,"Fahrzeug",0,"Klein",1
+"926","h","h2_m_34","Spatz","BVK","Belebt","Saeugetier","Klein","Aeffchen","BSK","h3_m_30","03_12",0,0,"Belebt",1,"Vogel",0,"Klein",1
+"927","i","i1_w_30","Buerodrucker","UGG","Unbelebt","Fahrzeug","Gross","SUV","UFG","i3_m_21","03_12",0,0,"Unbelebt",1,"Geraet",0,"Gross",1
+"928","i","i2_w_24","Grosser Bagger","UFG","Unbelebt","Fahrzeug","Gross","SUV","UFG","i3_m_21","03_12",0,1,"Unbelebt",1,"Fahrzeug",1,"Gross",1
+"929","j","j1_w_21","Kondor","BVG","Belebt","Vogel","Gross","Harpyie","BVG","j3_w_21","03_12",0,1,"Belebt",1,"Vogel",1,"Gross",1
+"930","j","j2_w_20","Baer","BSG","Belebt","Vogel","Gross","Harpyie","BVG","j3_w_21","03_12",0,0,"Belebt",1,"Saeugetier",0,"Gross",1
+"931","k","k1_w_22","Kleiner Bagger","UFK","Unbelebt","Geraet","Klein","Backofen","UGK","k3_w_25","03_12",0,0,"Unbelebt",1,"Fahrzeug",0,"Klein",1
+"932","k","k2_w_22","Kondor","BVG","Unbelebt","Geraet","Klein","Backofen","UGK","k3_w_25","03_12",0,0,"Belebt",0,"Vogel",0,"Gross",0
+"933","l","l1_w_20","Krokodil","BRG","Belebt","Vogel","Gross","Harpyie","BVG","l3_w_21","03_12",0,0,"Belebt",1,"Reptil",0,"Gross",1
+"934","l","l2_w_22","Industriebackofen","UGG","Belebt","Vogel","Gross","Harpyie","BVG","l3_w_21","03_12",0,0,"Unbelebt",0,"Geraet",0,"Gross",1
+"935","m","m1_w_18","Kuh","BSG","Unbelebt","Fahrzeug","Gross","SUV","UFG","m3_w_18","03_12",0,0,"Belebt",0,"Saeugetier",0,"Gross",1
+"936","m","m2_w_19","Jumbojet","UFG","Unbelebt","Fahrzeug","Gross","SUV","UFG","m3_w_18","03_12",0,1,"Unbelebt",1,"Fahrzeug",1,"Gross",1
