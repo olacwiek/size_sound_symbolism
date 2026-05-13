@@ -1,6 +1,6 @@
 ---
 title: "Size symbolism in production and perception"
-subtitle: "A Bayesian analysis of duration, pitch, and animacy"
+subtitle: "A Bayesian analysis of duration, f0, and animacy"
 author:
   - Alexandra Schmidt
   - Aleksandra Ćwiek
@@ -114,57 +114,56 @@ set.seed(2137)
 # Overview
 
 **Research question.** Do speakers encode size iconically, and do listeners use those same
-acoustic cues? Iconicity — a resemblance between linguistic form and meaning [@perniss_vigliocco_2014]
-— has moved from a peripheral curiosity to a recognized organizing principle in language
+acoustic cues? Iconicity – a resemblance between linguistic form and meaning [@perniss_vigliocco_2014]
+– has moved from a peripheral curiosity to a recognized organizing principle in language
 [@cwiek_iconicity_2022; @cwiek_introduction_2025; @dingemanse_arbitrariness_2015], and size is one
 of the most robust domains in which it surfaces: from the classic *mil/mal* contrast
 [@sapir_study_1929] through the lexicon of English size adjectives [@winter_size_2021] and
 cross-linguistic patterns [@blasi_soundmeaning_2016] to recent work on the acoustic and
 articulatory bases of size–sound correspondences [@winter_size_2025].
 
-**Main claim.** Acoustic size iconicity is primarily realized through *duration* and *pitch* (f0):
-big referents are produced with longer vowels and lower f0, and listeners rely on those same cues
-when categorizing referent size. The pitch prediction follows the frequency code
-[@ohala_ethological_1984; @ohala_cross-language_1983], in which lower f0 indexes larger body size
-across vertebrates; the duration prediction follows recent treatments of iconicity as embedded in
-continuous acoustic and articulatory parameters rather than discrete phonemic features
-[@winter_size_2025; @fuchs_sounds_2022; @perlman_iconicity_2018]. The same auditory analogies are
-expected to guide listener categorization [@winter_size_2021; @perniss_vigliocco_2014;
-@schmidt_jabeen_dragon_2024].
+**Expectations.** We expect both size and animacy to leave a trace on the two most-studied acoustic carriers of iconicity – vowel duration and f0 – and we expect this to hold bidirectionally: in production *and* perception. For size, the predicted direction is longer vowels and lower f0 for big referents, and listeners using those same cues to call "big". The f0 prediction follows the frequency code [@ohala_ethological_1984; @ohala_cross-language_1983], in which lower f0 indexes larger body size across vertebrates; the duration prediction follows recent treatments of iconicity as embedded in continuous acoustic and articulatory parameters rather than discrete phonemic features [@winter_size_2025; @fuchs_sounds_2022; @perlman_iconicity_2018]. The same auditory analogies are expected to guide listener categorization [@winter_size_2021; @perniss_vigliocco_2014; @schmidt_jabeen_dragon_2024]. For animacy we do not commit to a direction or a channel: animacy may enter as a modulator of the size effect (an interaction) or as an independent shift in the acoustic baseline (a main effect), or both, or neither. We test each of these openly. The literature on animacy and iconic production is mixed, so a single posterior that speaks to both modulation and main-effect possibilities is the safer reporting frame.
 
-**Secondary claim.** Animacy enters the analysis through two channels: as a *modulator* of the iconic size effect (a `size × animacy` interaction in the production and perception models) and as an *independent main effect* on the acoustic and perceptual outcomes. The literature on iconic production is mixed, and both possibilities are kept open — interaction, main effect, both, or neither — with each tested explicitly.
+**Exploratory.** Other features – F1, F2, fricative duration, fricative SPL, fricative spectral peak, fricative centre of gravity, and the voice-quality measures CPP [@fraile_cepstral_2014; @hillenbrand_acoustic_1994] and H1–H2 [@chai_h1h2_2022] – are examined without a priori predictions. The pluripotential view of iconic features [cf. @akita_iconicity_2024; @winter_abralin_2021] motivates inspecting the broader signal rather than committing to a single channel; however, it also warrants the view that few features (f0 and duration) can correspond to many meanings.
 
-**Exploratory.** Other features — F1, F2, fricative duration, fricative SPL, fricative spectral
-peak, fricative centre of gravity, and the voice-quality measures CPP [@fraile_cepstral_2014;
-@hillenbrand_acoustic_1994] and H1–H2 [@chai_h1h2_2022] — are examined without a priori
-predictions. The pluripotential view of iconic features (cf. Akita et al., 2025; Winter, Abralin
-Ao Vivo talk) motivates inspecting the broader signal rather than committing to a single channel.
+**What we find, in one paragraph.** Speakers reliably lengthen vowels and lower f0 for big
+referents (the production prediction, supported on both channels). Listeners use f0 to judge
+size – lower f0 raises the odds of a "big" judgment – but do *not* use vowel duration for the
+same purpose (the perception prediction is supported for f0, not for duration). Animacy lands
+on the main-effect channel rather than the interaction channel: the size effect does not
+differ between animate and inanimate referents, but animate referents are produced with
+shorter vowels and higher f0 regardless of their size. Exploratory analyses recover a few
+additional channels worth flagging – F1 lowers for big, CPP rises slightly for big, fricative
+SPL is louder for big, and listeners use fricative duration and fricative SPL as cues to size
+– without claiming these as robust without replication.
 
-This analysis lives entirely in the Bayesian framework [`brms`, @bates_fitting_2015 for the
-underlying frequentist mixed-effects logic; @baayen_analyzing_2008] with the `cmdstanr`
-backend. All German labels and column names from the original data files are translated to English
-in the cleaning step so the script and its outputs are readable internationally.
+This analysis uses the Bayesian framework with the `cmdstanr` backend. All German labels and column names from the original data files are translated to English in the cleaning step so the script and its outputs are readable internationally.
 
 # Decisions log
 
-- **Primary models** include the `size × animacy` interaction so the same fits answer both the
-  main and secondary claims.
+- **Primary models** include the `size × animacy` interaction so a single posterior speaks to
+  the size effect, the animacy main effect, and the modulation of size by animacy.
 - **Random effects (production)**: `(1 + size_c | speaker) + (1 | item)`. 39 speakers, 36 items,
-  ~1400 vowel rows / ~2470 fricative rows — comfortable.
+  ~1400 vowel rows / ~2470 fricative rows – comfortable.
 - **Random effects (perception)**: `(1 | listener) + (1 | speaker) + (1 | item)`. 39 × 39 × 36,
-  936 observations — varying slopes added per-model only if needed.
+  936 observations – varying slopes added per-model only if needed.
 - **Coding**: sum contrasts `-0.5 / +0.5` for `size_c` and `animacy_c` so main effects remain
   interpretable in the presence of the interaction. Continuous predictors entering perception
-  models are within-speaker z-scored — the listener-side coefficient then reads as "1 SD shift in
+  models are within-speaker z-scored – the listener-side coefficient then reads as "1 SD shift in
   *this speaker's* signal".
-- **Priors**: weakly informative — `normal(0, 1)` on standardized fixed effects,
+- **Priors**: weakly informative – `normal(0, 1)` on standardized fixed effects,
   `student_t(3, 0, 2.5)` on intercepts and SDs.
 - **Outcome families**:
-  - durations → `lognormal()` (positive, right-skewed)
-  - f0 / formants / CPP / H1H2 / SPL / peak frequency → `gaussian()`
+  - durations (vowel, fricative) → `lognormal()` (strictly positive, right-skewed)
+  - f0 → `lognormal()` (positive, right-skewed; with sum-coded `size_c` the coefficient
+    back-transforms cleanly to the ratio of f0 for big vs small)
+  - formants (F1, F2) → `lognormal()` (positive, right-skewed)
+  - CPP, H1–H2, fricative SPL, fricative peak frequency, fricative CoG → `gaussian()`
+    (centred on their native scale; logging Hz outcomes overshoots the actual right-skew)
   - binary perception (`big_judgment`, `animate_judgment`) → `bernoulli(logit)`
-  - 6-way `picked_category` → `categorical()` (only as exploratory RQ3, off by default)
-- **Outliers**: not trimmed by default — the lognormal family absorbs the right tail. A
+  - 6-way `picked_category` → `categorical()` (kept available in §7.6 but not part
+    of the reported analysis – see §7.6 for the reasoning)
+- **Outliers**: not trimmed by default – the lognormal family absorbs the right tail. A
   diagnostic chunk flags extreme cases for inspection.
 - **Caching**: fits saved to `models/`; `brms.file_refit = "on_change"` means re-knit only
   refits when the model spec changes.
@@ -273,41 +272,41 @@ alle <- alle |>
 ```{r item-glossary}
 item_glossary <- tribble(
   ~item_norm,            ~item_english,
-  "buerodrucker",        "office printer",
+  "buerodrucker",        "office.printer",
   "drucker",             "printer",
-  "industriebackofen",   "industrial oven",
+  "industriebackofen",   "industrial.oven",
   "backofen",            "oven",
   "armbanduhr",          "wristwatch",
-  "wanduhr",             "wall clock",
-  "kirchenglocke",       "church bell",
-  "gloeckchen",          "little bell",
-  "kontrabass",          "double bass",
+  "wanduhr",             "wall.clock",
+  "kirchenglocke",       "church.bell",
+  "gloeckchen",          "little.bell",
+  "kontrabass",          "double.bass",
   "violine",             "violin",
-  "bodentrommel",        "floor drum",
-  "handtrommel",         "hand drum",
-  "grosserbagger",       "big excavator",
-  "kleinerbagger",       "small excavator",
-  "jumbojet",            "jumbo jet",
-  "kleinflugzeug",       "small airplane",
+  "bodentrommel",        "floor.drum",
+  "handtrommel",         "hand.drum",
+  "grosserbagger",       "big.excavator",
+  "kleinerbagger",       "small.excavator",
+  "jumbojet",            "jumbo.jet",
+  "kleinflugzeug",       "small.airplane",
   "suv",                 "SUV",
-  "kleinwagen",          "small car",
+  "kleinwagen",          "small.car",
   "elefant",             "elephant",
   "kuh",                 "cow",
   "baer",                "bear",
   "kaninchen",           "rabbit",
-  "aeffchen",            "little monkey",
+  "aeffchen",            "little.monkey",
   "igel",                "hedgehog",
   "kondor",              "condor",
-  "harpyie",             "harpy eagle",
+  "harpyie",             "harpy",
   "storch",              "stork",
-  "blaumeise",           "blue tit",
+  "blaumeise",           "blue.tit",
   "dompfaff",            "bullfinch",
   "spatz",               "sparrow",
   "anakonda",            "anaconda",
   "krokodil",            "crocodile",
-  "komodowaran",         "komodo dragon",
+  "komodowaran",         "komodo.dragon",
   "schildkroete",        "turtle",
-  "blindschleiche",      "slow worm",
+  "blindschleiche",      "slow.worm",
   "gecko",               "gecko"
 )
 ```
@@ -453,7 +452,7 @@ alle <- alle |>
 ```{r mismatch-diagnostic}
 # Quality-control trace: trials where the production filename and the perception
 # sheet disagree about which item was used. Per speaker verification, the
-# perception sheet is authoritative — these are listed for documentation only.
+# perception sheet is authoritative – these are listed for documentation only.
 
 trial_item_check <- master_files |>
   distinct(group, speaker_num, trial_num, item_norm) |>
@@ -477,7 +476,7 @@ if (nrow(trial_item_check) > 0) {
 Production data are in **long format**: one row per acoustic measurement (vowel or fricative
 token). Per-trial summaries used in perception models are derived from these.
 
-Files with <3 vowels reflect real audio/production issues (per speaker verification); rows with NA vowel_dur_ms are dropped per-vowel during modelling — no global filtering needed.
+Files with <3 vowels reflect real audio/production issues (per speaker verification); rows with NA vowel_dur_ms are dropped per-vowel during modelling – no global filtering needed.
 
 ```{r build-prod-long}
 # ---- vowel duration: one row per vowel
@@ -550,7 +549,7 @@ cat("fric_long  rows missing factors:", sum(is.na(fric_long$size)),  "\n")
 
 ## 4.2 Build the perception dataframe with speaker-level acoustic predictors
 
-For each (group, speaker, trial), summarize the speaker's acoustic output for that production —
+For each (group, speaker, trial), summarize the speaker's acoustic output for that production –
 mean across vowels for vocalic features, mean across fricatives for fricative features. Predictors
 are then within-speaker z-scored so the perception coefficient reads as "what does +1 SD of *this
 speaker's* signal do to listener choice?".
@@ -708,11 +707,16 @@ perc |>
        title = "Listener \"big\" judgment by portrayed size and animacy")
 ```
 
-# 6. Primary analyses — duration and pitch
+# 6. Primary analyses – duration and f0
 
-The primary models test the **main claim** (size iconicity through duration and f0
-[@ohala_ethological_1984; @winter_size_2025; @fuchs_sounds_2022]) via the main effect of
-`size_c`, and the **secondary claim** — that animacy enters the acoustic and perceptual picture — via both the `size_c × animacy_c` interaction (does animacy modulate the size effect?) and the `animacy_c` main effect (does animacy shift the outcome independent of size?). Including both in the same model lets a single posterior speak to both claims and avoids the multiple-testing pitfalls of fitting them separately.
+The primary models test our expectations directly: size and animacy should each leave a trace
+on vowel duration and f0, in both production and perception. Each fit includes `size_c`,
+`animacy_c`, and their interaction so that a single posterior can answer three questions at
+once: (i) is there a size effect in the expected direction, (ii) does animacy shift the
+outcome independent of size, and (iii) does animacy modulate the size effect? Fitting all three
+together avoids the multiple-testing pitfalls of separate models. For size the predicted
+direction is fixed in advance (longer for big, lower f0 for big); for animacy we keep
+direction and channel (interaction vs. main effect) open.
 
 ## 6.1 A reusable fitter
 
@@ -737,6 +741,16 @@ fit_brm <- function(formula, data, family = gaussian(), file = NULL,
                     priors = NULL, ...) {
   fam_name <- family$family
   if (is.null(priors)) priors <- default_priors(fam_name)
+  # Inform the user whether we're hitting the cache or rebuilding
+  if (!is.null(file)) {
+    rds <- if (endsWith(file, ".rds")) file else paste0(file, ".rds")
+    if (file.exists(rds)) {
+      message("[fit_brm] Cache exists at '", basename(rds),
+              "' – brms will reuse it if formula/data/prior match.")
+    } else {
+      message("[fit_brm] No cache at '", basename(rds), "' – fitting from scratch.")
+    }
+  }
   brm(formula = formula, data = data, family = family,
       prior = priors,
       chains = 4, iter = 8000, warmup = 4000, cores = 4,
@@ -762,15 +776,22 @@ m_vdur <- fit_brm(
 
 ```{r m-vowel-dur-ppc, fig.cap=capFig("Posterior predictive check for vowel duration (lognormal).")}
 summary(m_vdur)
-pp_check(m_vdur, ndraws = 100) + ggtitle("PPC — vowel duration")
+pp_check(m_vdur, ndraws = 100) + ggtitle("PPC – vowel duration")
 ```
 
-## 6.3 Production: f0 (pitch)
+## 6.3 Production: f0
 
-f0 is modeled with `gaussian()` plus a `sex` covariate (male/female speakers differ by ~80–100 Hz
-on average; without `sex` the random intercept absorbs it but you lose interpretability of the
-fixed-effect intercept). The prediction — lower f0 for big referents — is the central frequency-code
-expectation [@ohala_ethological_1984; @ohala_cross-language_1983].
+f0 is modelled with `lognormal()` because it is strictly positive and right-skewed, especially
+once male and female speakers are pooled. The covariate `sex` is included because male and
+female speakers differ by roughly 80–100 Hz on average; without `sex` the random intercept
+absorbs that difference but the fixed-effect intercept becomes harder to interpret. The
+lognormal choice has a pleasant analytical side-effect: with the sum-coded `size_c` predictor
+(`-0.5` for small, `+0.5` for big), the coefficient is exactly `log(f0_big / f0_small)`, so
+`exp(β)` is the multiplicative ratio of speaker f0 for big versus small productions – a clean
+quantity for the frequency-code prediction, which itself is a *ratio* claim (lower f0 indexes
+larger body size across vertebrates) rather than a Hz claim. The prediction – lower f0 for
+big referents – is the central frequency-code expectation [@ohala_ethological_1984;
+@ohala_cross-language_1983].
 
 ```{r m-f0, results='hide'}
 m_f0 <- fit_brm(
@@ -784,7 +805,7 @@ m_f0 <- fit_brm(
 
 ```{r m-f0-ppc, fig.cap=capFig("Posterior predictive check for f0 (lognormal, with sex covariate).")}
 summary(m_f0)
-pp_check(m_f0, ndraws = 100) + ggtitle("PPC — f0")
+pp_check(m_f0, ndraws = 100) + ggtitle("PPC – f0")
 ```
 
 ## 6.4 Perception: vowel duration → "big" judgment
@@ -801,7 +822,7 @@ m_perc_dur <- fit_brm(
 
 ```{r m-perc-dur-ppc, fig.cap=capFig("Posterior predictive check for perception of duration (Bernoulli).")}
 summary(m_perc_dur)
-pp_check(m_perc_dur, ndraws = 100) + ggtitle("PPC — duration perception")
+pp_check(m_perc_dur, ndraws = 100) + ggtitle("PPC – duration perception")
 ```
 
 ## 6.5 Perception: f0 → "big" judgment
@@ -816,12 +837,18 @@ m_perc_f0 <- fit_brm(
 )
 ```
 
-```{r m-perc-f0-ppc, fig.cap=capFig("Posterior predictive check for perception of duration (Bernoulli).")}
+```{r m-perc-f0-ppc, fig.cap=capFig("Posterior predictive check for perception of f0 (Bernoulli).")}
 summary(m_perc_f0)
-pp_check(m_perc_f0, ndraws = 100) + ggtitle("PPC — f0 perception")
+pp_check(m_perc_f0, ndraws = 100) + ggtitle("PPC – f0 perception")
 ```
 
 ## 6.6 Reporting helpers
+
+Two small helpers do the heavy lifting for everything that follows. `report_model()` prints a
+posterior table (medians and 95% HDIs), a posterior predictive check, and a half-eye plot of
+the fixed-effect posteriors for a given model. `report_effect()` zeroes in on a single
+coefficient – useful when we want the back-transformed quantity (percent change for lognormal,
+odds ratio for Bernoulli) and the one-sided posterior probability for a directional claim.
 
 ```{r report-helper}
 report_model <- function(model, label = "model", terms_of_interest = NULL) {
@@ -832,7 +859,7 @@ report_model <- function(model, label = "model", terms_of_interest = NULL) {
                            effects = "fixed")
   print(ds)
 
-  print(pp_check(model, ndraws = 100) + ggtitle(paste("PPC —", label)))
+  print(pp_check(model, ndraws = 100) + ggtitle(paste("PPC –", label)))
 
   draws <- as_draws_df(model) |>
     select(starts_with("b_"), -matches("^b_Intercept$")) |>
@@ -845,7 +872,7 @@ report_model <- function(model, label = "model", terms_of_interest = NULL) {
   p <- ggplot(draws, aes(x = value, y = term)) +
     stat_halfeye(.width = c(0.66, 0.95)) +
     geom_vline(xintercept = 0, linetype = 2, colour = "grey40") +
-    labs(title = paste("Posterior —", label), x = "estimate", y = NULL)
+    labs(title = paste("Posterior –", label), x = "estimate", y = NULL)
   print(p)
 
   invisible(ds)
@@ -900,19 +927,25 @@ report_effect <- function(model, coef_name,
 }
 ```
 
+### Directional hypothesis tests
 
-```{r}
-# Main claim: size effects
+For each pre-registered direction, we report the back-transformed effect (% change for
+lognormal outcomes, odds ratio for Bernoulli) together with the posterior probability that the
+coefficient is on the predicted side of zero. These are the numbers that anchor the prose
+summary further down.
+
+```{r report-effects-primary}
+# Size effects (predicted direction)
 report_effect(m_vdur,     "size_c",                direction = "positive",
-              label = "H1.1pro vowel duration ~ size")
+              label = "Size effect on vowel duration (production)")
 report_effect(m_f0,       "size_c",                direction = "negative",
-              label = "H2.1pro f0 ~ size")
+              label = "Size effect on f0 (production)")
 report_effect(m_perc_dur, "vowel_dur_ms_mean_z",   direction = "positive",
-              label = "H1.1per duration → big judgment")
+              label = "Vowel duration → big judgment (perception)")
 report_effect(m_perc_f0,  "f0_mean_z",             direction = "negative",
-              label = "H2.1per f0 → big judgment")
+              label = "f0 → big judgment (perception)")
 
-# Secondary claim: animacy effects (modulation and main effects)
+# Animacy effects: modulation and baseline shift (direction open)
 report_effect(m_vdur, "size_c:animacy_c", direction = "auto",
               label = "Animacy modulation of vowel duration")
 report_effect(m_f0,   "size_c:animacy_c", direction = "auto",
@@ -928,6 +961,11 @@ report_effect(m_perc_f0,  "animacy_c", direction = "auto",
               label = "Animacy main effect on 'big' judgment (f0 model)")
 ```
 
+### Posterior diagnostics for all four primary models
+
+A walk through each of the four primary models in turn: posterior tables, PPCs, and half-eye
+plots of all fixed effects. This is the place a sceptical reader can sanity-check the model
+fits.
 
 ```{r report-primary}
 walk2(
@@ -942,31 +980,32 @@ walk2(
 
 ### Summary of primary findings
 
-**Production — size iconicity (main claim, supported).**
+**Production – size effects.**
 Speakers produced big referents with vowels **~18% longer** than small referents
 (β = 0.16 on the log scale, 95% HDI [0.02, 0.30]; P(β > 0) = 0.99) and with
 **~17% lower f0** (β = −0.18, 95% HDI [−0.28, −0.08]; P(β < 0) = 1.00).
-Both production hypotheses (H1.1pro and H2.1pro) are supported.
+Both predicted production effects are supported.
 
-**Perception — only the f0 loop closes (mixed support).**
+**Perception – f0 yes, duration no.**
 Listeners used **f0 as a cue to size**: lower f0 increased the odds of a "big"
 judgment by a factor of ~0.60 per +1 SD of speaker f0 (β = −0.52, 95% HDI
-[−0.77, −0.25]; OR = 0.60; P(β < 0) ≈ 1.00). H2.1per is supported.
-Listeners did **not** show a comparable effect for vowel duration
-(β = 0.05, 95% HDI [−0.14, 0.25]; OR = 1.05; P(β > 0) = 0.70). H1.1per is not
-supported. The frequency-code channel is bidirectional in this dataset (produced
-and perceived); the duration channel is asymmetric — speakers produce iconic
-lengthening for big referents, but listeners do not appear to use vowel
-duration as a cue to size.
+[−0.77, −0.25]; OR = 0.60; P(β < 0) ≈ 1.00). The f0 perception prediction is
+supported. Listeners did **not** show a comparable effect for vowel duration
+(β = 0.05, 95% HDI [−0.14, 0.25]; OR = 1.05; P(β > 0) = 0.70); the duration
+perception prediction is not supported. The frequency-code channel is therefore
+bidirectional in this dataset (produced and perceived); the duration channel is
+asymmetric – speakers produce iconic lengthening for big referents, but listeners
+do not appear to use vowel duration as a cue to size.
 
-**Animacy modulation (secondary claim, not supported).**
+**Animacy as a modulator of the size effect – no evidence.**
 The size × animacy interaction was close to zero on both acoustic dimensions
 (vowel duration: β = 0.04, 95% HDI [−0.22, 0.30], P = 0.61; f0: β = −0.11,
 95% HDI [−0.31, 0.08], P = 0.87). The size effect did not differ measurably
-between animate and inanimate referents — iconic size encoding operates the
+between animate and inanimate referents – iconic size encoding operates the
 same way across both categories.
 
-**Animacy main effect (unanticipated finding, supported in production).**
+**Animacy as an independent shift in the baseline – supported in production.**
+Animacy lands on the main-effect channel rather than the interaction channel.
 Independent of size, animate referents were produced with vowels **~14% shorter**
 than inanimate referents (β = −0.15, 95% HDI [−0.28, −0.02]; P(β < 0) = 0.99) and
 with **~11% higher f0** (β = 0.10, 95% HDI [0.00, 0.20]; P(β > 0) = 0.98).
@@ -978,20 +1017,19 @@ f0 model: β = −0.71, 95% HDI [−1.78, 0.39], P = 0.91).
 **Reading the main-effect-without-interaction pattern.** That speakers shift
 their acoustic baseline by animacy *without* changing how strongly they encode
 size means two things happen in parallel: (i) the size mapping is robust across
-the animacy distinction, and (ii) there is a separate, additive register-like
-shift between speaking for animals and speaking for objects. Whether this
-shift reflects animacy as a feature or systematic differences between the
-animal and object item sets in this stimulus battery cannot be separated with
-the present design.
+the animacy distinction, and (ii) there is a separate, additive shift between
+speaking for animals and speaking for objects. Whether this shift reflects
+animacy as a feature or systematic differences between the animal and object
+item sets in this stimulus battery cannot be separated with the present design.
 
-## 6.7 Main claim — size iconicity main effects
+## 6.7 Size effects across the four primary models
 
-A single forest plot of the size posterior across the four primary models — the headline graphic
-for the main claim. Positive values indicate the size-iconic direction for duration (longer for
-big); for f0 the prediction is **negative** (lower for big), so a posterior concentrated below
-zero supports the frequency-code prediction [@ohala_ethological_1984; @winter_size_2025].
+A single forest plot of the size posterior across the four primary models – the headline graphic
+for the size question. Positive values indicate the size-iconic direction for duration (longer
+for big); for f0 the prediction is **negative** (lower for big), so a posterior concentrated
+below zero supports the frequency-code prediction [@ohala_ethological_1984; @winter_size_2025].
 
-```{r forest-main, fig.height=3.5, fig.cap=capFig("Headline plot — size iconicity main effects across the four primary models. Filled intervals: 66% and 95% HDI; dashed line at zero.")}
+```{r forest-main, fig.height=3.5, fig.cap=capFig("Size effect across the four primary models. Filled intervals: 66% and 95% HDI; dashed line at zero.")}
 extract_term <- function(model, term, name) {
   as_draws_df(model) |>
     transmute(model = name, value = .data[[paste0("b_", term)]])
@@ -1010,17 +1048,63 @@ ggplot(main_effects, aes(x = value, y = fct_rev(model))) +
   geom_vline(xintercept = 0, linetype = 2, colour = "grey40") +
   labs(x = "Effect estimate (sum-coded big vs. small / per +1 SD)",
        y = NULL,
-       title = "Main claim: size iconicity in production and perception",
+       title = "Size effects in production and perception",
        subtitle = "Predicted direction: positive for duration; negative for f0")
 ```
 
-## 6.8 Secondary claim — animacy effects
+```{r speaker-slopes, fig.width=7, fig.height=8, fig.cap=capFig("Per-speaker estimated size effect on vowel duration (log scale), sorted by magnitude. Dashed line = population-level estimate.")}
+speaker_slopes_vdur <- m_vdur |>
+  spread_draws(b_size_c, r_speaker[speaker, term]) |>
+  filter(term == "size_c") |>
+  mutate(slope = b_size_c + r_speaker) |>
+  group_by(speaker) |>
+  median_hdi(slope, .width = 0.95) |>
+  ungroup() |>
+  mutate(speaker = fct_reorder(factor(speaker), slope))
 
-The model contains two animacy-relevant terms: the **interaction** `size_c × animacy_c`
-(does the size effect differ between animate and inanimate referents?) and the
-**main effect** of `animacy_c` (does animacy shift the outcome independent of size?).
-A finding can land on either, both, or neither. Reporting both keeps us honest about
-what the data say.
+pop_med <- median(as_draws_df(m_vdur)$b_size_c)
+
+ggplot(speaker_slopes_vdur, aes(y = speaker, x = slope, xmin = .lower, xmax = .upper)) +
+  geom_pointrange(size = 0.3) +
+  geom_vline(xintercept = 0,       linetype = 3, colour = "grey50") +
+  geom_vline(xintercept = pop_med, linetype = 2, colour = "steelblue") +
+  labs(x = "Per-speaker size effect on vowel duration (log)",
+       y = NULL,
+       title = "Speaker-level iconicity: how much each speaker stretches vowels for big",
+       subtitle = "Dashed line = population estimate; dotted line = no effect")
+```
+
+```{r item-judgments, fig.width=7, fig.height=8, fig.cap=capFig("Posterior probability of 'big' judgment for each item (m_perc_f0), holding f0 at its mean. Items are coloured by their portrayed size.")}
+item_size <- perc |> distinct(item_english, size)
+
+item_probs <- m_perc_f0 |>
+  spread_draws(b_Intercept, r_item_english[item_english, term]) |>
+  filter(term == "Intercept") |>
+  mutate(p_big = plogis(b_Intercept + r_item_english)) |>
+  group_by(item_english) |>
+  median_hdi(p_big, .width = 0.95) |>
+  ungroup() |>
+  left_join(item_size, by = "item_english") |>
+  mutate(item_english = fct_reorder(item_english, p_big))
+
+ggplot(item_probs, aes(y = item_english, x = p_big,
+                       xmin = .lower, xmax = .upper, colour = size)) +
+  geom_pointrange(size = 0.3) +
+  geom_vline(xintercept = 0.5, linetype = 2, colour = "grey50") +
+  scale_colour_manual(values = colorBlindBlack8[c(3, 4)]) +
+  labs(x = "P(\"big\" judgment) at mean acoustic features",
+       y = NULL,
+       title = "Item-level baseline 'big-judgability' (perception)",
+       subtitle = "Listeners mostly identify the referent from the picture; acoustic cues modulate on top of this")
+```
+
+## 6.8 Animacy effects across the four primary models
+
+Each model contains two animacy-relevant terms: the **interaction** `size_c × animacy_c`
+(does the size effect differ between animate and inanimate referents?) and the **main
+effect** of `animacy_c` (does animacy shift the outcome independent of size?). A finding can
+land on either, both, or neither. Reporting both keeps us honest about what the data say,
+since the animacy expectation was open as to which channel would carry it.
 
 ```{r forest-interaction, fig.height=3.5, fig.cap=capFig("Size × animacy interaction across the four primary models.")}
 interactions_df <- bind_rows(
@@ -1102,15 +1186,17 @@ p2 <- plot_size_by_animacy(m_f0,   "f0 (Hz)",             "f0")
   theme(legend.position = "bottom")
 ```
 
-Look at the *vowel duration* panel: green (inanimate) sits above blue (animate), both climb at essentially the same rate from small → big. That's the textbook parallel-lines pattern — animacy shifts the baseline (the ~14% gap), size effect is the same for both (the ~17% lift). This is the `m_vdur` model: significant animacy main effect, interaction at zero. 
+Look at the *vowel duration* panel: green (inanimate) sits above blue (animate), both climb at essentially the same rate from small → big. That's the textbook parallel-lines pattern – animacy shifts the baseline (the ~14% gap), size effect is the same for both (the ~17% lift). This is the `m_vdur` model: significant animacy main effect, interaction at zero. 
 
-The f0 panel tells a slightly different story. The lines aren't quite parallel — blue (animate) starts higher at `small` (~**148** Hz) and converges with green (inanimate) at `big` (~**115** Hz). That mild convergence is exactly the soft hint of a non-zero interaction we saw in the numbers (β = −0.11, 95% **HDI** [−0.31, 0.08]; P(β < 0) = 0.87). The CrI brushes zero so it's not a claim, but the geometry makes the hint visible: animate referents seem to do more iconic "lowering" than inanimate ones do.
+The f0 panel tells a slightly different story. The lines aren't quite parallel – blue (animate) starts higher at `small` (~**148** Hz) and converges with green (inanimate) at `big` (~**115** Hz). That mild convergence is exactly the soft hint of a non-zero interaction we saw in the numbers (β = −0.11, 95% **HDI** [−0.31, 0.08]; P(β < 0) = 0.87). The CrI brushes zero so it's not a claim, but the geometry makes the hint visible: animate referents seem to do more iconic "lowering" than inanimate ones do.
 
 # 7. Exploratory analyses
 
-These models reuse the primary structure with swapped outcomes/predictors. They are deliberately exploratory: examining the broader acoustic signal for where iconicity may leak into less-prototyped channels, without a priori predictions and without claim about robustness pending replication.
+These models reuse the primary structure with swapped outcomes or predictors. They are deliberately exploratory: we are examining the broader acoustic signal for places where size iconicity (or animacy) may leak into channels that have not been examined before, in the spirit of the pluripotential view of iconicity. No directional hypotheses are committed to here, and no claim of robustness is made pending replication. The §7.7 takeaways below distil what we saw; the §8 forests give the visual synthesis.
 
-## 7.1 A pair of templates
+## 7.1 Templates
+
+Three reusable fitters. `fit_prod_vocalic` mirrors the production frame in §6.3 (size × animacy interaction, sex covariate, vowel fixed effect, by-speaker random intercept and slope, by-item random intercept). `fit_prod_fric` is the same idea for the fricative tables, with `phoneme` replacing `sex + vowel` as the covariate. `fit_perc_bin` mirrors §6.4–6.5 for a binary perception outcome on a single z-scored acoustic predictor.
 
 ```{r exploratory-template}
 # Production: continuous vocalic outcome
@@ -1149,6 +1235,10 @@ fit_perc_bin <- function(outcome, predictor_z, data = perc) {
 
 ## 7.2 Other vocalic features (F1, F2, CPP, H1–H2)
 
+We model the same vocalic frame as in §6 but swap the outcome. F1 and F2 are the first two formants (correlates of vowel quality). F1 in particular tracks both mouth opening and tongue height: lower F1 reflects a less open mouth or a higher tongue position, and the two articulators trade off but not one-to-one. CPP (cepstral peak prominence) and H1–H2 (the level difference between the first and second harmonics) index voice quality: higher CPP indicates a more periodic, modal voice; H1–H2 is typically larger in breathier voice. F1 and F2 are modelled lognormally because they are bounded below at zero with a right tail; CPP and H1–H2 are modelled with the default Gaussian since they are centred dB-scale quantities.
+
+The formant question is worth flagging up front. @cwiek_scope_2025 examined whether object size modulates lip opening or formant dispersion in a paradigm where participants "shot" at cans of different sizes mounted on a wall while saying *piff* or *paff*, and reported no detectable size effect on either measure: vowel identity dominated the articulatory and acoustic outcomes. Our paradigm differs (imitative production of the same carrier sentence with free choice of vocalic realisation rather than a fixed two-vowel target, and animate referents alongside inanimate ones), so any divergence between the two studies is more usefully read as a difference in scope than as a contradiction. We examine F1 and F2 here in that spirit.
+
 ```{r exploratory-vocalic, results='hide'}
 m_F1   <- fit_prod_vocalic("F1",   family = lognormal())
 m_F2   <- fit_prod_vocalic("F2",   family = lognormal())
@@ -1156,12 +1246,33 @@ m_CPP  <- fit_prod_vocalic("CPP")          # gaussian (default)
 m_H1H2 <- fit_prod_vocalic("H1H2")         # gaussian (default)
 ```
 
-F1 has been examined as a size-iconic cue in production by Ćwiek & Fuchs (2025), who reported no systematic mapping from referent size to F1 (or lip opening) in a directed-speech paradigm with inanimate referents.
+```{r expl-vocalic-display-F1, fig.height=3, fig.cap=capFig("Posterior predictive check for F1 (lognormal).")}
+summary(m_F1)
+pp_check(m_F1, ndraws = 100) + ggtitle("PPC – F1")
+```
+
+Bimodal because of different vowels.
+
+```{r expl-vocalic-display-F2, fig.height=3, fig.cap=capFig("Posterior predictive check for F2 (lognormal).")}
+summary(m_F2)
+pp_check(m_F2, ndraws = 100) + ggtitle("PPC – F2")
+```
+
+Bimodal because of different vowels.
+
+```{r expl-vocalic-display-CPP, fig.height=3, fig.cap=capFig("Posterior predictive check for CPP (Gaussian).")}
+summary(m_CPP)
+pp_check(m_CPP, ndraws = 100) + ggtitle("PPC – CPP")
+```
+
+```{r expl-vocalic-display-H1H2, fig.height=3, fig.cap=capFig("Posterior predictive check for H1–H2 (Gaussian).")}
+summary(m_H1H2)
+pp_check(m_H1H2, ndraws = 100) + ggtitle("PPC – H1–H2")
+```
 
 ## 7.3 Fricative features (production)
 
-Fricative spectral cues are routinely linked to perceived size and to the geometry of the vocal
-tract [@jongman_acoustic_2000; @al-tamimi_jalalal-tamimipraat-spectral-analyses-fricatives-stops_2022].
+Fricative spectral cues are routinely linked to perceived size and to the geometry of the vocal tract [@jongman_acoustic_2000; @al-tamimi_jalalal-tamimipraat-spectral-analyses-fricatives-stops_2022]. The four features we model here are fricative duration (ms), fricative SPL (a dB-scale intensity measure on the whole fricative segment), peak spectral frequency (Hz), and centre of gravity (Hz). Duration is lognormal-distributed; the other three are kept on their native scales with a Gaussian likelihood (taking the log of frequency values tends to overshoot the actual right-skew).
 
 ```{r exploratory-fric, results='hide'}
 m_fdur  <- fit_prod_fric("fric_dur_ms",  family = lognormal())
@@ -1170,7 +1281,29 @@ m_fpeak <- fit_prod_fric("fric_peak_Hz")             # gaussian (log overshoots)
 m_fCoG  <- fit_prod_fric("fric_CoG_Hz")              # gaussian (log overshoots)
 ```
 
+```{r expl-fric-display-fdur, fig.height=3, fig.cap=capFig("Posterior predictive check for fricative duration (lognormal).")}
+summary(m_fdur)
+pp_check(m_fdur, ndraws = 100) + ggtitle("PPC – fricative duration")
+```
+
+```{r expl-fric-display-fSPL, fig.height=3, fig.cap=capFig("Posterior predictive check for fricative SPL (Gaussian).")}
+summary(m_fSPL)
+pp_check(m_fSPL, ndraws = 100) + ggtitle("PPC – fricative SPL")
+```
+
+```{r expl-fric-display-fpeak, fig.height=3, fig.cap=capFig("Posterior predictive check for fricative peak frequency (Gaussian).")}
+summary(m_fpeak)
+pp_check(m_fpeak, ndraws = 100) + ggtitle("PPC – fricative peak frequency")
+```
+
+```{r expl-fric-display-fCoG, fig.height=3, fig.cap=capFig("Posterior predictive check for fricative centre of gravity (Gaussian).")}
+summary(m_fCoG)
+pp_check(m_fCoG, ndraws = 100) + ggtitle("PPC – fricative centre of gravity")
+```
+
 ## 7.4 Perception of exploratory features
+
+These models mirror §6.4–6.5 but swap the acoustic predictor. Each tests whether listeners use the speaker's exploratory feature (z-scored within speaker) to call "big". As before the interaction with `animacy_c` is included so the perception models can answer both whether the cue matters on average *and* whether animacy modulates its use.
 
 ```{r exploratory-perc, results='hide'}
 m_perc_F1     <- fit_perc_bin("big_judgment", "F1_mean_z")
@@ -1180,16 +1313,53 @@ m_perc_fSPL   <- fit_perc_bin("big_judgment", "fric_SPL_dB_mean_z")
 m_perc_fpeak  <- fit_perc_bin("big_judgment", "fric_peak_Hz_mean_z")
 ```
 
-## 7.5 RQ4 — does animacy *judgment* depend on acoustic cues?
+```{r expl-perc-display-F1, fig.height=3, fig.cap=capFig("Perception: F1 as cue to 'big' judgment.")}
+summary(m_perc_F1)
+pp_check(m_perc_F1, ndraws = 100) + ggtitle("PPC – perception of F1")
+```
+
+```{r expl-perc-display-F2, fig.height=3, fig.cap=capFig("Perception: F2 as cue to 'big' judgment.")}
+summary(m_perc_F2)
+pp_check(m_perc_F2, ndraws = 100) + ggtitle("PPC – perception of F2")
+```
+
+```{r expl-perc-display-fdur, fig.height=3, fig.cap=capFig("Perception: fricative duration as cue to 'big' judgment.")}
+summary(m_perc_fdur)
+pp_check(m_perc_fdur, ndraws = 100) + ggtitle("PPC – perception of fricative duration")
+```
+
+```{r expl-perc-display-fSPL, fig.height=3, fig.cap=capFig("Perception: fricative SPL as cue to 'big' judgment.")}
+summary(m_perc_fSPL)
+pp_check(m_perc_fSPL, ndraws = 100) + ggtitle("PPC – perception of fricative SPL")
+```
+
+```{r expl-perc-display-fpeak, fig.height=3, fig.cap=capFig("Perception: fricative peak frequency as cue to 'big' judgment.")}
+summary(m_perc_fpeak)
+pp_check(m_perc_fpeak, ndraws = 100) + ggtitle("PPC – perception of fricative peak frequency")
+```
+
+## 7.5 Does the *animacy* judgment depend on acoustic cues?
+
+These two models flip the perception outcome from "big" to "animate" and ask whether listeners draw on vowel duration or f0 to decide whether they are hearing an animal. Treating animacy as an outcome here is sound-symbolism in the broader sense: the same acoustic dimensions that encode size might also leak into the animate/inanimate distinction.
 
 ```{r rq4, results='hide'}
 m_anim_dur <- fit_perc_bin("animate_judgment", "vowel_dur_ms_mean_z")
 m_anim_f0  <- fit_perc_bin("animate_judgment", "f0_mean_z")
 ```
 
-## 7.6 RQ3 — multinomial subcategory judgment
+```{r expl-anim-display-dur, fig.height=3, fig.cap=capFig("Perception: vowel duration as cue to animacy judgment.")}
+summary(m_anim_dur)
+pp_check(m_anim_dur, ndraws = 100) + ggtitle("PPC – vowel duration → animate judgment")
+```
 
-Categorical (6-level) outcome models are slow. Off by default; flip `eval=TRUE` to run.
+```{r expl-anim-display-f0, fig.height=3, fig.cap=capFig("Perception: f0 as cue to animacy judgment.")}
+summary(m_anim_f0)
+pp_check(m_anim_f0, ndraws = 100) + ggtitle("PPC – f0 → animate judgment")
+```
+
+## 7.6 A note on multinomial category judgments
+
+A logical extension would be to model the full 6-way `picked_category` outcome (bird, mammal, reptile, appliance, vehicle, instrument) as a multinomial response to the same acoustic cues. We considered this and decided against including it in the main analysis for two reasons. First, a categorical 6-level outcome multiplies the coefficient space (5 contrasts × every fixed effect) and is hard to summarize compactly in a short-format paper. Second, it does not speak directly to our expectations: the size question is covered by §6, and the animacy question is covered by §6 (for animacy as production-side baseline) and §7.5 (for animacy as a perceptual outcome on its own). The chunk below is left in the script for transparency – it can be turned on by setting `eval=TRUE` – but is not part of the reported analysis. The model also does not add a parallel f0 version because the animacy-judgment perception model in §7.5 already captures the relevant question for that channel.
 
 ```{r rq3, eval=FALSE, results='hide'}
 m_cat_dur <- fit_brm(
@@ -1202,34 +1372,94 @@ m_cat_dur <- fit_brm(
 )
 ```
 
+## 7.7 Exploratory takeaways
+
+These results are read as descriptive flags, not robust findings, and we mark the directions
+that look worth following up.
+
+**Vocalic features beyond duration and f0.** F1 is credibly lower for big referents on the log
+scale (β = -0.06, 95% HDI [-0.10, -0.03]; ~6% lower F1 for big). Mechanistically a lower F1
+can come from either a less open mouth or a higher tongue position (the two move together but
+not one-to-one), so the direction is at face value the *opposite* of the open-vowel-for-big
+stereotype – our speakers are realising big referents with a slightly more closed or
+higher-tongue vocalic gesture, not a more open one. The direction also runs against
+@cwiek_scope_2025's null on lip opening and formant dispersion for object size, but the
+paradigms differ enough (their participants "shot" at cans of different sizes on the wall
+while saying *piff* or *paff*; ours imitatively portrayed both animate and inanimate
+referents in a carrier sentence) that we treat the contrast as hypothesis-generating rather
+than as evidence against their conclusion. F2 shows no credible size effect. CPP is credibly
+higher for big referents (β = 1.10 dB, 95% HDI [0.11, 2.11]), consistent with more periodic
+voicing for big-referent productions, and credibly lower for animate referents (animacy main
+effect β = -1.57, 95% HDI [-2.44, -0.69]). H1–H2 is inconclusive on size.
+
+**Fricative production.** Fricative SPL is louder for big referents by roughly 3 dB
+(β = 3.08, 95% HDI [0.61, 5.61]) – the clearest iconic effect among the fricative measures.
+Fricative duration is in the size-iconic direction but its 95% HDI brushes zero (β = 0.10,
+95% HDI [-0.02, 0.21]; P(β > 0) ≈ 0.95). Fricative peak frequency and centre of gravity show
+no credible size effect; phoneme identity, as expected, dominates both.
+
+**Fricative perception.** Listeners use fricative duration as a cue to size
+(β = 0.25, 95% HDI [0.04, 0.45]) and the use is amplified for animate referents
+(interaction β = 0.50, 95% HDI [0.09, 0.91]). Listeners also use fricative SPL
+(β = 0.24, 95% HDI [0.05, 0.43]). F1, F2, and fricative peak frequency are not credibly used.
+The fricative-duration result is interesting on its own: it is a perception-side effect for a
+production-side feature whose production-side credibility was marginal – a pattern more often
+seen the other way round in this dataset.
+
+**Animacy judgment.** Listeners judge productions as animate more often when speaker f0 is
+higher (β = 0.23 log-odds per +1 SD, 95% HDI [0.01, 0.45]; OR ≈ 1.26). The corresponding
+duration model is null (β = -0.10, 95% HDI [-0.28, 0.09]). The interaction with portrayed
+animacy in the f0 model is suggestive but its HDI crosses zero (β = 0.41, 95% HDI [-0.03, 0.87]).
+The pattern is consistent with f0 carrying both a size signal (lower f0 → bigger) and an
+animacy signal (higher f0 → animate), and the two are dissociable in the data.
+
 # 8. Cross-feature comparison
+
+The three forest plots below give the visual synthesis of §§6–7. The first asks where size leaks
+into the produced signal across all ten acoustic features we measured. The second asks which of
+those features listeners use to judge size. The third looks at the same question for animacy
+judgments instead of size judgments. Each panel is on its own scale (log multiplicative effects,
+dB, Hz, or log-odds) – the comparisons within a panel are meaningful; the comparisons across
+panels are not.
 
 ## 8.1 Production: where does size leak into the signal?
 
-```{r forest-prod, fig.height=5, fig.cap=capFig("Size effect across all production models. Top two rows = primary claim (duration and f0); below = exploratory features.")}
+```{r forest-prod, fig.height=9, fig.cap=capFig("Production: size effect across all acoustic features, faceted by effect-size scale (log, dB, Hz). Each panel has its own x-axis range – magnitudes across panels are NOT directly comparable.")}
 forest_prod <- bind_rows(
   extract_term(m_vdur,  "size_c", "vowel duration (log)"),
-  extract_term(m_f0,    "size_c", "f0 (Hz)"),
-  extract_term(m_F1,    "size_c", "F1 (Hz)"),
-  extract_term(m_F2,    "size_c", "F2 (Hz)"),
-  extract_term(m_CPP,   "size_c", "CPP (dB)"),
-  extract_term(m_H1H2,  "size_c", "H1–H2"),
+  extract_term(m_f0,    "size_c", "f0 (log)"),
+  extract_term(m_F1,    "size_c", "F1 (log)"),
+  extract_term(m_F2,    "size_c", "F2 (log)"),
   extract_term(m_fdur,  "size_c", "fricative duration (log)"),
+  extract_term(m_CPP,   "size_c", "CPP (dB)"),
+  extract_term(m_H1H2,  "size_c", "H1–H2 (dB)"),
   extract_term(m_fSPL,  "size_c", "fricative SPL (dB)"),
   extract_term(m_fpeak, "size_c", "fricative peak (Hz)"),
   extract_term(m_fCoG,  "size_c", "fricative CoG (Hz)")
 ) |>
-  mutate(model = factor(model, levels = unique(model)))
+  mutate(
+    scale_group = case_when(
+      str_detect(model, "\\(log\\)") ~ "Log scale (lognormal models)",
+      str_detect(model, "\\(dB\\)")  ~ "dB scale (Gaussian)",
+      str_detect(model, "\\(Hz\\)")  ~ "Hz scale (Gaussian)"
+    ),
+    scale_group = factor(scale_group,
+                         levels = c("Log scale (lognormal models)",
+                                    "dB scale (Gaussian)",
+                                    "Hz scale (Gaussian)")),
+    model = factor(model, levels = unique(model))
+  )
 
 ggplot(forest_prod, aes(x = value, y = fct_rev(model))) +
   stat_halfeye(.width = c(0.66, 0.95)) +
   geom_vline(xintercept = 0, linetype = 2, colour = "grey40") +
+  facet_wrap(~ scale_group, scales = "free", ncol = 1) +
   labs(x = "Effect of big vs. small (sum-coded)",
        y = NULL,
        title = "Production: size effect across all acoustic features",
-       subtitle = "Top two rows = primary claim; below = exploratory")
+       subtitle = "Top panel includes the primary-claim outcomes (vowel duration, f0)")
 ```
-
+ 
 ## 8.2 Perception: which cues drive "big" judgments?
 
 ```{r forest-perc, fig.height=4, fig.cap=capFig("Perception: log-odds shift in 'big' judgment per +1 SD of each acoustic feature. Top two rows = primary claim; below = exploratory.")}
@@ -1253,11 +1483,60 @@ ggplot(forest_perc, aes(x = value, y = fct_rev(model))) +
        subtitle = "Top two rows = primary claim; below = exploratory")
 ```
 
-# 9. References {-}
+## 8.3 Perception: which cues drive "animate" judgments?
+
+```{r forest-anim, fig.height=2.5, fig.cap=capFig("Perception: log-odds shift in 'animate' judgment per +1 SD of speaker vowel duration or f0.")}
+forest_anim <- bind_rows(
+  extract_term(m_anim_dur, "vowel_dur_ms_mean_z", "vowel duration"),
+  extract_term(m_anim_f0,  "f0_mean_z",           "f0")
+) |>
+  mutate(model = factor(model, levels = unique(model)))
+
+ggplot(forest_anim, aes(x = value, y = fct_rev(model))) +
+  stat_halfeye(.width = c(0.66, 0.95)) +
+  geom_vline(xintercept = 0, linetype = 2, colour = "grey40") +
+  labs(x = "log-odds shift of \"animate\" judgment per +1 SD acoustic feature",
+       y = NULL,
+       title = "Perception: which cues drive \"animate\" judgments?")
+```
+
+# 9. Discussion and limitations
+
+The data support a partly asymmetric picture of size iconicity. On the production side, both
+predicted channels work – speakers reliably lengthen vowels and lower f0 for big referents.
+On the perception side only f0 closes the loop: listeners rely on f0 to call "big", but they
+do not use vowel duration even though speakers reliably produce it. The duration channel is
+production-only in this dataset. This asymmetry is the kind of pattern a pluripotential view of
+iconic features would predict (different speakers and different listeners can recruit different
+acoustic channels to convey or recover the same semantic dimension), but a directed replication
+would be needed to take it as more than suggestive.
+
+Animacy entered as an independent main effect rather than as a modulator of the size effect.
+Animate referents were produced with shorter vowels and higher f0 regardless of their size, and
+listeners' "animate" judgments were modulated by speaker f0. A reasonable interpretation is
+that animacy in this stimulus set carries a register-like shift on top of an otherwise
+animacy-invariant size mapping. Whether this is animacy *qua* feature, or the residue of
+unmeasured differences between the animal and object stimulus subsets (e.g., baseline word
+length, articulatory complexity, expressiveness of the depicted entity), cannot be separated
+in the present design.
+
+The exploratory channels are descriptive: CPP and F1 in production, and fricative duration and
+fricative SPL in perception, all show credible effects that are worth a closer look in a
+study designed around them. We flag them rather than claim them.
+
+Three limitations are worth naming. (i) The stimulus set is small (36 items) and confounds
+size with referent identity – speaker-level random effects help but cannot fully partial this
+out. (ii) Listeners had a picture in front of them, so item identity is the dominant driver
+of any judgment; the acoustic cues modulate on top of an already strong prior (see the
+item-level baselines in §6.7). (iii) The animacy contrast is confounded with the animal vs
+object stimulus subsets in this design; the present data cannot separate animacy as a
+semantic feature from baseline differences between those subsets.
+
+# 10. References {-}
 
 <div id="refs"></div>
 
-# 10. Session info
+# 11. Session info
 
 ```{r session}
 sessionInfo()
