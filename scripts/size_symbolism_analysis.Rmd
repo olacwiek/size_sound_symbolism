@@ -3,7 +3,7 @@ title: "Size symbolism in production and perception"
 subtitle: "A Bayesian analysis of duration, f0, and animacy"
 author:
   - Alexandra Schmidt
-  - Aleksandra Ćwiek
+  - Aleksandra Ćwiek (script author)
   - Petra Wagner
 date: "`r Sys.Date()`"
 output:
@@ -126,16 +126,22 @@ articulatory bases of size–sound correspondences [@winter_size_2025].
 
 **Exploratory.** Other features – F1, F2, fricative duration, fricative SPL, fricative spectral peak, fricative centre of gravity, and the voice-quality measures CPP [@fraile_cepstral_2014; @hillenbrand_acoustic_1994] and H1–H2 [@chai_h1h2_2022] – are examined without a priori predictions. The pluripotential view of iconic features [cf. @akita_iconicity_2024; @winter_abralin_2021] motivates inspecting the broader signal rather than committing to a single channel; however, it also warrants the view that few features (f0 and duration) can correspond to many meanings.
 
-**What we find, in one paragraph.** Speakers reliably lengthen vowels and lower f0 for big
-referents (the production prediction, supported on both channels). Listeners use f0 to judge
-size – lower f0 raises the odds of a "big" judgment – but do *not* use vowel duration for the
-same purpose (the perception prediction is supported for f0, not for duration). Animacy lands
-on the main-effect channel rather than the interaction channel: the size effect does not
-differ between animate and inanimate referents, but animate referents are produced with
-shorter vowels and higher f0 regardless of their size. Exploratory analyses recover a few
-additional channels worth flagging – F1 lowers for big, CPP rises slightly for big, fricative
-SPL is louder for big, and listeners use fricative duration and fricative SPL as cues to size
-– without claiming these as robust without replication.
+**What we find, in one paragraph.** Speakers reliably lengthen vowels
+and lower f0 for big referents (the production prediction, supported
+on both channels). Listeners use f0 to judge size – lower f0 raises
+the odds of a "big" judgment – but do not use vowel duration for the
+same purpose (the perception prediction is supported for f0, not for
+duration). The size effect does not differ between animate and
+inanimate referents. Animate referents in this stimulus set were
+produced with shorter vowels and higher f0 regardless of their size,
+but this baseline shift does not survive the inclusion of a
+separately-collected per-item cuteness covariate (§7.8); we therefore
+report it descriptively without claiming animacy qua feature as the
+carrier. Exploratory analyses recover a few additional channels worth
+flagging – F1 lowers for big, CPP rises slightly for big, fricative
+SPL is louder for big, and listeners use fricative duration and
+fricative SPL as cues to size – without claiming these as robust
+without replication.
 
 This analysis uses the Bayesian framework with the `cmdstanr` backend. All German labels and column names from the original data files are translated to English in the cleaning step so the script and its outputs are readable internationally.
 
@@ -202,6 +208,9 @@ fric_raw <- read_tsv(file.path(data_dir, "spectralResultsFricatives.tsv"),
 vdur_raw <- read_tsv(file.path(data_dir, "vowelDuration.txt"),
                      show_col_types = FALSE) |>
   rename(file = FileName, vowel = digit, vowel_dur_ms = `Duration(ms)`)
+
+cuteness_raw <- read_csv(file.path(data_dir, "data.csv"),
+                         show_col_types = FALSE)
 ```
 
 # 2. Translate German → English
@@ -305,7 +314,7 @@ item_glossary <- tribble(
   "anakonda",            "anaconda",
   "krokodil",            "crocodile",
   "komodowaran",         "komodo.dragon",
-  "schildkroete",        "turtle",
+  "schildkroete",        "tortoise",
   "blindschleiche",      "slow.worm",
   "gecko",               "gecko"
 )
@@ -471,6 +480,229 @@ if (nrow(trial_item_check) > 0) {
 }
 ```
 
+## 3.4 Cuteness ratings (separate rater sample)
+
+These ratings come from a different sample of participants than the
+production/perception experiment – they only rated stimulus pictures for
+cuteness on (we assume) a 1–7 scale. We exclude participants from abroad, then summarize to one mean cuteness score per stimulus item.
+The per-item score is the only level used downstream, because the cuteness
+raters cannot be matched 1:1 to listeners or speakers.
+
+```{r cuteness-clean}
+cuteness_clean <- cuteness_raw |>
+  select(-gender_other, -COUNTRY, -CLIENT_start, -TIME_start, -TIME_end, -TIME_total) |>
+  filter(if_all(everything(), ~ !is.na(.))) |>
+  filter(!country %in% c("albania", "Albania", "France, India, England", "France")) |>
+  mutate(gender = case_when(
+    gender == 1 ~ "female", 
+    gender == 2 ~ "male", 
+    TRUE ~ NA_character_))
+
+cat("Cuteness raters retained:", nrow(cuteness_clean),
+    "of", nrow(cuteness_raw), "\n")
+```
+
+```{r cuteness-map}
+# Map cuteness column names to item_english (§2.3 glossary).
+# Six columns (heron, horse, frog, washingmachine, toaster, boat) are
+# fillers in the cuteness study with no production counterpart -- dropped.
+cuteness_map <- tribble(
+  ~col,                 ~item_english,
+  "condor",             "condor",
+  "harpyie",            "harpy",
+  "stork",              "stork",
+  "finch",              "bullfinch",       
+  "tit",                "blue.tit",
+  "sparrow",            "sparrow",
+  "cow",                "cow",
+  "elephant",           "elephant",
+  "bear",               "bear",
+  "monkey",             "little.monkey",
+  "hedgehog",           "hedgehog",
+  "bunny",              "rabbit",
+  "crocodile",          "crocodile",
+  "comododragon",       "komodo.dragon",
+  "anaconda",           "anaconda",
+  "gecko",              "gecko",
+  "grasssnake",         "slow.worm",       
+  "tortoise",           "tortoise",
+  "doublebass",         "double.bass",
+  "bigdrum",            "floor.drum",
+  "bigbell",            "church.bell",
+  "violin",             "violin",
+  "smalldrum",          "hand.drum",
+  "smallbell",          "little.bell",
+  "wallclock",          "wall.clock",
+  "industrialoven",     "industrial.oven",
+  "industrialprinter",  "office.printer",  
+  "watch",              "wristwatch",
+  "oven",               "oven",
+  "printer",            "printer",
+  "SUV",                "SUV",
+  "jumbojet",           "jumbo.jet",
+  "bigexcavator",       "big.excavator",
+  "car",                "small.car",
+  "plane",              "small.airplane",
+  "smallexcavator",     "small.excavator"
+)
+
+# Per-rater long form
+cuteness_long <- cuteness_clean |>
+  select(participant, all_of(cuteness_map$col)) |>
+  pivot_longer(-participant, names_to = "col", values_to = "cuteness") |>
+  inner_join(cuteness_map, by = "col") |>
+  select(-col)
+
+# Per-item summary: mean, SD, n_raters.
+# cuteness_z is the z-scored mean (across the 36 items) used by the models.
+item_cuteness <- cuteness_long |>
+  group_by(item_english) |>
+  summarise(cuteness_mean = mean(cuteness, na.rm = TRUE),
+            cuteness_sd   = sd(cuteness,   na.rm = TRUE),
+            n_raters      = sum(!is.na(cuteness)),
+            .groups = "drop") |>
+  mutate(cuteness_z = as.numeric(scale(cuteness_mean)))
+```
+
+```{r cuteness-coverage}
+# Coverage diagnostic: are any of the 36 stimulus items missing a rating?
+items_in_study <- alle |> distinct(item_norm) |>
+  left_join(item_glossary, by = "item_norm") |>
+  pull(item_english)
+
+missing_cute <- setdiff(items_in_study, item_cuteness$item_english)
+cat("Stimulus items with no cuteness score:",
+    if (length(missing_cute) == 0) "none" else paste(missing_cute, collapse = ", "),
+    "\n")
+
+cat("Rater sample size, per item:\n")
+print(item_cuteness |> count(n_raters))
+```
+
+```{r cuteness-by-item-prep}
+# Per-item table enriched with size, animacy, AND the 6-way category.
+# The category column lives in `alle`, so we join through item_glossary.
+item_cute_full <- item_cuteness |>
+  left_join(
+    alle |> distinct(item_norm, size, animacy, category) |>
+      left_join(item_glossary, by = "item_norm") |>
+      select(item_english, size, animacy, category),
+    by = "item_english"
+  ) |>
+  mutate(
+    cuteness_se = cuteness_sd / sqrt(n_raters),
+    # Order categories: animals first, objects second; within each block,
+    # ordered roughly by intuition (mammals > birds > reptiles; appliances,
+    # instruments, vehicles)
+    category = factor(category,
+                      levels = c("mammal", "bird", "reptile",
+                                 "appliance", "instrument", "vehicle"))
+  )
+```
+
+```{r cuteness-descriptive, fig.height=5.5, fig.width=9, fig.cap=capFig("Per-item cuteness by size and animacy. Each labelled point is one of the 36 stimulus items; black bars are cell means. The animacy gap is the largest visual feature (~1.3 points). Within animals, small items sit visibly above big items (rabbit and hedgehog top the chart; cow and anaconda anchor the bottom); within objects the size effect is much smaller and noisier. Note elephant as a high outlier among big animals, and small.car as the floor among objects.")}
+# Build the enriched per-item table (item_cuteness + size/animacy/category).
+# Created here so this chunk is self-contained; the later viz chunks
+# (cuteness-ranked, cuteness-by-category) reuse the object.
+item_cute_full <- item_cuteness |>
+  left_join(
+    alle |> distinct(item_norm, size, animacy, category) |>
+      left_join(item_glossary, by = "item_norm") |>
+      select(item_english, size, animacy, category),
+    by = "item_english"
+  ) |>
+  mutate(
+    cuteness_se = cuteness_sd / sqrt(n_raters),
+    category    = factor(category,
+                         levels = c("mammal", "bird", "reptile",
+                                    "appliance", "instrument", "vehicle"))
+  )
+
+# Pre-jitter so geom_text_repel and geom_point share the same x positions.
+set.seed(2137)
+plot_dat <- item_cute_full |>
+  mutate(
+    size_num = as.numeric(factor(size, levels = c("big", "small"))),
+    x        = size_num + runif(n(), -0.09, 0.09)
+  )
+
+# Cell means as a tiny tibble we draw as crossbars
+cell_means <- item_cute_full |>
+  group_by(animacy, size) |>
+  summarise(cm = mean(cuteness_mean), .groups = "drop") |>
+  mutate(size_num = as.numeric(factor(size, levels = c("big", "small"))))
+
+ggplot(plot_dat, aes(x = x, y = cuteness_mean)) +
+  geom_segment(data = cell_means,
+               aes(x = size_num - 0.28, xend = size_num + 0.28,
+                   y = cm, yend = cm),
+               colour = "black", linewidth = 0.7,
+               inherit.aes = FALSE) +
+  geom_text(data = cell_means,
+            aes(x = size_num, y = 7.05, label = sprintf("M = %.2f", cm)),
+            colour = "grey25", size = 3.1, fontface = "italic",
+            inherit.aes = FALSE) +
+  geom_point(aes(colour = animacy), size = 2.6, alpha = 0.9) +
+  ggrepel::geom_text_repel(
+    aes(label = item_english, colour = animacy),
+    size = 3.0, max.overlaps = Inf,
+    box.padding = 0.32, point.padding = 0.18,
+    min.segment.length = 0,
+    segment.alpha = 0.45, segment.size = 0.25,
+    force = 1.4, force_pull = 0.6,
+    seed = 2137,
+    show.legend = FALSE
+  ) +
+  facet_wrap(~ animacy) +
+  scale_x_continuous(
+    breaks = c(1, 2), labels = c("big", "small"),
+    limits = c(0.4, 2.6)
+  ) +
+  scale_y_continuous(limits = c(1, 7.25), breaks = 1:7) +
+  scale_colour_manual(values = colorBlindBlack8[c(3, 4)]) +
+  labs(
+    x = NULL, y = "Mean cuteness rating (1–7)",
+    title    = "Per-item cuteness by size and animacy"
+  ) +
+  theme(
+    legend.position  = "none",
+    panel.spacing.x  = unit(1.2, "lines"),
+    strip.text       = element_text(face = "bold", size = 11)
+  )
+```
+
+
+```{r cuteness-ranked, fig.height=8, fig.cap=capFig("Per-item mean cuteness rating across the 36 stimulus items, ranked. Points are item means; horizontal bars are ±1 SE across the 16 raters. Animals (animate) dominate the top of the ranking and objects (inanimate) the bottom – the structural confound between cuteness and animacy is visible at a glance.")}
+ggplot(item_cute_full,
+       aes(x = cuteness_mean, y = fct_reorder(item_english, cuteness_mean),
+           colour = animacy, shape = size)) +
+  geom_segment(aes(xend = 1, yend = fct_reorder(item_english, cuteness_mean)),
+               colour = "grey85", linewidth = 0.3) +
+  geom_pointrange(aes(xmin = cuteness_mean - cuteness_se,
+                      xmax = cuteness_mean + cuteness_se),
+                  size = 0.4, fatten = 3) +
+  scale_colour_manual(values = colorBlindBlack8[c(3, 4)]) +
+  scale_shape_manual(values = c(small = 16, big = 17)) +
+  scale_x_continuous(limits = c(1, 7), breaks = 1:7) +
+  labs(x = "Mean cuteness rating (1–7), ± 1 SE across raters",
+       y = NULL,
+       colour = "Animacy", shape = "Size",
+       title = "Per-item cuteness, ranked")
+```
+
+```{r cuteness-by-category, fig.height=4, fig.cap=capFig("Per-item cuteness by stimulus category. Each dot is one item; black bar is the category mean. Within-animacy structure is visible: mammals are rated cutest, reptiles least cute among animals; among objects, instruments rate higher than appliances or vehicles.")}
+ggplot(item_cute_full, aes(x = category, y = cuteness_mean, colour = animacy)) +
+  geom_jitter(width = 0.18, height = 0, size = 2.6, alpha = 0.85) +
+  stat_summary(fun = mean, geom = "crossbar",
+               width = 0.55, linewidth = 0.3, colour = "black",
+               fatten = 0) +
+  scale_colour_manual(values = colorBlindBlack8[c(3, 4)]) +
+  scale_y_continuous(limits = c(1, 7), breaks = 1:7) +
+  labs(x = NULL, y = "Mean cuteness rating",
+       colour = "Animacy",
+       title = "Cuteness by stimulus category")
+```
+
 # 4. Build the long-format production tables
 
 Production data are in **long format**: one row per acoustic measurement (vowel or fricative
@@ -543,6 +775,15 @@ fric_long <- fric_long |>
   left_join(speaker_id,    by = c("group", "speaker_num", "sex", "age")) |>
   left_join(item_glossary, by = "item_norm")
 
+# Per-item cuteness covariate (mean across the 17 retained raters; z-scored over items)
+vowel_long <- vowel_long |>
+  left_join(item_cuteness |> select(item_english, cuteness_mean, cuteness_z),
+            by = "item_english")
+
+fric_long <- fric_long |>
+  left_join(item_cuteness |> select(item_english, cuteness_mean, cuteness_z),
+            by = "item_english")
+
 cat("vowel_long rows missing factors:", sum(is.na(vowel_long$size)), "\n")
 cat("fric_long  rows missing factors:", sum(is.na(fric_long$size)),  "\n")
 ```
@@ -590,6 +831,10 @@ perc <- alle |>
                   fric_dur_ms_mean, fric_SPL_dB_mean, fric_peak_Hz_mean, fric_CoG_Hz_mean),
                 zscale, .names = "{.col}_z")) |>
   ungroup()
+
+perc <- perc |>
+  left_join(item_cuteness |> select(item_english, cuteness_mean, cuteness_z),
+            by = "item_english")
 
 cat("Perception rows without production audio:",
     sum(is.na(perc$vowel_dur_ms_mean)), "of", nrow(perc), "\n")
@@ -1004,7 +1249,7 @@ The size × animacy interaction was close to zero on both acoustic dimensions
 between animate and inanimate referents – iconic size encoding operates the
 same way across both categories.
 
-**Animacy as an independent shift in the baseline – supported in production.**
+**Animacy as an independent shift in the baseline – credible in production, but see §7.8**
 Animacy lands on the main-effect channel rather than the interaction channel.
 Independent of size, animate referents were produced with vowels **~14% shorter**
 than inanimate referents (β = −0.15, 95% HDI [−0.28, −0.02]; P(β < 0) = 0.99) and
@@ -1012,7 +1257,11 @@ with **~11% higher f0** (β = 0.10, 95% HDI [0.00, 0.20]; P(β > 0) = 0.98).
 On the perception side both animacy main effects pointed in the same direction
 (animate referents less likely to be judged "big") but their credible intervals
 crossed zero (duration model: β = −0.92, 95% HDI [−2.18, 0.36], P = 0.93;
-f0 model: β = −0.71, 95% HDI [−1.78, 0.39], P = 0.91).
+f0 model: β = −0.71, 95% HDI [−1.78, 0.39], P = 0.91). §7.8 returns to these
+production animacy main effects and shows that they do not survive the addition of
+an item-level cuteness covariate – the animacy effect shrinks toward zero and
+cuteness itself does not take its place, consistent with the two predictors being
+too correlated in this stimulus set to identify separately.
 
 **Reading the main-effect-without-interaction pattern.** That speakers shift
 their acoustic baseline by animacy *without* changing how strongly they encode
@@ -1020,7 +1269,10 @@ size means two things happen in parallel: (i) the size mapping is robust across
 the animacy distinction, and (ii) there is a separate, additive shift between
 speaking for animals and speaking for objects. Whether this shift reflects
 animacy as a feature or systematic differences between the animal and object
-item sets in this stimulus battery cannot be separated with the present design.
+item sets in this stimulus battery cannot be separated with the present design –
+§7.8 makes this concrete by adding a separately-collected per-item cuteness
+covariate, with the result that the animacy main effect on production becomes
+non-credible without cuteness itself replacing it.
 
 ## 6.7 Size effects across the four primary models
 
@@ -1186,7 +1438,7 @@ p2 <- plot_size_by_animacy(m_f0,   "f0 (Hz)",             "f0")
   theme(legend.position = "bottom")
 ```
 
-Look at the *vowel duration* panel: green (inanimate) sits above blue (animate), both climb at essentially the same rate from small → big. That's the textbook parallel-lines pattern – animacy shifts the baseline (the ~14% gap), size effect is the same for both (the ~17% lift). This is the `m_vdur` model: significant animacy main effect, interaction at zero. 
+Look at the *vowel duration* panel: green (inanimate) sits above blue (animate), both climb at essentially the same rate from small → big. That's the textbook parallel-lines pattern – animacy shifts the baseline (the ~14% gap), size effect is the same for both (the ~17% lift). This is the `m_vdur` model: a credible animacy main effect at this point in the analysis, with the interaction at zero. §7.8 will revisit how stable this main effect is when item-level cuteness is added to the model.
 
 The f0 panel tells a slightly different story. The lines aren't quite parallel – blue (animate) starts higher at `small` (~**148** Hz) and converges with green (inanimate) at `big` (~**115** Hz). That mild convergence is exactly the soft hint of a non-zero interaction we saw in the numbers (β = −0.11, 95% **HDI** [−0.31, 0.08]; P(β < 0) = 0.87). The CrI brushes zero so it's not a claim, but the geometry makes the hint visible: animate referents seem to do more iconic "lowering" than inanimate ones do.
 
@@ -1387,10 +1639,13 @@ higher-tongue vocalic gesture, not a more open one. The direction also runs agai
 paradigms differ enough (their participants "shot" at cans of different sizes on the wall
 while saying *piff* or *paff*; ours imitatively portrayed both animate and inanimate
 referents in a carrier sentence) that we treat the contrast as hypothesis-generating rather
-than as evidence against their conclusion. F2 shows no credible size effect. CPP is credibly
-higher for big referents (β = 1.10 dB, 95% HDI [0.11, 2.11]), consistent with more periodic
-voicing for big-referent productions, and credibly lower for animate referents (animacy main
-effect β = -1.57, 95% HDI [-2.44, -0.69]). H1–H2 is inconclusive on size.
+than as evidence against their conclusion. F2 shows no credible size effect. CPP is
+credibly higher for big referents (β = 1.10 dB, 95% HDI [0.11, 2.11]),
+consistent with more periodic voicing for big-referent productions, and credibly
+lower for animate referents (animacy main effect β = -1.57, 95% HDI [-2.44, -0.69]) –
+with the same caveat as in §7.8: the animacy main effect on any of these channels
+may reflect item-level dimensions that travel with the animate/inanimate split
+rather than animacy as a feature. H1–H2 is inconclusive on size.
 
 **Fricative production.** Fricative SPL is louder for big referents by roughly 3 dB
 (β = 3.08, 95% HDI [0.61, 5.61]) – the clearest iconic effect among the fricative measures.
@@ -1412,6 +1667,253 @@ duration model is null (β = -0.10, 95% HDI [-0.28, 0.09]). The interaction with
 animacy in the f0 model is suggestive but its HDI crosses zero (β = 0.41, 95% HDI [-0.03, 0.87]).
 The pattern is consistent with f0 carrying both a size signal (lower f0 → bigger) and an
 animacy signal (higher f0 → animate), and the two are dissociable in the data.
+
+## 7.8 Cuteness as a candidate explanation for the animacy main effect
+
+The §6 finding that animate referents are produced with shorter vowels and
+higher f0 *regardless of their size* is striking but interpretively
+ambiguous: the animal stimuli differ from the object stimuli on more than
+just animacy. One obvious candidate is **perceived cuteness**: a separate
+group of 17 raters scored each stimulus picture for cuteness on a 1–7 scale.
+Cuteness covaries with animacy (animals tend to be rated cuter than
+appliances and vehicles) and partly with size (smaller things tend to be
+cuter than bigger things), so it is a plausible carrier of what the §6
+animacy main effect is picking up.
+
+We test this in the same way the original animacy main effect was tested:
+refit each of the four primary-claim models *plus* the animate-judgment
+perception model from §7.5, adding `cuteness_z` (z-scored per-item mean
+cuteness) as a fixed effect alongside `size_c * animacy_c`. The question
+is descriptive: does the animacy coefficient shrink toward zero when
+cuteness is partialled out, and does cuteness itself carry a credible
+effect on each outcome?
+
+The random-effects structure is unchanged. Cuteness varies only between
+items, so it does not enter as a varying slope at the speaker or listener
+level – the `(1 | item_english)` intercept still absorbs the
+between-item residual after cuteness is accounted for.
+
+### 7.8.1 Augmented production models
+
+```{r m-cute-prod, results='hide'}
+m_vdur_cute <- fit_brm(
+  bf(vowel_dur_ms ~ size_c * animacy_c + cuteness_z + vowel +
+       (1 + size_c | speaker) + (1 | item_english)),
+  data   = vowel_long |> filter(!is.na(vowel_dur_ms), !is.na(cuteness_z)),
+  family = lognormal(),
+  file   = paste0(models, "m_vdur_cute")
+)
+
+m_f0_cute <- fit_brm(
+  bf(f0 ~ size_c * animacy_c + cuteness_z + sex + vowel +
+       (1 + size_c | speaker) + (1 | item_english)),
+  data   = vowel_long |> filter(!is.na(f0), !is.na(cuteness_z)),
+  family = lognormal(),
+  file   = paste0(models, "m_f0_cute")
+)
+```
+
+```{r m-cute-prod-display}
+summary(m_vdur_cute)
+summary(m_f0_cute)
+```
+
+### 7.8.2 Augmented perception models
+
+```{r m-cute-perc, results='hide'}
+m_perc_f0_cute <- fit_brm(
+  bf(big_judgment ~ f0_mean_z * animacy_c + cuteness_z +
+       (1 | listener) + (1 | speaker) + (1 | item_english)),
+  data   = perc |> filter(!is.na(f0_mean_z), !is.na(cuteness_z)),
+  family = bernoulli(),
+  file   = paste0(models, "m_perc_f0_cute")
+)
+
+m_anim_f0_cute <- fit_brm(
+  bf(animate_judgment ~ f0_mean_z * animacy_c + cuteness_z +
+       (1 | listener) + (1 | speaker) + (1 | item_english)),
+  data   = perc |> filter(!is.na(f0_mean_z), !is.na(cuteness_z)),
+  family = bernoulli(),
+  file   = paste0(models, "m_anim_f0_cute")
+)
+```
+
+```{r m-cute-perc-display}
+summary(m_perc_f0_cute)
+summary(m_anim_f0_cute)
+```
+
+### 7.8.3 Directional tests on the cuteness coefficient
+
+```{r m-cute-effects}
+report_effect(m_vdur_cute,    "cuteness_z", direction = "auto",
+              label = "Cuteness → vowel duration (production)")
+report_effect(m_f0_cute,      "cuteness_z", direction = "auto",
+              label = "Cuteness → f0 (production)")
+report_effect(m_perc_f0_cute, "cuteness_z", direction = "auto",
+              label = "Cuteness → 'big' judgment (perception, f0 model)")
+report_effect(m_anim_f0_cute, "cuteness_z", direction = "auto",
+              label = "Cuteness → 'animate' judgment (perception, f0 model)")
+
+# And the animacy main effect in each augmented model – the comparison number
+report_effect(m_vdur_cute,    "animacy_c", direction = "auto",
+              label = "Animacy main effect on vowel duration AFTER controlling for cuteness")
+report_effect(m_f0_cute,      "animacy_c", direction = "auto",
+              label = "Animacy main effect on f0 AFTER controlling for cuteness")
+report_effect(m_perc_f0_cute, "animacy_c", direction = "auto",
+              label = "Animacy main effect on 'big' judgment AFTER controlling for cuteness")
+report_effect(m_anim_f0_cute, "animacy_c", direction = "auto",
+              label = "Animacy main effect on 'animate' judgment AFTER controlling for cuteness")
+```
+
+### 7.8.4 Side-by-side: animacy posterior with and without cuteness
+
+This is the visual that answers the question. For each outcome, we overlay
+the posterior of the animacy main-effect coefficient from the baseline
+model (§§6.2–6.5, §7.5) and from the cuteness-augmented model (§§7.8.1–2).
+If cuteness is doing the work the animacy main effect was credited for in
+§6, the augmented posterior should shrink toward zero relative to the
+baseline.
+
+```{r animacy-shift, fig.height=5.5, fig.width=9, fig.cap=capFig("Animacy main-effect posterior in the baseline model vs. the cuteness-augmented model. Shrinkage toward zero indicates that cuteness absorbs the animacy effect.")}
+extract_animacy <- function(model, outcome_name, model_kind) {
+  as_draws_df(model) |>
+    transmute(outcome    = outcome_name,
+              model_kind = model_kind,
+              value      = b_animacy_c)
+}
+
+animacy_compare <- bind_rows(
+  extract_animacy(m_vdur,         "vowel duration (production, log)", "baseline"),
+  extract_animacy(m_vdur_cute,    "vowel duration (production, log)", "+ cuteness"),
+  extract_animacy(m_f0,           "f0 (production, log)",             "baseline"),
+  extract_animacy(m_f0_cute,      "f0 (production, log)",             "+ cuteness"),
+  extract_animacy(m_perc_f0,      "f0 → big judgment (logit)",        "baseline"),
+  extract_animacy(m_perc_f0_cute, "f0 → big judgment (logit)",        "+ cuteness"),
+  extract_animacy(m_anim_f0,      "f0 → animate judgment (logit)",    "baseline"),
+  extract_animacy(m_anim_f0_cute, "f0 → animate judgment (logit)",    "+ cuteness")
+) |>
+  mutate(
+    outcome    = factor(outcome,    levels = unique(outcome)),
+    model_kind = factor(model_kind, levels = c("baseline", "+ cuteness"))
+  )
+
+ggplot(animacy_compare,
+       aes(x = value, y = fct_rev(outcome), fill = model_kind)) +
+  stat_halfeye(
+    .width         = c(0.66, 0.95),
+    alpha          = 0.85,
+    slab_colour    = "white",       # fixed, not mapped — kills the 2nd legend
+    slab_linewidth = 0.3,
+    position       = position_dodge(width = 0.65)
+  ) +
+  geom_vline(xintercept = 0, linetype = 2, colour = "grey40") +
+  scale_fill_manual(values = colorBlindBlack8[c(3, 7)]) +
+  labs(
+    x        = "Animacy main-effect estimate (link scale)",
+    y        = NULL,
+    fill     = NULL,
+    title    = "Does cuteness absorb the animacy main effect?",
+    subtitle = "Each outcome: baseline model (§6 / §7.5) vs. with cuteness_z added"
+  ) +
+  theme(
+    plot.title          = element_text(size = 13, face = "bold"),
+    plot.subtitle       = element_text(size = 10, colour = "grey30"),
+    plot.title.position = "plot",          # lets title use the full plot width
+    legend.position     = "top",
+    legend.justification = "left",
+    axis.text.y         = element_text(size = 10.5),
+    axis.title.x        = element_text(size = 10.5),
+    panel.grid.minor    = element_blank()
+  )
+```
+
+### 7.8.5 Cuteness posterior across the five augmented models
+
+```{r cute-forest, fig.height=3.5, fig.cap=capFig("Cuteness coefficient across the five augmented models. Production outcomes are on the log scale; perception outcomes are on the logit scale.")}
+cute_forest <- bind_rows(
+  extract_term(m_vdur_cute,    "cuteness_z", "vowel duration (production, log)"),
+  extract_term(m_f0_cute,      "cuteness_z", "f0 (production, log)"),
+  extract_term(m_perc_f0_cute, "cuteness_z", "f0 → big judgment (logit)"),
+  extract_term(m_anim_f0_cute, "cuteness_z", "f0 → animate judgment (logit)")
+) |>
+  mutate(model = factor(model, levels = unique(model)))
+
+ggplot(cute_forest, aes(x = value, y = fct_rev(model))) +
+  stat_halfeye(.width = c(0.66, 0.95)) +
+  geom_vline(xintercept = 0, linetype = 2, colour = "grey40") +
+  labs(x = "Cuteness coefficient (per +1 SD item cuteness)",
+       y = NULL,
+       title = "Effect of perceived cuteness across outcomes")
+```
+
+### 7.8.6 Reading
+
+**Production: animacy shrinks, but cuteness doesn't replace it.** The
+animacy main effect on both production outcomes shrinks toward zero when
+cuteness enters the model. On vowel duration, the baseline coefficient
+(β = −0.15, 95% HDI [−0.28, −0.02]) becomes β = −0.07 [−0.38, 0.22] –
+the point estimate halves and the HDI widens to straddle zero. On f0,
+the baseline coefficient (β = +0.10, 95% HDI [0.00, 0.20]) becomes
+β = +0.02 [−0.19, 0.24]. But the cuteness coefficient does *not* take
+over the variance the animacy effect lost: cuteness on duration is
+β = −0.04 [−0.20, 0.11] (P(β < 0) = 0.71) and cuteness on f0 is
+β = +0.05 [−0.07, 0.17] (P(β > 0) = 0.79). Neither predictor reaches
+credibility in the augmented models.
+
+The cleanest read is that animacy and cuteness are too tightly correlated
+in this stimulus set (§3.4 already shows that animals are systematically
+cuter than objects) to be separately identified from 36 items' worth of
+between-item variance. The §6 animacy main effect on production is
+therefore fragile under any item-level covariate that tracks the
+animal-vs-object distinction; we cannot tell from the present data
+whether the carrier is animacy *qua* feature, cuteness, or a third
+item-level dimension confounded with both.
+
+**Perception: a different pattern – suppressor-style instability rather
+than absorption.** The big-judgment model behaves unusually when cuteness
+enters. The baseline animacy coefficient (β = −0.92, 95% HDI
+[−2.18, 0.36], P = 0.93) flips sign and inflates to β = +2.28
+[0.68, 3.99], P = 0.998, while the cuteness coefficient becomes large
+and negative (β = −1.83 [−2.70, −0.98]; OR = 0.16; P > 0.999) and the f0
+effect itself is essentially unchanged (β = −0.52 [−0.77, −0.26]). An
+animacy posterior that grows *and* flips sign while a correlated covariate
+enters with a large opposite-sign coefficient is a classical suppressor
+pattern: the two predictors are jointly identifying a contrast that
+neither captures alone, and the individual coefficients on that contrast
+cannot be interpreted as effects of animacy or of cuteness on their own.
+We do not read a substantive claim off this fit.
+
+The animate-judgment model is, by contrast, almost untouched by adding
+cuteness: animacy stays at β ≈ +2.2 in both baseline and augmented fits,
+and cuteness is null (β = −0.09 [−0.71, 0.49]). This is the expected
+pattern when the outcome and a fixed effect index nearly the same thing –
+listeners judge animals as animate from the picture, and there is
+correspondingly little residual room for an item-level cuteness covariate
+to add explanatory value.
+
+**The §6 size effects are unaffected.** A useful side check from the
+augmented production models: the size effect on vowel duration
+(β = +0.14 [−0.03, 0.30]) and on f0 (β = −0.16 [−0.28, −0.04]) barely
+move from their §6 values (+0.16 and −0.18 respectively), and the
+perception-of-f0 effect (β = −0.52) is unchanged. The primary §6 claims
+– that speakers reliably lengthen vowels and lower f0 for big referents,
+and that listeners use f0 to call "big" – are therefore not contaminated
+by item-level cuteness or animacy. Size iconicity rides on top of these
+between-item dimensions, not through them.
+
+**Bottom line for the §6 animacy story.** The cuteness analysis does not
+cleanly support the §6 reading of an animacy main effect, but it also
+does not cleanly support a "cuteness in disguise" alternative. What it
+does support is the limitation already flagged in §9: in this stimulus
+set, animacy is confounded with item-level dimensions (cuteness being
+one we can name) to a degree that the present design cannot resolve.
+The honest write-up is to keep §6 as a descriptive observation –
+animate referents in this set were produced with shorter vowels and
+higher f0, and listener big-judgments tracked f0 – without claiming
+animacy *qua* feature as the carrier of the production-side baseline
+shift. A design that orthogonalises animacy and cuteness, with more
+items per cell, would be needed to identify either independently.
 
 # 8. Cross-feature comparison
 
@@ -1511,14 +2013,20 @@ iconic features would predict (different speakers and different listeners can re
 acoustic channels to convey or recover the same semantic dimension), but a directed replication
 would be needed to take it as more than suggestive.
 
-Animacy entered as an independent main effect rather than as a modulator of the size effect.
-Animate referents were produced with shorter vowels and higher f0 regardless of their size, and
-listeners' "animate" judgments were modulated by speaker f0. A reasonable interpretation is
-that animacy in this stimulus set carries a register-like shift on top of an otherwise
-animacy-invariant size mapping. Whether this is animacy *qua* feature, or the residue of
-unmeasured differences between the animal and object stimulus subsets (e.g., baseline word
-length, articulatory complexity, expressiveness of the depicted entity), cannot be separated
-in the present design.
+Animacy entered the production models as a main effect rather than as a modulator
+of the size effect: animate referents in this stimulus set were produced with
+shorter vowels and higher f0 regardless of their size, with the size effect itself
+essentially unchanged across the animate/inanimate split. We treat this as a
+descriptive observation rather than as evidence for animacy qua feature.
+A separately-collected per-item cuteness rating (§7.8) provides the cleanest
+available diagnostic: when cuteness is added as a covariate to the production
+models, the animacy main effect shrinks toward zero, but cuteness itself does
+not take its place – both predictors become non-credible. The honest read is
+that animals and objects in this stimulus set differ acoustically in ways that
+go beyond their size, but that the 36-item design lacks the resolution to
+identify which item-level dimension is responsible. Listeners' "animate"
+judgments, separately, are modulated by speaker f0 (§7.5), and this perception
+pattern survives the cuteness control (§7.8) unchanged.
 
 The exploratory channels are descriptive: CPP and F1 in production, and fricative duration and
 fricative SPL in perception, all show credible effects that are worth a closer look in a
@@ -1528,9 +2036,13 @@ Three limitations are worth naming. (i) The stimulus set is small (36 items) and
 size with referent identity – speaker-level random effects help but cannot fully partial this
 out. (ii) Listeners had a picture in front of them, so item identity is the dominant driver
 of any judgment; the acoustic cues modulate on top of an already strong prior (see the
-item-level baselines in §6.7). (iii) The animacy contrast is confounded with the animal vs
-object stimulus subsets in this design; the present data cannot separate animacy as a
-semantic feature from baseline differences between those subsets.
+item-level baselines in §6.7). (iii) Animacy is confounded with item-level dimensions of the stimulus set – a
+separately-collected cuteness rating (§7.8) is one such dimension, and likely
+not the only one – to a degree that the present 36-item design cannot resolve.
+A design that orthogonalises animacy and cuteness (and ideally other item-level
+dimensions that travel with the animal/object split, such as baseline
+expressiveness or articulatory complexity), with more items per cell, would be
+needed to identify animacy as a semantic feature in production.
 
 # 10. References {-}
 

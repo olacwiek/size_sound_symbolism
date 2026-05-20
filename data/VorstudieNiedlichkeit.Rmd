@@ -1,0 +1,368 @@
+---
+title: "Auswertung Vorstudie"
+author: "Lexa"
+date: "`r Sys.Date()`"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+packages <- c(
+  "lme4",
+  "lmerTest",
+  "emmeans",
+  "car",
+  "lattice",
+  "ggplot2",
+  "irr",
+  "knitr",
+  "languageR",
+  "MASS",
+  "Rmisc",
+  "dplyr",
+  "MuMIn",
+  "tidyr",
+  "tidyverse",
+  "readxl",
+  "viridis",
+  "scales",
+  "caTools",
+  "readr",
+  "rlang",
+  "RColorBrewer",
+  "sjPlot",
+  "phonTools",
+  "phonR",
+  "influence.ME",
+  "broom.mixed"
+)
+
+
+to_install <- setdiff(packages, rownames(installed.packages()))
+if (length(to_install) > 0) {
+  install.packages(to_install)
+}
+
+invisible(lapply(packages, library, character.only = TRUE))
+```
+
+#Daten einlesen
+```{r}
+df_Niedlichkeit <- read.csv("C:/Users/lexas/Desktop/Masterarbeit/Auswertung/Vorstudie_Niedlichkeit/data.csv")
+```
+
+```{r}
+head(df_Niedlichkeit)
+
+#Spalten löschen, die leer oder nicht nötig sind
+df_Niedlichkeit$gender_other <- NULL
+df_Niedlichkeit$COUNTRY <- NULL
+df_Niedlichkeit$CLIENT_start <- NULL
+df_Niedlichkeit$TIME_start <- NULL
+df_Niedlichkeit$TIME_end <- NULL
+df_Niedlichkeit$TIME_total <- NULL
+
+#unvollstädnige und Probe-participants entfernen
+df_Niedlichkeit <- na.omit(df_Niedlichkeit)
+
+df_niedlich <- subset(df_Niedlichkeit, df_Niedlichkeit$country != "albania" & df_Niedlichkeit$country != "Albania" & df_Niedlichkeit$country != "France, India, England")
+
+#gender umcodieren 
+df_niedlich$gender[df_niedlich$gender == "1"] <- "female"
+df_niedlich$gender[df_niedlich$gender == "2"] <- "male"
+```
+
+#participant data
+```{r}
+nParticipants <- nrow(df_niedlich)
+nParticipants
+
+mAge <- mean(df_niedlich$age)
+mAge
+
+rAge <- range(df_niedlich$age)
+rAge
+
+table(df_niedlich$gender)
+
+```
+
+#Format ändern, Variablen erstellen für t-test
+```{r}
+df_long <- df_niedlich %>%
+  pivot_longer(
+    cols = -c(age, gender, country, participant),
+    names_to = "stimulus",
+    values_to = "rating"
+  )
+head(df_long)
+
+
+df_long$animate <- ""
+df_long$animate[df_long$stimulus == "condor" | df_long$stimulus == "harpyie" | df_long$stimulus == "stork"
+                | df_long$stimulus == "finch" | df_long$stimulus == "tit"  | df_long$stimulus == "sparrow"
+                | df_long$stimulus == "cow"| df_long$stimulus == "elephant"| df_long$stimulus == "bear"
+                | df_long$stimulus == "monkey" | df_long$stimulus == "hedgehog" | df_long$stimulus == "bunny"
+                | df_long$stimulus == "crocodile"| df_long$stimulus == "comododragon"| df_long$stimulus == "anaconda"
+                | df_long$stimulus == "grasssnake"| df_long$stimulus == "gecko"| df_long$stimulus == "tortoise"
+                | df_long$stimulus == "heron" | df_long$stimulus == "horse"|df_long$stimulus == "frog"] <- 1
+
+df_long$animate[df_long$animate != 1] <- 0
+
+
+#sanitycheck
+table(df_long$animate)
+```
+#Subset ohne Trainingsitems
+```{r}
+df_longEx <- subset(df_long, df_long$stimulus != "heron" & df_long$stimulus != "horse" & df_long$stimulus != "frog" & df_long$stimulus != "boat" & df_long$stimulus != "toaster" & df_long$stimulus != "washingmachine")
+
+nrow(df_long)
+nrow(df_longEx)
+```
+
+#Größe erstellen
+```{r}
+df_longEx$big <- ""
+df_longEx$big[df_longEx$stimulus == "condor" | df_longEx$stimulus == "harpyie" | df_longEx$stimulus == "stork"
+                | df_longEx$stimulus == "doublebass" | df_longEx$stimulus == "bigdrum"  | df_longEx$stimulus == "bigbell"
+                | df_longEx$stimulus == "cow"| df_longEx$stimulus == "elephant"| df_longEx$stimulus == "bear"
+                | df_longEx$stimulus == "wallclock" | df_longEx$stimulus == "industrialoven" | df_longEx$stimulus == "industrialprinter"
+                | df_longEx$stimulus == "crocodile"| df_longEx$stimulus == "comododragon"| df_longEx$stimulus == "anaconda"
+                | df_longEx$stimulus == "SUV"| df_longEx$stimulus == "jumbojet"| df_longEx$stimulus == "bigexcavator"] <- 1
+
+df_longEx$big[df_longEx$big != 1] <- 0
+
+#sanitycheck
+table(df_longEx$big)
+
+
+head(df_longEx)
+```
+
+
+#mean und range alle (außer Trainingsitems)
+```{r}
+mean(df_longEx$rating)
+sd(df_longEx$rating)
+range(df_longEx$rating)
+```
+
+#subset animate - inanimate
+```{r}
+#animate <- subset(df_longEx, df_longEx$animate == 1)
+#mean(animate$rating)
+#sd(animate$rating)
+#range(animate$rating)
+
+#object <- subset(df_longEx, df_longEx$animate == 0)
+#mean(object$rating)
+#sd(object$rating)
+#range(object$rating)
+
+#big  <- subset(df_longEx, df_longEx$big == 1)
+#mean(big$rating)
+#sd(big$rating)
+#range(big$rating)
+
+#small <- subset(df_longEx, df_longEx$big == 0)
+#mean(small$rating)
+#sd(small$rating)
+#range(small$rating)
+```
+
+#create median, IQR in new data set
+```{r}
+
+summary_stimulus <- df_longEx %>%
+  group_by(stimulus) %>%
+  summarise(
+    median_rating = median(rating, na.rm = TRUE),
+    q1 = quantile(rating, 0.25, na.rm = TRUE),
+    q3 = quantile(rating, 0.75, na.rm = TRUE),
+    iqr = IQR(rating, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+head(df_longEx)
+head(summary_stimulus)
+
+```
+
+#modify stimulus to fit with df_vowel and df_fricative
+```{r}
+#change $stimulus to $Exemplar
+summary_stimulus$Exemplar <- summary_stimulus$stimulus
+table(summary_stimulus$Exemplar)
+
+
+
+
+#change names to German names
+unique(summary_stimulus$Exemplar)
+table(summary_stimulus$Exemplar)
+
+
+summary_stimulus$Exemplar[summary_stimulus$Exemplar == "anaconda"] <- "Anakonda" 
+summary_stimulus$Exemplar[summary_stimulus$Exemplar == "monkey"] <- "Aeffchen" 
+summary_stimulus$Exemplar[summary_stimulus$Exemplar == "watch"] <- "Armbanduhr" 
+summary_stimulus$Exemplar[summary_stimulus$Exemplar == "oven"] <- "Backofen" 
+summary_stimulus$Exemplar[summary_stimulus$Exemplar == "bear"] <- "Baer" 
+summary_stimulus$Exemplar[summary_stimulus$Exemplar == "tit"] <- "Blaumeise" 
+summary_stimulus$Exemplar[summary_stimulus$Exemplar == "grasssnake"] <- "Blindschleiche" 
+summary_stimulus$Exemplar[summary_stimulus$Exemplar == "bigdrum"] <- "Bodentrommel" 
+summary_stimulus$Exemplar[summary_stimulus$Exemplar == "industrialprinter"] <- "Buerodrucker" 
+summary_stimulus$Exemplar[summary_stimulus$Exemplar == "finch"] <- "Dompfaff" 
+summary_stimulus$Exemplar[summary_stimulus$Exemplar == "printer"] <- "Drucker" 
+summary_stimulus$Exemplar[summary_stimulus$Exemplar == "elephant"] <- "Elefant" 
+summary_stimulus$Exemplar[summary_stimulus$Exemplar == "gecko"] <- "Gecko" 
+summary_stimulus$Exemplar[summary_stimulus$Exemplar == "smallbell"] <- "Gloeckchen" 
+summary_stimulus$Exemplar[summary_stimulus$Exemplar == "bigexcavator"] <- "Grosser Bagger" 
+summary_stimulus$Exemplar[summary_stimulus$Exemplar == "smalldrum"] <- "Handtrommel" 
+summary_stimulus$Exemplar[summary_stimulus$Exemplar == "harpyie"] <- "Harpyie" 
+summary_stimulus$Exemplar[summary_stimulus$Exemplar == "hedgehog"] <- "Igel" 
+summary_stimulus$Exemplar[summary_stimulus$Exemplar == "industrialoven"] <- "Industriebackofen" 
+summary_stimulus$Exemplar[summary_stimulus$Exemplar == "jumbojet"] <- "Jumbojet" 
+summary_stimulus$Exemplar[summary_stimulus$Exemplar == "bunny"] <- "Kaninchen" 
+summary_stimulus$Exemplar[summary_stimulus$Exemplar == "bigbell"] <- "Kirchenglocke" 
+summary_stimulus$Exemplar[summary_stimulus$Exemplar == "plane"] <- "Kleinflugzeug" 
+summary_stimulus$Exemplar[summary_stimulus$Exemplar == "car"] <- "Kleinwagen" 
+summary_stimulus$Exemplar[summary_stimulus$Exemplar == "smallexcavator"] <- "Kleiner Bagger" 
+summary_stimulus$Exemplar[summary_stimulus$Exemplar == "comododragon"] <- "Komodowaran" 
+summary_stimulus$Exemplar[summary_stimulus$Exemplar == "condor"] <- "Kondor" 
+summary_stimulus$Exemplar[summary_stimulus$Exemplar == "doublebass"] <- "Kontrabass" 
+summary_stimulus$Exemplar[summary_stimulus$Exemplar == "crocodile"] <- "Krokodil"
+summary_stimulus$Exemplar[summary_stimulus$Exemplar == "cow"] <- "Kuh" 
+summary_stimulus$Exemplar[summary_stimulus$Exemplar == "tortoise"] <- "Schildkroete" 
+summary_stimulus$Exemplar[summary_stimulus$Exemplar == "sparrow"] <- "Spatz" 
+summary_stimulus$Exemplar[summary_stimulus$Exemplar == "stork"] <- "Storch" 
+#summary_stimulus$Exemplar[summary_stimulus$Exemplar == "SUV"] <- "SUV" 
+summary_stimulus$Exemplar[summary_stimulus$Exemplar == "violin"] <- "Violine" 
+summary_stimulus$Exemplar[summary_stimulus$Exemplar == "wallclock"] <- "Wanduhr" 
+
+
+
+
+#add english names fit to names in Exemplar
+summary_stimulus$english <- ""
+summary_stimulus$english[summary_stimulus$Exemplar == "Anakonda"] <- "anaconda" 
+summary_stimulus$english[summary_stimulus$Exemplar == "Aeffchen"] <- "monkey" 
+summary_stimulus$english[summary_stimulus$Exemplar == "Armbanduhr"] <- "wristwatch" 
+summary_stimulus$english[summary_stimulus$Exemplar == "Backofen"] <- "oven" 
+summary_stimulus$english[summary_stimulus$Exemplar == "Baer"] <- "bear" 
+summary_stimulus$english[summary_stimulus$Exemplar == "Blaumeise"] <- "blue tit" 
+summary_stimulus$english[summary_stimulus$Exemplar == "Blindschleiche"] <- "slowworm" 
+summary_stimulus$english[summary_stimulus$Exemplar == "Bodentrommel"] <- "frame drum" 
+summary_stimulus$english[summary_stimulus$Exemplar == "Buerodrucker"] <- "office printer" 
+summary_stimulus$english[summary_stimulus$Exemplar == "Dompfaff"] <- "bullfinch" 
+summary_stimulus$english[summary_stimulus$Exemplar == "Drucker"] <- "printer" 
+summary_stimulus$english[summary_stimulus$Exemplar == "Elefant"] <- "elephant" 
+summary_stimulus$english[summary_stimulus$Exemplar == "Gecko"] <- "gecko" 
+summary_stimulus$english[summary_stimulus$Exemplar == "Gloeckchen"] <- "bell" 
+summary_stimulus$english[summary_stimulus$Exemplar == "Grosser Bagger"] <- "big excavator" 
+summary_stimulus$english[summary_stimulus$Exemplar == "Handtrommel"] <- "hand drum" 
+summary_stimulus$english[summary_stimulus$Exemplar == "Harpyie"] <- "harpy" 
+summary_stimulus$english[summary_stimulus$Exemplar == "Igel"] <- "hedgehog" 
+summary_stimulus$english[summary_stimulus$Exemplar == "Industriebackofen"] <- "industrial oven" 
+summary_stimulus$english[summary_stimulus$Exemplar == "Jumbojet"] <- "jumbo jet" 
+summary_stimulus$english[summary_stimulus$Exemplar == "Kaninchen"] <- "bunny" 
+summary_stimulus$english[summary_stimulus$Exemplar == "Kirchenglocke"] <- "church bell" 
+summary_stimulus$english[summary_stimulus$Exemplar == "Kleinflugzeug"] <- "small aircraft" 
+summary_stimulus$english[summary_stimulus$Exemplar == "Kleinwagen"] <- "small car" 
+summary_stimulus$english[summary_stimulus$Exemplar == "Kleiner Bagger"] <- "small excavator" 
+summary_stimulus$english[summary_stimulus$Exemplar == "Komodowaran"] <- "komodo dragon" 
+summary_stimulus$english[summary_stimulus$Exemplar == "Kondor"] <- "condor" 
+summary_stimulus$english[summary_stimulus$Exemplar == "Kontrabass"] <- "double bass" 
+summary_stimulus$english[summary_stimulus$Exemplar == "Krokodil"] <- "crocodile"
+summary_stimulus$english[summary_stimulus$Exemplar == "Kuh"] <- "cow" 
+summary_stimulus$english[summary_stimulus$Exemplar == "Schildkroete"] <- "tortoise" 
+summary_stimulus$english[summary_stimulus$Exemplar == "Spatz"] <- "sparrow" 
+summary_stimulus$english[summary_stimulus$Exemplar == "Storch"] <- "stork" 
+summary_stimulus$english[summary_stimulus$Exemplar == "SUV"] <- "suv" 
+summary_stimulus$english[summary_stimulus$Exemplar == "Violine"] <- "violin" 
+summary_stimulus$english[summary_stimulus$Exemplar == "Wanduhr"] <- "wall clock" 
+
+summary_stimulus$Exemplar <- as.factor(summary_stimulus$Exemplar)
+summary_stimulus$english <- as.factor(summary_stimulus$english)
+
+summary_stimulus$stimulus <- NULL
+```
+
+
+
+
+
+#save ratings as new file
+```{r}
+#write.csv(summary_stimulus, file = "C:/Users/lexas/Desktop/Masterarbeit/Auswertung/cutenessRatingsMedianIQR", row.names = FALSE)
+```
+
+
+#highest cuteness rating
+```{r}
+#cutenessRatings <- read.xlsx("C:/Users/lexas/Desktop/Masterarbeit/Auswertung/cutenessRatingsMedianIQR")
+
+#range(cutenessRatings$median_rating)
+
+#table(cutenessRatings$Exemplar, cutenessRatings$median_rating)
+
+```
+
+
+
+#Vergleiche via Wilcoxon signed rank test in df_longEx 
+```{r}
+#Achtung: mean statt median
+#Größe
+wilcox.test(
+  rating ~ big,
+  data = df_longEx
+)
+
+#median rating by animacy
+aggregate(rating ~ big, data = df_longEx, FUN = median)
+#small: 4.6
+#big: 4.1
+aggregate(rating ~ big, data = df_longEx, FUN = mean)
+
+
+
+
+#Belebtheit
+wilcox.test(
+  rating ~ animate,
+  data = df_longEx
+)
+
+
+#median rating by animacy
+aggregate(rating ~ animate, data = df_longEx, FUN = median)
+#inanimate: 3.5
+#animate: 5.1
+aggregate(rating ~ animate, data = df_longEx, FUN = mean)
+
+
+```
+
+
+#Vergleiche via lmer in df_longEx
+```{r}
+#methodisch nicht ganz sauber wegen ordinaler Daten
+#nur für Abschätzung der Unterschiedsgröße
+modelSize <- lmer(rating ~ big + (1 | participant), data = df_longEx)
+summary(modelSize)
+#r.squaredGLMM(modelSize)
+
+
+
+modelAnimacy <- lmer(rating ~ animate + (1 | participant), data = df_longEx)
+summary(modelAnimacy)
+
+#r.squaredGLMM(modelAnimacy)
+
+```
+
+
