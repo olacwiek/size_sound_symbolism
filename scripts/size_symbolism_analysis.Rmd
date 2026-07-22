@@ -703,6 +703,57 @@ ggplot(item_cute_full, aes(x = category, y = cuteness_mean, colour = animacy)) +
        title = "Cuteness by stimulus category")
 ```
 
+
+## 3.5 Cuteness check
+
+```{r m-cuteness-prep}
+# Attach size/animacy to the rater-level ratings and sum-code (+0.5 = big, animate),
+# matching the coding used everywhere else in the script.
+cuteness_model_dat <- cuteness_long |>
+  left_join(item_cute_full |> select(item_english, size, animacy),
+            by = "item_english") |>
+  filter(!is.na(size), !is.na(animacy)) |>
+  mutate(
+    size_c    = if_else(size    == "big",     0.5, -0.5),
+    animacy_c = if_else(animacy == "animate", 0.5, -0.5)
+  )
+```
+
+```{r m-cuteness-fit, results='hide'}
+# Multilevel Gaussian model on the 1–7 ratings: effects come out in rating points,
+# which match the descriptive "~1.3-point animacy gap" language. By-rater and
+# by-item random intercepts handle the clustering the pooled Wilcoxon ignored.
+# Priors are weakly informative, scaled to the 1–7 outcome.
+m_cuteness <- brm(
+  bf(cuteness ~ size_c * animacy_c + (1 | participant) + (1 | item_english)),
+  data    = cuteness_model_dat,
+  family  = gaussian(),
+  prior   = c(prior(normal(0, 2.5),        class = "b"),
+              prior(student_t(3, 4, 2.5),  class = "Intercept"),
+              prior(student_t(3, 0, 2.5),  class = "sd"),
+              prior(student_t(3, 0, 2.5),  class = "sigma")),
+  chains  = 4, iter = 8000, warmup = 4000, cores = 4,
+  control = list(adapt_delta = 0.95, max_treedepth = 12),
+  seed    = 2137,
+  file    = paste0(models, "m_cuteness")
+)
+```
+
+```{r m-cuteness-report}
+summary(m_cuteness)
+
+# Same reporting idiom as the rest of the paper: median, 95% HDI, prob. of direction.
+describe_posterior(m_cuteness, ci = 0.95, ci_method = "hdi",
+                   test = "pd", centrality = "median", effects = "fixed")
+
+# Optional PPC, consistent with your other models:
+pp_check(m_cuteness, ndraws = 100) + ggtitle("PPC – cuteness ~ size * animacy")
+```
+
+The images were generated in a uniform "cute" style so that cuteness would not vary with the experimental factors, but a style prompt is no guarantee, so we check directly whether the ratings still line up with size and animacy. We model the raw rater-level ratings – every rater × item, 576 in all – rather than the per-item means, with random intercepts for both rater and item: raters differ in how generously they use the scale, and items differ from one another beyond their size and animacy, and a multilevel model absorbs both kinds of variation instead of letting them inflate the precision of the size and animacy estimates (it is also why a single pooled test would overstate the evidence here). The outcome is treated as continuous, so the coefficients are in rating points on the 1–7 scale; size and animacy are sum-coded (+0.5 = big, animate), so each coefficient is the difference between its two levels.
+
+The check confirms the confound the covariate is meant to handle. Animate referents are rated about 1.5 points cuter than inanimate ones (β = 1.53, 95% CrI [1.26, 1.80]), and small referents about half a point cuter than big ones (β = −0.47, 95% CrI [−0.74, −0.20]); both intervals exclude zero. The size × animacy interaction leans the same way as the descriptive plots – the size effect on cuteness is a little larger for animals than for objects – but its interval crosses zero (β = −0.48, 95% CrI [−1.01, 0.07]), so we read it as a hint rather than a result. All chains converged (R-hat = 1.00). Because cuteness covaries with both factors, it enters the production and perception models as a per-item covariate; whether it actually accounts for the animacy main effect is taken up in §7.8.
+
 # 4. Build the long-format production tables
 
 Production data are in **long format**: one row per acoustic measurement (vowel or fricative
@@ -723,7 +774,7 @@ vdur_long <- vdur_raw |>
 # H1-H2 = A1c - A2c per the readme.
 praat_long <- praat_raw |>
   mutate(file_key = str_to_lower(file) |> str_remove("\\.wav$"),
-         H1H2     = A1c - A2c) |>
+         H1H2     = H1c - H2c) |>
   rename(vowel = label) |>
   left_join(master_files |> select(file_key, group, speaker_num, trial_num,
                                    item_norm, sex, age),
@@ -1299,9 +1350,10 @@ ggplot(main_effects, aes(x = value, y = fct_rev(model))) +
   stat_halfeye(.width = c(0.66, 0.95)) +
   geom_vline(xintercept = 0, linetype = 2, colour = "grey40") +
   labs(x = "Effect estimate (sum-coded big vs. small / per +1 SD)",
-       y = NULL,
-       title = "Size effects in production and perception",
-       subtitle = "Predicted direction: positive for duration; negative for f0")
+       y = NULL#,
+       #title = "Size effects in production and perception",
+       #subtitle = "Predicted direction: positive for duration; negative for f0"
+       )
 ```
 
 ```{r speaker-slopes, fig.width=7, fig.height=8, fig.cap=capFig("Per-speaker estimated size effect on vowel duration (log scale), sorted by magnitude. Dashed line = population-level estimate.")}
@@ -1560,6 +1612,9 @@ These models mirror §6.4–6.5 but swap the acoustic predictor. Each tests whet
 ```{r exploratory-perc, results='hide'}
 m_perc_F1     <- fit_perc_bin("big_judgment", "F1_mean_z")
 m_perc_F2     <- fit_perc_bin("big_judgment", "F2_mean_z")
+m_perc_CPP   <- fit_perc_bin("big_judgment", "CPP_mean_z")
+m_perc_H1H2  <- fit_perc_bin("big_judgment", "H1H2_mean_z")
+m_perc_fCoG  <- fit_perc_bin("big_judgment", "fric_CoG_Hz_mean_z")
 m_perc_fdur   <- fit_perc_bin("big_judgment", "fric_dur_ms_mean_z")
 m_perc_fSPL   <- fit_perc_bin("big_judgment", "fric_SPL_dB_mean_z")
 m_perc_fpeak  <- fit_perc_bin("big_judgment", "fric_peak_Hz_mean_z")
@@ -1573,6 +1628,21 @@ pp_check(m_perc_F1, ndraws = 100) + ggtitle("PPC – perception of F1")
 ```{r expl-perc-display-F2, fig.height=3, fig.cap=capFig("Perception: F2 as cue to 'big' judgment.")}
 summary(m_perc_F2)
 pp_check(m_perc_F2, ndraws = 100) + ggtitle("PPC – perception of F2")
+```
+
+```{r expl-perc-display-CPP, fig.height=3, fig.cap=capFig("Perception: CPP as cue to 'big' judgment.")}
+summary(m_perc_CPP)
+pp_check(m_perc_CPP, ndraws = 100) + ggtitle("PPC – perception of CPP")
+```
+
+```{r expl-perc-display-H1H2, fig.height=3, fig.cap=capFig("Perception: H1H2 as cue to 'big' judgment.")}
+summary(m_perc_H1H2)
+pp_check(m_perc_H1H2, ndraws = 100) + ggtitle("PPC – perception of H1H2")
+```
+
+```{r expl-perc-display-fCoG, fig.height=3, fig.cap=capFig("Perception: fCoG as cue to 'big' judgment.")}
+summary(m_perc_fCoG)
+pp_check(m_perc_fCoG, ndraws = 100) + ggtitle("PPC – perception of fCoG")
 ```
 
 ```{r expl-perc-display-fdur, fig.height=3, fig.cap=capFig("Perception: fricative duration as cue to 'big' judgment.")}
@@ -1629,11 +1699,8 @@ m_cat_dur <- fit_brm(
 These results are read as descriptive flags, not robust findings, and we mark the directions
 that look worth following up.
 
-**Vocalic features beyond duration and f0.** F1 is credibly lower for big referents on the log
-scale (β = -0.06, 95% HDI [-0.10, -0.03]; ~6% lower F1 for big). Mechanistically a lower F1
-can come from either a less open mouth or a higher tongue position (the two move together but
-not one-to-one), so the direction is at face value the *opposite* of the open-vowel-for-big
-stereotype – our speakers are realising big referents with a slightly more closed or
+**Vocalic features beyond duration and f0.** F1 is credibly lower for big referents on the log scale (β = -0.06, 95% HDI [-0.10, -0.03]; ~6% lower F1 for big). Mechanistically a lower F1 can come from either a less open mouth or a higher tongue position (the two move together but not one-to-one), so the direction is at face value the *opposite* of the open-vowel-for-big
+stereotype – our speakers are realizing big referents with a slightly more closed or
 higher-tongue vocalic gesture, not a more open one. The direction also runs against
 @cwiek_scope_2025's null on lip opening and formant dispersion for object size, but the
 paradigms differ enough (their participants "shot" at cans of different sizes on the wall
@@ -1645,7 +1712,8 @@ consistent with more periodic voicing for big-referent productions, and credibly
 lower for animate referents (animacy main effect β = -1.57, 95% HDI [-2.44, -0.69]) –
 with the same caveat as in §7.8: the animacy main effect on any of these channels
 may reflect item-level dimensions that travel with the animate/inanimate split
-rather than animacy as a feature. H1–H2 is inconclusive on size.
+rather than animacy as a feature. H1–H2 is also credibly lower for big referents (β = −1.21 dB, 95% HDI [−2.31, −0.11]) – with CPP, a converging hint that big-referent productions carry a less breathy, more pressed voice.
+On the perception side, listeners used neither CPP (β = −0.09, 95% HDI [−0.27, 0.09]) nor H1–H2 (β = 0.03, 95% HDI [−0.15, 0.21]) to judge size: the voice-quality channel, like vowel duration, is produced here but not decoded.
 
 **Fricative production.** Fricative SPL is louder for big referents by roughly 3 dB
 (β = 3.08, 95% HDI [0.61, 5.61]) – the clearest iconic effect among the fricative measures.
@@ -1656,7 +1724,7 @@ no credible size effect; phoneme identity, as expected, dominates both.
 **Fricative perception.** Listeners use fricative duration as a cue to size
 (β = 0.25, 95% HDI [0.04, 0.45]) and the use is amplified for animate referents
 (interaction β = 0.50, 95% HDI [0.09, 0.91]). Listeners also use fricative SPL
-(β = 0.24, 95% HDI [0.05, 0.43]). F1, F2, and fricative peak frequency are not credibly used.
+(β = 0.24, 95% HDI [0.05, 0.43]). F1, F2, fricative peak frequency, and fricative centre of gravity are not credibly used.
 The fricative-duration result is interesting on its own: it is a perception-side effect for a
 production-side feature whose production-side credibility was marginal – a pattern more often
 seen the other way round in this dataset.
@@ -1812,9 +1880,9 @@ ggplot(animacy_compare,
   labs(
     x        = "Animacy main-effect estimate (link scale)",
     y        = NULL,
-    fill     = NULL,
-    title    = "Does cuteness absorb the animacy main effect?",
-    subtitle = "Each outcome: baseline model (§6 / §7.5) vs. with cuteness_z added"
+    fill     = NULL#,
+    #title    = "Does cuteness absorb the animacy main effect?",
+    #subtitle = "Each outcome: baseline model (§6 / §7.5) vs. with cuteness_z added"
   ) +
   theme(
     plot.title          = element_text(size = 13, face = "bold"),
@@ -1957,9 +2025,10 @@ ggplot(forest_prod, aes(x = value, y = fct_rev(model))) +
   geom_vline(xintercept = 0, linetype = 2, colour = "grey40") +
   facet_wrap(~ scale_group, scales = "free", ncol = 1) +
   labs(x = "Effect of big vs. small (sum-coded)",
-       y = NULL,
-       title = "Production: size effect across all acoustic features",
-       subtitle = "Top panel includes the primary-claim outcomes (vowel duration, f0)")
+       y = NULL#,
+       #title = "Production: size effect across all acoustic features",
+       #subtitle = "Top panel includes the primary-claim outcomes (vowel duration, f0)"
+       )
 ```
  
 ## 8.2 Perception: which cues drive "big" judgments?
@@ -1970,6 +2039,9 @@ forest_perc <- bind_rows(
   extract_term(m_perc_f0,    "f0_mean_z",           "f0"),
   extract_term(m_perc_F1,    "F1_mean_z",           "F1"),
   extract_term(m_perc_F2,    "F2_mean_z",           "F2"),
+  extract_term(m_perc_CPP,   "CPP_mean_z",          "CPP"),
+  extract_term(m_perc_H1H2,  "H1H2_mean_z",         "H1–H2"),
+  extract_term(m_perc_fCoG,  "fric_CoG_Hz_mean_z",  "fricative CoG"),
   extract_term(m_perc_fdur,  "fric_dur_ms_mean_z",  "fricative duration"),
   extract_term(m_perc_fSPL,  "fric_SPL_dB_mean_z",  "fricative SPL"),
   extract_term(m_perc_fpeak, "fric_peak_Hz_mean_z", "fricative peak")
@@ -1980,9 +2052,10 @@ ggplot(forest_perc, aes(x = value, y = fct_rev(model))) +
   stat_halfeye(.width = c(0.66, 0.95)) +
   geom_vline(xintercept = 0, linetype = 2, colour = "grey40") +
   labs(x = "log-odds shift of \"big\" judgment per +1 SD acoustic feature",
-       y = NULL,
-       title = "Perception: which cues drive \"big\" judgments?",
-       subtitle = "Top two rows = primary claim; below = exploratory")
+       y = NULL#,
+       #title = "Perception: which cues drive \"big\" judgments?",
+       #subtitle = "Top two rows = primary claim; below = exploratory"
+       )
 ```
 
 ## 8.3 Perception: which cues drive "animate" judgments?
