@@ -1,10 +1,7 @@
 ---
 title: "Size symbolism in production and perception"
 subtitle: "A Bayesian analysis of duration, f0, and animacy"
-author:
-  - Alexandra Schmidt
-  - Aleksandra Ćwiek (script author)
-  - Petra Wagner
+author: anonymized for peer review
 date: "`r Sys.Date()`"
 output:
   html_document:
@@ -175,8 +172,7 @@ This analysis uses the Bayesian framework with the `cmdstanr` backend. All Germa
   refits when the model spec changes.
 - **Acoustic extraction**: vowel features via PraatSauce [@kirby_praatsauce_2025;
   @boersma_praat_2023]; fricative features via the Al-Tamimi spectral-analyses scripts
-  [@al-tamimi_jalalal-tamimipraat-spectral-analyses-fricatives-stops_2022;
-  @jongman_acoustic_2000].
+  [@al-tamimi_jalalal-tamimipraat-spectral-analyses-fricatives-stops_2022; @jongman_acoustic_2000].
 
 # 1. Read raw data
 
@@ -1332,15 +1328,15 @@ for the size question. Positive values indicate the size-iconic direction for du
 for big); for f0 the prediction is **negative** (lower for big), so a posterior concentrated
 below zero supports the frequency-code prediction [@ohala_ethological_1984; @winter_size_2025].
 
-```{r forest-main, fig.height=3.5, fig.cap=capFig("Size effect across the four primary models. Filled intervals: 66% and 95% HDI; dashed line at zero.")}
+```{r forest-main, fig.height=3.5, dpi=600, fig.retina=1, fig.cap=capFig("Size effect across the four primary models. Filled intervals: 66% and 95% HDI; dashed line at zero.")}
 extract_term <- function(model, term, name) {
   as_draws_df(model) |>
     transmute(model = name, value = .data[[paste0("b_", term)]])
 }
 
 main_effects <- bind_rows(
-  extract_term(m_vdur,     "size_c",                "vowel duration (production, log-ms)"),
-  extract_term(m_f0,       "size_c",                "f0 (production, Hz)"),
+  extract_term(m_vdur,     "size_c",                "vowel duration (production, log)"),
+  extract_term(m_f0,       "size_c",                "f0 (production, log)"),
   extract_term(m_perc_dur, "vowel_dur_ms_mean_z",   "duration → big (perception, log-odds)"),
   extract_term(m_perc_f0,  "f0_mean_z",             "f0 → big (perception, log-odds)")
 ) |>
@@ -1349,7 +1345,7 @@ main_effects <- bind_rows(
 ggplot(main_effects, aes(x = value, y = fct_rev(model))) +
   stat_halfeye(.width = c(0.66, 0.95)) +
   geom_vline(xintercept = 0, linetype = 2, colour = "grey40") +
-  labs(x = "Effect estimate (sum-coded big vs. small / per +1 SD)",
+  labs(x = "Effect estimate (big vs. small, or per +1 SD)",
        y = NULL#,
        #title = "Size effects in production and perception",
        #subtitle = "Predicted direction: positive for duration; negative for f0"
@@ -1843,7 +1839,7 @@ If cuteness is doing the work the animacy main effect was credited for in
 §6, the augmented posterior should shrink toward zero relative to the
 baseline.
 
-```{r animacy-shift, fig.height=5.5, fig.width=9, fig.cap=capFig("Animacy main-effect posterior in the baseline model vs. the cuteness-augmented model. Shrinkage toward zero indicates that cuteness absorbs the animacy effect.")}
+```{r animacy-shift, fig.height=5.5, dpi=600, fig.retina=1, fig.width=9, fig.cap=capFig("Animacy main-effect posterior in the baseline model vs. the cuteness-augmented model. Shrinkage toward zero indicates that cuteness absorbs the animacy effect.")}
 extract_animacy <- function(model, outcome_name, model_kind) {
   as_draws_df(model) |>
     transmute(outcome    = outcome_name,
@@ -1994,7 +1990,7 @@ panels are not.
 
 ## 8.1 Production: where does size leak into the signal?
 
-```{r forest-prod, fig.height=9, fig.cap=capFig("Production: size effect across all acoustic features, faceted by effect-size scale (log, dB, Hz). Each panel has its own x-axis range – magnitudes across panels are NOT directly comparable.")}
+```{r forest-prod, fig.height=9, dpi=600, fig.retina=1, fig.cap=capFig("Production: size effect across all acoustic features, faceted by effect-size scale (log, dB, Hz). Each panel has its own x-axis range – magnitudes across panels are NOT directly comparable.")}
 forest_prod <- bind_rows(
   extract_term(m_vdur,  "size_c", "vowel duration (log)"),
   extract_term(m_f0,    "size_c", "f0 (log)"),
@@ -2033,7 +2029,7 @@ ggplot(forest_prod, aes(x = value, y = fct_rev(model))) +
  
 ## 8.2 Perception: which cues drive "big" judgments?
 
-```{r forest-perc, fig.height=4, fig.cap=capFig("Perception: log-odds shift in 'big' judgment per +1 SD of each acoustic feature. Top two rows = primary claim; below = exploratory.")}
+```{r forest-perc, fig.height=4, dpi=600, fig.retina=1, fig.cap=capFig("Perception: log-odds shift in 'big' judgment per +1 SD of each acoustic feature. Top two rows = primary claim; below = exploratory.")}
 forest_perc <- bind_rows(
   extract_term(m_perc_dur,   "vowel_dur_ms_mean_z", "vowel duration"),
   extract_term(m_perc_f0,    "f0_mean_z",           "f0"),
